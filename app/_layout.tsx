@@ -18,7 +18,7 @@ export {
 } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(tabs)',
+  initialRouteName: 'index',
 };
 
 SplashScreen.preventAutoHideAsync();
@@ -69,8 +69,8 @@ function RootLayoutNav() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider value={resolvedThemeName === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
         </Stack>
       </ThemeProvider>
     </QueryClientProvider>

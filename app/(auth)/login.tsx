@@ -10,7 +10,8 @@ export default function LoginPage() {
   const handleLogin = () => {
     // TODO: replace with real authentication logic
     console.log('login', { email, password });
-    router.push('/');
+    // mark logged-in (dummy) and go to tabs
+    router.push('/register');
   };
 
   return (
