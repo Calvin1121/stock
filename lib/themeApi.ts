@@ -1,3 +1,4 @@
+import { THEME } from '@/constants/Colors';
 import { useThemeStore, type ThemeName } from './themeStore';
 
 /**
@@ -14,10 +15,10 @@ export async function fetchUserThemePreference(userId: string): Promise<ThemeNam
     
     // 暂时返回 'system'
     console.log(`Fetching theme preference for user ${userId}`);
-    return 'system';
+    return THEME.SYSTEM;
   } catch (error) {
     console.error('Failed to fetch theme preference:', error);
-    return 'system';
+    return THEME.SYSTEM;
   }
 }
 

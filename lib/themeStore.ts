@@ -1,12 +1,13 @@
-import { create } from 'zustand'
-import { UnistylesRuntime } from 'react-native-unistyles'
+import { Colors, ColorsType, THEME } from '@/constants/Colors'
 import { storage } from '@/lib/storage'
 import '@/lib/unistyles'
+import { UnistylesRuntime } from 'react-native-unistyles'
+import { create } from 'zustand'
 
 const STORAGE_KEY = 'app_theme'
 
-export type ThemeName = 'light' | 'dark' | 'green' | 'system'
-type ResolvedTheme = 'light' | 'dark' | 'green'
+type ResolvedTheme = keyof ColorsType
+export type ThemeName = ResolvedTheme | THEME.SYSTEM
 
 interface ThemeState {
   themeName: ThemeName
@@ -18,25 +19,25 @@ interface ThemeState {
 
 function getStoredTheme(): ThemeName {
   const stored = storage.getString(STORAGE_KEY)
-  if (stored === 'light' || stored === 'dark' || stored === 'green' || stored === 'system') {
+  if (stored && stored in Colors) {
     return stored
   }
-  return 'system'
+  return THEME.SYSTEM
 }
 
 function resolveThemeName(theme: ThemeName, system: ResolvedTheme): ResolvedTheme {
-  if (theme === 'system') return system
+  if (theme === THEME.SYSTEM) return system
   return theme
 }
 
 const storedTheme = getStoredTheme()
-const initialTheme: ResolvedTheme = storedTheme !== 'system' ? storedTheme : 'light'
+const initialTheme: ResolvedTheme = storedTheme !== THEME.SYSTEM ? storedTheme : THEME.LIGHT
 
 UnistylesRuntime.setTheme(initialTheme)
 
 export const useThemeStore = create<ThemeState>((set, get) => ({
   themeName: storedTheme,
-  systemScheme: 'light',
+  systemScheme: THEME.LIGHT,
   resolvedThemeName: initialTheme,
   setTheme: (name) => {
     storage.set(STORAGE_KEY, name)
@@ -48,8 +49,8 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
   setSystemScheme: (scheme) => {
     set({ systemScheme: scheme })
     const { themeName } = get()
-    if (themeName === 'system') {
-      const resolved = resolveThemeName('system', scheme)
+    if (themeName === THEME.SYSTEM) {
+      const resolved = resolveThemeName(THEME.SYSTEM, scheme)
       set({ resolvedThemeName: resolved })
       UnistylesRuntime.setTheme(resolved)
     }

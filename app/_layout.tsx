@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useColorScheme as useSystemColorScheme } from 'react-native';
 import 'react-native-reanimated';
 
+import { ColorsType, THEME } from '@/constants/Colors';
 import '@/lib/i18n';
 import { useLanguageStore } from '@/lib/languageStore';
 import { queryClient } from '@/lib/queryClient';
@@ -61,7 +62,7 @@ function RootLayoutNav() {
   const resolvedThemeName = useThemeStore((s) => s.resolvedThemeName);
 
   useEffect(() => {
-    const scheme: 'light' | 'dark' = systemColorScheme === 'dark' ? 'dark' : 'light'
+    const scheme: keyof ColorsType = systemColorScheme === THEME.DARK ? THEME.DARK : THEME.LIGHT
     useThemeStore.getState().setSystemScheme(scheme)
   }, [systemColorScheme])
 

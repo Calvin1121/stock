@@ -1,21 +1,17 @@
-import { StyleSheet, type UnistylesTheme } from 'react-native-unistyles'
-import Colors from '@/constants/Colors'
+import { Colors, ColorsType, THEME } from '@/constants/Colors';
+import { StyleSheet } from 'react-native-unistyles';
+
+type AppThemes = {
+  [K in keyof ColorsType]: ColorsType[K];
+};
 
 declare module 'react-native-unistyles' {
-  export interface UnistylesThemes {
-    light: UnistylesTheme
-    dark: UnistylesTheme
-    green: UnistylesTheme
-  }
+  export interface UnistylesThemes extends AppThemes {}
 }
 
 StyleSheet.configure({
-  themes: {
-    light: Colors.light,
-    dark: Colors.dark,
-    green: Colors.green,
-  },
+  themes: Colors,
   settings: {
-    initialTheme: 'light',
+    initialTheme: THEME.LIGHT,
   },
 })
