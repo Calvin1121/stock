@@ -1,9 +1,9 @@
 import { Tabs } from 'expo-router';
-import { Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { Text } from 'react-native';
 
-import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
+import Colors from '@/constants/Colors';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -23,35 +23,35 @@ export default function TabLayout() {
         name="home"
         options={{
           title: t('home:title'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22 }}>🏠</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22, color }}>🏠</Text>,
         }}
       />
       <Tabs.Screen
         name="ipo"
         options={{
           title: t('ipo:title'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22 }}>📈</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22, color }}>📈</Text>,
         }}
       />
       <Tabs.Screen
         name="assets"
         options={{
           title: t('assets:title'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22 }}>💼</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22, color }}>💼</Text>,
         }}
       />
       <Tabs.Screen
         name="news"
         options={{
           title: t('news:title'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22 }}>📰</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22, color }}>📰</Text>,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           title: t('profile:title'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22 }}>👤</Text>,
+          tabBarIcon: ({ color }) => <Text style={{ fontSize: 22, color }}>👤</Text>,
         }}
       />
     </Tabs>
