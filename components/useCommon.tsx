@@ -1,22 +1,27 @@
 
-import { NativeStackNavigationOptions } from "expo-router";
+import { NativeStackHeaderBackProps, NativeStackNavigationOptions, useRouter } from "expo-router";
+import { TouchableOpacity } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
+import { IconBack } from "./iconfont";
 export function useHeaderOption(props?: NativeStackNavigationOptions): NativeStackNavigationOptions {
     const { theme } = useUnistyles();
+    const router = useRouter();
     const { headerStyle: _headerStyle, ...otherProps } = props || {};
     const headerStyle = {
         backgroundColor: theme.headerBackground,
         ..._headerStyle,
     };
-    // const headerLeft = (props: NativeStackHeaderBackProps) => {
-    //     return <Ionicons name="chevron-back-sharp" size={24} color={props.tintColor} />
-    // };
+    const headerLeft = (props: NativeStackHeaderBackProps) => {
+        return <TouchableOpacity onPress={router.back} style={{ padding: 8 }}>
+            <IconBack color={theme.headerText} size={24} />
+        </TouchableOpacity>
+    };
     return {
         headerTitleAlign: 'center',
         headerShadowVisible: false,
         headerTintColor: theme.headerText,
         headerStyle,
-        // headerLeft,
+        headerLeft,
         ...otherProps,
     }
 }
