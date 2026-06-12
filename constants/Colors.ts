@@ -11,6 +11,8 @@ const theme = {
     tabBoxShadow: '0px 0px 10px #151721',
     tabTextActive: '#4D8EFF',
     tabTextInactive: '#A5A5A5',
+    headerBackground: '#11121A',
+    headerText: '#fff',
     tint: '#000',
     tabIconDefault: '#ccc',
     tabIconSelected: '#fff',

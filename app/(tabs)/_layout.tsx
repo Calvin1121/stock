@@ -27,7 +27,7 @@ export default function TabLayout() {
       height: iconSize,
     },
   }
-  const tabBarIcon = ({ focused }) => {
+  const tabBarIcon = ({ focused }: { focused: boolean }) => {
     return (
       <View
         style={{
@@ -38,16 +38,16 @@ export default function TabLayout() {
         }}
       />
     );
-  }
+  };
   return (
     <Tabs screenOptions={screenOptions}>
     {tabs.map((tab) => {
       const options: BottomTabNavigationOptions = {
-        title: t(`${tab}:title`),
+        title: t(`tab:${tab}`),
         tabBarActiveTintColor: theme.tabTextActive,
         tabBarInactiveTintColor: theme.tabTextInactive,
-        tabBarIcon
-      }
+        tabBarIcon,
+      } 
       return <Tabs.Screen
         options={options}
         name={tab} />

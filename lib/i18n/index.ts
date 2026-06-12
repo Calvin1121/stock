@@ -15,12 +15,13 @@ function getStoredLanguage(): string {
 }
 
 const initialLanguage = getStoredLanguage();
+const namespaces = Object.keys(resources.en) as Array<keyof typeof resources['en']>;
 
 i18n.use(initReactI18next).init({
   resources,
   lng: initialLanguage,
   fallbackLng: 'en',
-  ns: ['home', 'ipo', 'assets', 'news', 'profile'],
+  ns: namespaces,
   defaultNS: 'home',
   interpolation: {
     escapeValue: false,

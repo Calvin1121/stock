@@ -9,13 +9,13 @@ export default function LaunchPage() {
     console.log('LaunchPage mounted, navigating to /home');
     // Dummy startup logic: after 5s decide where to go.
     // Replace this with real auth check (e.g. read from secure storage).
-    const timer = setTimeout(() => {
-      const isLoggedIn = false; // TODO: replace with real check
-      if (isLoggedIn) router.replace('/home');
-      else router.replace('/(auth)/login');
-    }, 5000);
+    // const timer = setTimeout(() => {
+    //   const isLoggedIn = false; // TODO: replace with real check
+    //   if (isLoggedIn) router.replace('/home');
+    //   else router.replace('/(auth)/login');
+    // }, 5000);
 
-    return () => clearTimeout(timer);
+    // return () => clearTimeout(timer);
   }, [router]);
 
   return (
