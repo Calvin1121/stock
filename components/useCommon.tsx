@@ -8,18 +8,18 @@ export function useHeaderOption(props?: NativeStackNavigationOptions): NativeSta
     const router = useRouter();
     const { headerStyle: _headerStyle, ...otherProps } = props || {};
     const headerStyle = {
-        backgroundColor: theme.headerBackground,
+        backgroundColor: theme.header.background,
         ..._headerStyle,
     };
     const headerLeft = (props: NativeStackHeaderBackProps) => {
         return <TouchableOpacity onPress={router.back} style={{ padding: 8 }}>
-            <IconBack color={theme.headerText} size={24} />
+            <IconBack color={theme.header.text} size={24} />
         </TouchableOpacity>
     };
     return {
         headerTitleAlign: 'center',
         headerShadowVisible: false,
-        headerTintColor: theme.headerText,
+        headerTintColor: theme.header.text,
         headerStyle,
         headerLeft,
         ...otherProps,
