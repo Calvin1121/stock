@@ -9,4 +9,5 @@ export const dark = {
 }
 export const light = {
     ...dark,
+    background: '#fff',
 }; // Placeholder for light theme, can be customized later

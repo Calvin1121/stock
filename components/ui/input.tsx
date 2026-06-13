@@ -60,11 +60,11 @@ export const Input = forwardRef<TextInput, InputProps>(({
     <View style={[styles.containerStyle, containerStyle]}>
       {/* Prefix Slot */}
       {isSearch && !prefix ? (
-        <View style={styles.iconWrapper}>
+        <View style={[styles.iconWrapper, styles.prefixIcon]}>
           <IconSearch size={16} color={themeInput.iconColor} />
         </View>
       ) : prefix ? (
-        <View style={styles.iconWrapper}>{prefix}</View>
+        <View style={[styles.iconWrapper, styles.prefixIcon]}>{prefix}</View>
       ) : null}
 
       <TextInput
@@ -93,12 +93,12 @@ export const Input = forwardRef<TextInput, InputProps>(({
         <TouchableOpacity 
           activeOpacity={0.7} 
           onPress={handleClear} 
-          style={styles.iconWrapper}
+          style={[styles.iconWrapper, styles.suffixIcon]}
         >
           <IconFail size={16} color={themeInput.iconColor} />
         </TouchableOpacity>
       ) : suffix ? (
-        <View style={styles.iconWrapper}>{suffix}</View>
+        <View style={[styles.iconWrapper, styles.suffixIcon]}>{suffix}</View>
       ) : null}
     </View>
   );
@@ -109,7 +109,7 @@ function createStyles(theme: ThemeType, variant: 'rounded' | 'underline' | 'outl
   return StyleSheet.create({
     containerStyle: {
       width: '100%',
-      paddingHorizontal: 10,
+      // paddingHorizontal: 10,
       minHeight: 32,
       opacity: isDisabled ? theme.disabledOpacity : theme.enabledOpacity,
       backgroundColor: inputTheme.background,
@@ -125,14 +125,23 @@ function createStyles(theme: ThemeType, variant: 'rounded' | 'underline' | 'outl
       color: inputTheme.color,
       fontSize: 13,
       paddingVertical: 10,
-      paddingHorizontal: 5,
+      // paddingHorizontal: 5,
       height: '100%',
       outlineStyle: 'none',
+      caretColor: inputTheme.caretColor,
     } as any,
     iconWrapper: {
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: 4,
     },
+    prefixIcon: {
+      marginLeft: 8,
+      marginRight: 4,
+    },
+    suffixIcon: {
+      marginRight: 8,
+      marginLeft: 4,
+    }
   })
 };

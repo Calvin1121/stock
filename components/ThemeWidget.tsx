@@ -1,4 +1,5 @@
-import { Text as DefaultText, View as DefaultView, ScrollViewProps, TextProps, ViewProps } from 'react-native';
+import { ScrollView as DefaultScrollView, Text as DefaultText, View as DefaultView, ScrollViewProps, StatusBar, TextProps, ViewProps } from 'react-native';
+import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
 import { useUnistyles } from "react-native-unistyles";
 
 
@@ -29,7 +30,7 @@ export function ScrollView(props: ScrollViewProps) {
         ..._style,
         backgroundColor: theme.background,
     }
-    return <DefaultView style={style} {...otherProps} />;
+    return <DefaultScrollView style={style} {...otherProps} />;
 }
 
 export function SafeAreaView(props: ViewProps) {
@@ -37,7 +38,12 @@ export function SafeAreaView(props: ViewProps) {
     const { style: _style, ...otherProps } = props;
     const style = {
         ..._style,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
         backgroundColor: theme.background,
     }
-    return <DefaultView style={style} {...otherProps} />;
+    return <>
+        <StatusBar />
+        <RNSafeAreaView style={style} {...otherProps} />
+    </>;
 }

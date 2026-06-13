@@ -1,8 +1,7 @@
-import en from './en';
 import zh from './zh';
 
 export const resources = {
-  en,
+  en: zh, // Placeholder for English translations, can be customized later
   zh,
 } as const;
 

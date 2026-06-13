@@ -1,3 +1,4 @@
+import { Input } from '@/components/ui/input';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 export default function HomeScreen() {
@@ -8,6 +9,7 @@ export default function HomeScreen() {
       <TouchableOpacity onPress={() => router.push('/login')}>
         <Text>Login</Text>
       </TouchableOpacity>
+      <Input variant='rounded' isSearch />
     </View>
   );
 }

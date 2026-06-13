@@ -1,12 +1,8 @@
-import * as LabelPrimitive from '@rn-primitives/label';
-import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TextProps } from 'react-native';
 import { useUnistyles } from 'react-native-unistyles';
 
-const Label = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Text>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Text>
->(({ style, ...props }, ref) => {
+const Label = React.forwardRef<Text, TextProps>(({ style, ...props }, ref) => {
   const { theme } = useUnistyles();
   const styles = React.useMemo(
     () =>
@@ -21,16 +17,8 @@ const Label = React.forwardRef<
     [theme]
   );
 
-  return (
-    <LabelPrimitive.Root>
-      <LabelPrimitive.Text
-        ref={ref}
-        style={[styles.label, style]}
-        {...props}
-      />
-    </LabelPrimitive.Root>
-  );
+  return <Text ref={ref} style={[styles.label, style]} {...props} />;
 });
-Label.displayName = LabelPrimitive.Text.displayName;
+Label.displayName = 'Label';
 
 export { Label };

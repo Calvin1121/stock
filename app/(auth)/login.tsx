@@ -1,86 +1,37 @@
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import IconFont from '@/components/iconfont';
+import { SafeAreaView, View } from '@/components/ThemeWidget';
+import { ThemeType } from '@/constants/Colors';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useUnistyles } from 'react-native-unistyles';
 
 export default function LoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    // TODO: replace with real authentication logic
-    console.log('login', { email, password });
-    // mark logged-in (dummy) and go to tabs
-    router.push('/register');
-  };
+  const { theme } = useUnistyles();
+  const styles = createStyles(theme);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.card}>
-        <Text style={styles.title}>Login</Text>
-        <TextInput
-          value={email}
-          onChangeText={setEmail}
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          style={styles.input}
-        />
-        <TextInput
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Password"
-          secureTextEntry
-          style={styles.input}
-        />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Sign In</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.langSection}>
+        <TouchableOpacity>
+          <IconFont name='lang-dark' size={29} />
         </TouchableOpacity>
       </View>
-    </View>
+      <View style={styles.formSection}>
+        <Text>123</Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0f172a',
-    justifyContent: 'center',
-    padding: 24,
-  },
-  card: {
-    backgroundColor: '#111827',
-    borderRadius: 20,
-    padding: 24,
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
-    elevation: 10,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: '700',
-    color: '#fff',
-    marginBottom: 24,
-  },
-  input: {
-    backgroundColor: '#1f2937',
-    borderRadius: 14,
-    color: '#fff',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    marginBottom: 16,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: '#2563eb',
-    borderRadius: 14,
-    paddingVertical: 14,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 16,
-  },
-});
+function createStyles(theme: ThemeType) {
+  return StyleSheet.create({
+    container: {
+      flex: 1
+    },
+    langSection: {
+      alignItems: 'flex-end'
+    },
+    formSection: {
+      flex: 1,
+    }
+  })
+}

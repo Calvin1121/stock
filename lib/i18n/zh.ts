@@ -35,4 +35,12 @@ export default {
     settings: '设置',
     about: '关于',
   },
+  auth: {
+    login: {
+      accountPlaceholder: '请输入手机号或电子邮箱',
+      passwordPlaceholder: '请输入密码',
+      accountRequired: '账号不能为空',
+      passwordRequired: '密码不能为空',
+    }
+  }
 } as const;

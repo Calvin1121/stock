@@ -9,7 +9,8 @@ export const dark = {
         borderError: '#FF4D4F',
         placeholder: '#6D7278',
         color: '#fff',
-        iconColor: '#ffffff5c'
+        iconColor: '#ffffff5c',
+        caretColor: '#4D8EFF',
     },
     underline: {
         background: 'transparent',
@@ -21,7 +22,8 @@ export const dark = {
         borderError: '#FF4D4F',
         placeholder: '#6D7278',
         color: '#fff',
-        iconColor: '#ffffff5c'
+        iconColor: '#ffffff5c',
+        caretColor: '#4D8EFF',
     },
     outline: {
         background: 'transparent',
@@ -33,7 +35,8 @@ export const dark = {
         borderError: '#FF4D4F',
         placeholder: '#6D7278',
         color: '#fff',
-        iconColor: '#ffffff5c'
+        iconColor: '#ffffff5c',
+        caretColor: '#4D8EFF',
     },
 }
 export const light = {

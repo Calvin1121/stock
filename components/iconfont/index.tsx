@@ -19,6 +19,7 @@ import IconAIcon48Yincang from './IconAIcon48Yincang';
 import IconAIcon48Xianshidefuben from './IconAIcon48Xianshidefuben';
 import IconAIcon48Fenxiangbeifen3Defuben from './IconAIcon48Fenxiangbeifen3Defuben';
 import IconBack from './IconBack';
+import IconLangDark from './IconLangDark';
 export { default as IconSearch } from './IconSearch';
 export { default as IconMsg } from './IconMsg';
 export { default as IconPlus } from './IconPlus';
@@ -34,8 +35,9 @@ export { default as IconAIcon48Yincang } from './IconAIcon48Yincang';
 export { default as IconAIcon48Xianshidefuben } from './IconAIcon48Xianshidefuben';
 export { default as IconAIcon48Fenxiangbeifen3Defuben } from './IconAIcon48Fenxiangbeifen3Defuben';
 export { default as IconBack } from './IconBack';
+export { default as IconLangDark } from './IconLangDark';
 
-export type IconNames = 'search' | 'msg' | 'plus' | 'copy' | 'minus' | 'fail' | 'success' | 'right-arrow' | 'info' | 'a-icon48biyan' | 'a-icon24xialaqianhuibeifen2' | 'a-icon48yincang' | 'a-icon48xianshidefuben' | 'a-icon48fenxiangbeifen3defuben' | 'back';
+export type IconNames = 'search' | 'msg' | 'plus' | 'copy' | 'minus' | 'fail' | 'success' | 'right-arrow' | 'info' | 'a-icon48biyan' | 'a-icon24xialaqianhuibeifen2' | 'a-icon48yincang' | 'a-icon48xianshidefuben' | 'a-icon48fenxiangbeifen3defuben' | 'back' | 'lang-dark';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -75,6 +77,8 @@ let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
       return <IconAIcon48Fenxiangbeifen3Defuben key="14" {...rest} />;
     case 'back':
       return <IconBack key="15" {...rest} />;
+    case 'lang-dark':
+      return <IconLangDark key="L1" {...rest} />;
   }
 
   return null;

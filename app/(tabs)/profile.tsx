@@ -1,5 +1,5 @@
 import { View } from '@/components/ThemeWidget';
-import { Input } from '@/components/ui/input';
+import SampleForm from '@/components/forms/SampleForm';
 import { THEME } from '@/constants/Colors';
 import { useThemeStore } from '@/lib/themeStore';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ export default function ProfileScreen() {
       <TouchableOpacity onPress={() => setTheme(THEME.LIGHT)}>
         <Text>Light</Text>
       </TouchableOpacity>
-      <Input isSearch value={value} onChangeText={setValue} variant='rounded' />
+      <SampleForm />
     </View>
   );
 }

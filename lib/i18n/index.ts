@@ -20,7 +20,7 @@ const namespaces = Object.keys(resources.en) as Array<keyof typeof resources['en
 i18n.use(initReactI18next).init({
   resources,
   lng: initialLanguage,
-  fallbackLng: 'en',
+  fallbackLng: 'zh',
   ns: namespaces,
   defaultNS: 'home',
   interpolation: {
