@@ -36,11 +36,17 @@ export default {
     about: 'About',
   },
   auth: {
+    lang: {
+      select: 'Switch Language',
+      en: 'English',
+      zh: '中文',
+      cancel: 'Cancel',
+    },
     login: {
-      accountPlaceholder: '请输入手机号或电子邮箱',
-      passwordPlaceholder: '请输入密码',
-      accountRequired: '账号不能为空',
-      passwordRequired: '密码不能为空',
+      accountPlaceholder: 'Please enter your phone number or email',
+      passwordPlaceholder: 'Please enter your password',
+      accountRequired: 'Account cannot be empty',
+      passwordRequired: 'Password cannot be empty',
     }
   }
 } as const;

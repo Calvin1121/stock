@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useColorScheme as useSystemColorScheme } from 'react-native';
 import 'react-native-reanimated';
 
+import { ActionSheetProvider } from '@/components/ui/action-sheet-context';
 import { ColorsType, THEME } from '@/constants/Colors';
 import '@/lib/i18n';
 import { useLanguageStore } from '@/lib/languageStore';
@@ -68,11 +69,13 @@ function RootLayoutNav() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={resolvedThemeName === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-        </Stack>
-      </ThemeProvider>
+      <ActionSheetProvider>
+        <ThemeProvider value={resolvedThemeName === 'dark' ? DarkTheme : DefaultTheme}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+          </Stack>
+        </ThemeProvider>
+      </ActionSheetProvider>
     </QueryClientProvider>
   );
 }

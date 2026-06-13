@@ -36,6 +36,12 @@ export default {
     about: '关于',
   },
   auth: {
+    lang: {
+      select: '切换语言',
+      en: 'English',
+      zh: '中文',
+      cancel: '取消',
+    },
     login: {
       accountPlaceholder: '请输入手机号或电子邮箱',
       passwordPlaceholder: '请输入密码',
