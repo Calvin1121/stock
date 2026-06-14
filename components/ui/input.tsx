@@ -1,4 +1,4 @@
-import IconFont, { IconFail, IconSearch } from '@/components/iconfont';
+import IconFont from '@/components/iconfont';
 import { ThemeType } from '@/constants/Colors';
 import React, { forwardRef, useMemo, useState } from 'react';
 import {
@@ -13,7 +13,6 @@ import { useUnistyles } from 'react-native-unistyles';
 
 export interface InputProps extends TextInputProps {
   variant?: 'outline' | 'underline' | 'rounded';
-  isSearch?: boolean;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   onClear?: () => void;
@@ -24,7 +23,6 @@ export interface InputProps extends TextInputProps {
 
 export const Input = forwardRef<TextInput, InputProps>(({ 
   variant = 'underline',
-  isSearch = false,
   prefix,
   suffix,
   onClear,
@@ -55,24 +53,18 @@ export const Input = forwardRef<TextInput, InputProps>(({
     setPasswordVisible((prev) => !prev);
   };
 
-  const showClear = useMemo(() => {
-    return isSearch && !!value && value.length > 0 && editable;
-  }, [isSearch, value, editable]);
+  
   const isDisabled = props.readOnly || !editable;
   const styles = useMemo(
     () => createStyles(theme, variant, isDisabled, !!error, isFocused),
     [theme, variant, isDisabled, error, isFocused]
   );
-  const themeInput = theme.input[variant] || {}
+  const themeInput = theme.input || {}
   return (
     <View style={[styles.containerStyle, containerStyle]}>
       {/* Prefix Slot */}
-      {isSearch && !prefix ? (
-        <View style={[styles.iconWrapper, styles.prefixIcon]}>
-          <IconSearch size={ms(16)} color={themeInput.iconColor} />
-        </View>
-      ) : prefix ? (
-        <View style={[styles.iconWrapper, styles.prefixIcon]}>{prefix}</View>
+      {prefix ? (
+        <View style={[styles.iconWrapper]}>{prefix}</View>
       ) : null}
 
       <TextInput
@@ -81,7 +73,7 @@ export const Input = forwardRef<TextInput, InputProps>(({
         onChangeText={onChangeText}
         editable={!isDisabled}
         placeholder={placeholder}
-        placeholderTextColor={placeholderTextColor || theme.placeholder}
+        placeholderTextColor={placeholderTextColor || themeInput.placeholder}
         secureTextEntry={passwordToggle ? !isPasswordVisible : secureTextEntry}
         onFocus={(e) => {
           setIsFocused(true);
@@ -98,41 +90,34 @@ export const Input = forwardRef<TextInput, InputProps>(({
       />
 
       {/* Suffix Slot */}
-      {showClear && !suffix ? (
-        <TouchableOpacity 
-          activeOpacity={0.7} 
-          onPress={handleClear} 
-          style={[styles.iconWrapper, styles.suffixIcon]}
-        >
-          <IconFail size={ms(16)} color={themeInput.iconColor} />
-        </TouchableOpacity>
-      ) : passwordToggle && !suffix ? (
+      {suffix ? (
+        <View style={[styles.iconWrapper]}>{suffix}</View>
+      ) : passwordToggle ? (
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={handleTogglePassword}
-          style={[styles.iconWrapper, styles.suffixIcon, styles.passwordToggleIcon]}
+          style={[styles.iconWrapper]}
         >
           <IconFont name={isPasswordVisible ? 'visible' : 'hidden'} size={ms(24)} color={themeInput.iconColor} />
         </TouchableOpacity>
-      ) : suffix ? (
-        <View style={[styles.iconWrapper, styles.suffixIcon]}>{suffix}</View>
       ) : null}
     </View>
   );
 });
 
 function createStyles(theme: ThemeType, variant: 'rounded' | 'underline' | 'outline', isDisabled: boolean, error: boolean, isFocused: boolean){
-  const inputTheme = theme.input[variant] || {};
+  const inputTheme = theme.input || {};
+  const variantTheme = inputTheme[variant] || {};
   return StyleSheet.create({
     containerStyle: {
       width: '100%',
       minHeight: ms(32),
       opacity: isDisabled ? theme.disabledOpacity : theme.enabledOpacity,
       backgroundColor: inputTheme.background,
-      borderWidth: ms(inputTheme.borderWidth),
-      borderBottomWidth: ms(inputTheme.borderBottomWidth),
+      borderWidth: ms(variantTheme.borderWidth),
+      borderBottomWidth: ms(variantTheme.borderBottomWidth),
       borderColor: error ? inputTheme.borderError : (isFocused ? inputTheme.borderActive : inputTheme.borderColor),
-      borderRadius: ms(inputTheme.borderRadius),
+      borderRadius: ms(variantTheme.borderRadius),
       flexDirection: 'row',
       alignItems: 'center',
     },
@@ -149,18 +134,7 @@ function createStyles(theme: ThemeType, variant: 'rounded' | 'underline' | 'outl
     iconWrapper: {
       justifyContent: 'center',
       alignItems: 'center',
-      paddingHorizontal: ms(4),
       height: '100%',
     },
-    prefixIcon: {
-      marginHorizontal: ms(6),
-    },
-    suffixIcon: {
-      marginHorizontal: ms(6),
-    },
-    passwordToggleIcon: {
-      paddingHorizontal: ms(0),
-      marginHorizontal: ms(0)
-    }
   })
 };

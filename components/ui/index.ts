@@ -6,4 +6,6 @@ export type { ButtonProps } from './button';
 export { FormControl } from './form-control';
 export { Input } from './input';
 export type { InputProps } from './input';
+export { SearchBar } from './search-bar';
+export type { SearchBarProps } from './search-bar';
 
