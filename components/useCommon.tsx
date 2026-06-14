@@ -1,8 +1,8 @@
 
 import { NativeStackHeaderBackProps, NativeStackNavigationOptions, useRouter } from "expo-router";
-import { TouchableOpacity } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
 import { IconBack } from "./iconfont";
+import { TouchableOpacity } from "./ThemeWidget";
 export function useHeaderOption(props?: NativeStackNavigationOptions): NativeStackNavigationOptions {
     const { theme } = useUnistyles();
     const router = useRouter();

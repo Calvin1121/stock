@@ -1,6 +1,7 @@
+import { TouchableOpacity } from '@/components/ThemeWidget';
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function LaunchPage() {
   const router = useRouter();
@@ -12,7 +13,8 @@ export default function LaunchPage() {
     // const timer = setTimeout(() => {
     //   const isLoggedIn = false; // TODO: replace with real check
     //   if (isLoggedIn) router.replace('/home');
-    //   else router.replace('/(auth)/login');
+    //   else 
+    router.replace('/register');
     // }, 5000);
 
     // return () => clearTimeout(timer);

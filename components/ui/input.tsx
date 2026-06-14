@@ -1,12 +1,13 @@
 import IconFont from '@/components/iconfont';
 import { ThemeType } from '@/constants/Colors';
+import { commonStyles } from '@/styles/util';
 import React, { forwardRef, useMemo, useState } from 'react';
 import {
   StyleSheet,
   TextInput,
   TextInputProps,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import { ms } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
@@ -36,6 +37,8 @@ export const Input = forwardRef<TextInput, InputProps>(({
   error = false,
   passwordToggle = false,
   secureTextEntry,
+  onBlur,
+  onFocus,
   ...props
 }, ref) => {
   const { theme } = useUnistyles();
@@ -66,7 +69,6 @@ export const Input = forwardRef<TextInput, InputProps>(({
       {prefix ? (
         <View style={[styles.iconWrapper]}>{prefix}</View>
       ) : null}
-
       <TextInput
         ref={ref}
         value={value}
@@ -77,11 +79,11 @@ export const Input = forwardRef<TextInput, InputProps>(({
         secureTextEntry={passwordToggle ? !isPasswordVisible : secureTextEntry}
         onFocus={(e) => {
           setIsFocused(true);
-          props.onFocus?.(e);
+          onFocus?.(e);
         }}
         onBlur={(e) => {
           setIsFocused(false);
-          props.onBlur?.(e);
+          onBlur?.(e);
         }}
         style={[styles.input, style]}
         // @ts-ignore - web specific
@@ -94,7 +96,7 @@ export const Input = forwardRef<TextInput, InputProps>(({
         <View style={[styles.iconWrapper]}>{suffix}</View>
       ) : passwordToggle ? (
         <TouchableOpacity
-          activeOpacity={0.7}
+          activeOpacity={theme.touchOpacity}
           onPress={handleTogglePassword}
           style={[styles.iconWrapper]}
         >
@@ -110,7 +112,6 @@ function createStyles(theme: ThemeType, variant: 'rounded' | 'underline' | 'outl
   const variantTheme = inputTheme[variant] || {};
   return StyleSheet.create({
     containerStyle: {
-      width: '100%',
       minHeight: ms(32),
       opacity: isDisabled ? theme.disabledOpacity : theme.enabledOpacity,
       backgroundColor: inputTheme.background,
@@ -118,23 +119,20 @@ function createStyles(theme: ThemeType, variant: 'rounded' | 'underline' | 'outl
       borderBottomWidth: ms(variantTheme.borderBottomWidth),
       borderColor: error ? inputTheme.borderError : (isFocused ? inputTheme.borderActive : inputTheme.borderColor),
       borderRadius: ms(variantTheme.borderRadius),
-      flexDirection: 'row',
-      alignItems: 'center',
+      ...commonStyles.rowCenter
     },
     input: {
       flex: 1,
       color: inputTheme.color,
-      fontSize: ms(18),
+      fontSize: ms(16),
       paddingVertical: (ms(16)),
-      height: '100%',
       outlineStyle: 'none',
       caretColor: inputTheme.caretColor,
-      fontWeight: '400',
+      ...commonStyles.heightFull
     } as any,
     iconWrapper: {
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%',
+      ...commonStyles.heightFull,
+      ...commonStyles.rowCenter
     },
   })
 };

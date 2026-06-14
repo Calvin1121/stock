@@ -1,4 +1,5 @@
 import { ThemeType } from '@/constants/Colors';
+import { commonStyles } from '@/styles/util';
 import React, { useMemo } from 'react';
 import {
     ActivityIndicator,
@@ -9,12 +10,14 @@ import {
     TouchableOpacityProps,
     ViewStyle
 } from 'react-native';
+import { ms, vs } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
 
 export interface ButtonProps extends TouchableOpacityProps {
   title?: string;
   children?: React.ReactNode;
   variant?: 'solid' | 'outline' | 'ghost';
+  type?: 'primary' | 'secondary' | 'danger' | 'info';
   fullWidth?: boolean;
   rounded?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
@@ -28,7 +31,8 @@ export const Button = React.forwardRef<React.ElementRef<typeof TouchableOpacity>
       title,
       children,
       variant = 'solid',
-      fullWidth = true,
+      type = 'primary',
+      fullWidth = false,
       rounded = false,
       disabled = false,
       loading = false,
@@ -41,13 +45,11 @@ export const Button = React.forwardRef<React.ElementRef<typeof TouchableOpacity>
   ) => {
     const { theme } = useUnistyles();
     const isDisabled = disabled || loading;
-    const { button, buttonText, spinnerColor } = useMemo(
-      () => createStyles(theme, variant, isDisabled, fullWidth, rounded),
-      [theme, variant, isDisabled, fullWidth, rounded]
+    const { button, buttonText, spinnerColor, loadingStyle } = useMemo(
+      () => createStyles(theme, variant, type, isDisabled, fullWidth, rounded),
+      [theme, variant, type, isDisabled, fullWidth, rounded]
     );
-
     const content = title ?? children;
-
     return (
       <TouchableOpacity
         ref={ref}
@@ -57,7 +59,7 @@ export const Button = React.forwardRef<React.ElementRef<typeof TouchableOpacity>
         {...props}
       >
         {loading ? (
-          <ActivityIndicator color={spinnerColor} style={{ marginRight: content ? 8 : 0 }} />
+          <ActivityIndicator color={spinnerColor} style={[loadingStyle]} />
         ) : null}
         <Text style={[buttonText, textStyle]} numberOfLines={1}>
           {content}
@@ -70,52 +72,34 @@ export const Button = React.forwardRef<React.ElementRef<typeof TouchableOpacity>
 function createStyles(
   theme: ThemeType,
   variant: ButtonProps['variant'],
+  type: ButtonProps['type'],
   disabled: boolean,
   fullWidth: boolean,
   rounded: boolean
 ) {
-  const baseStyle: ViewStyle = {
-    width: fullWidth ? '100%' : undefined,
-    borderRadius: rounded ? 999 : 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    opacity: disabled ? theme.disabledOpacity : theme.enabledOpacity,
-  };
-
-  const variantStyles: ViewStyle =
-    variant === 'outline'
-      ? {
-          backgroundColor: 'transparent',
-          borderWidth: 1,
-          borderColor: theme.primary,
+    const buttonTheme = theme.button || {};
+    const variantTheme = buttonTheme?.[type!]?.[variant!] || {};
+    return {
+        button: {
+            ...(fullWidth? commonStyles.widthFull : {}),
+            ...commonStyles.flexRow,
+            ...commonStyles.center,
+            borderRadius: rounded ? ms(999) : ms(8),
+            opacity: disabled ? theme.disabledOpacity : theme.enabledOpacity,
+            backgroundColor: variantTheme.background,
+            borderColor: variantTheme.borderColor,
+            borderWidth: variant === 'ghost'? 0 : ms(1),
+            paddingHorizontal: ms(15),
+        },
+        buttonText: {
+            color: variantTheme.textColor,
+            fontSize: ms(18),
+            height: vs(45),
+            lineHeight: vs(45),
+        } as TextStyle,
+        spinnerColor: variantTheme.spinnerColor,
+        loadingStyle: {
+            marginRight: ms(8)
         }
-      : variant === 'ghost'
-      ? {
-          backgroundColor: 'transparent',
-        }
-      : {
-          backgroundColor: theme.primary,
-        };
-
-  const textColor =
-    variant === 'solid' ? theme.background : theme.primary;
-
-  const spinnerColor =
-    variant === 'solid' ? theme.background : theme.primary;
-
-  return {
-    button: {
-      ...baseStyle,
-      ...variantStyles,
-      paddingVertical: 12,
-      paddingHorizontal: 16,
-    },
-    buttonText: {
-      color: textColor,
-      fontSize: 15,
-      fontWeight: '600',
-    } as TextStyle,
-    spinnerColor,
-  };
+    }
 }

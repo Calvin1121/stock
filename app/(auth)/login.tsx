@@ -1,17 +1,19 @@
 import IconFont from '@/components/iconfont';
-import { SafeAreaView } from '@/components/ThemeWidget';
+import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWidget';
 import { Button, FormControl, Input } from '@/components/ui';
 import { useActionSheet } from '@/components/ui/action-sheet-context';
 import { ThemeType } from '@/constants/Colors';
 import { emailRegex, globalPhoneRegex } from '@/constants/utils';
 import i18n from '@/lib/i18n';
 import { Language, useLanguageStore } from '@/lib/languageStore';
+import { commonStyles } from '@/styles/util';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
-import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
+import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { ms, s, vs } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
 import z from 'zod';
 
@@ -46,6 +48,7 @@ export default function LoginPage() {
     setLanguage(lang);
     i18n.changeLanguage(lang);
   }, [])
+  const router = useRouter()
   const onChangeLang = useCallback(() => {
     show({
       title: t('lang.select'),
@@ -62,72 +65,80 @@ export default function LoginPage() {
     <IconFont name='lang-dark' size={29} />
   </TouchableOpacity>)
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.langSection}>
-        {langIcon(styles.langIcon)}
-        {langIcon(styles.langIconHolder)}
-      </View>
-      <View style={styles.logoSection}>
-        <Text>Logo</Text>
-      </View>
-      <View style={styles.formSection}>
-        {formKeys.map((key) => <Controller
-          key={key}
-          control={control}
-          name={key}
-          render={({ field: { value, onChange, onBlur } }) => {
-            const placeholderKey = `login.${key}.placeholder` as string;
-            const errorMsg = errors[key]?.message ? t(errors[key].message as string) : undefined;
-            return <FormControl error={errorMsg} required reserveErrorSpace>
-              <Input
-                passwordToggle={key === 'password'}
-                value={value}
-                onChangeText={(text) => {
-                  onChange(text);
-                  if (errors[key]) clearErrors(key);
-                }}
-                onBlur={onBlur}
-                placeholder={t(placeholderKey)}
-              />
-            </FormControl>
-          }}
-        />)}
-        <Button onPress={handleSubmit(onSubmit)} variant="solid">123</Button>
-      </View>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={
+          [commonStyles.alignEnd, commonStyles.relative]
+        }>
+          {langIcon({...styles.langIcon, ...commonStyles.absolute})}
+          {langIcon(commonStyles.invisible)}
+        </View>
+        <View style={styles.logoSection}>
+          <Text>Logo</Text>
+        </View>
+        <View style={[commonStyles.flex1]}>
+          {formKeys.map((key) => <Controller
+            key={key}
+            control={control}
+            name={key}
+            render={({ field: { value, onChange, onBlur } }) => {
+              const placeholderKey = `login.${key}.placeholder` as string;
+              const errorMsg = errors[key]?.message ? t(errors[key].message as string) : undefined;
+              return <FormControl error={errorMsg} required reserveErrorSpace>
+                <Input
+                  passwordToggle={key === 'password'}
+                  value={value}
+                  onChangeText={(text) => {
+                    onChange(text);
+                    if (errors[key]) clearErrors(key);
+                  }}
+                  onBlur={onBlur}
+                  placeholder={t(placeholderKey)}
+                />
+              </FormControl>
+            }}
+          />)}
+          <View style={styles.buttonSection}>
+            <Button onPress={handleSubmit(onSubmit)}>{t('login.button')}</Button>
+            <View style={[styles.actionSection, commonStyles.rowBetween]}>
+              <TouchableOpacity onPress={() => router.push('/register')}>
+                <Text style={styles.actionText}>{t('login.register')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push('/forgot')}>
+                <Text style={styles.actionText}>{t('login.forgotPwd')}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 function createStyles(theme: ThemeType) {
   return StyleSheet.create({
-    container: {
-      flex: 1,
-      // transform: [{ translateX: moderateScale(15) }]
-    },
-    langSection: {
-      alignItems: 'flex-end',
-      position: 'relative',
-    },
     langIcon: {
-      position: 'absolute',
-      right: moderateScale(-15),
+      right: ms(-15),
       top: '50%',
       transform: [{ translateY: '-50%' }],
       zIndex: 1,
     },
-    langIconHolder: {
-      visibility: 'invisible',
-      opacity: 0,
-      pointerEvents: 'none',
-    },
     logoSection: {
-      marginVertical: moderateScale(40),
-      width: scale(150),
-      height: verticalScale(50),
+      marginVertical: ms(40),
+      width: s(150),
+      height: vs(50),
       backgroundColor: '#6D7278',
     },
-    formSection: {
-      flex: 1,
+    buttonSection: {
+      marginTop: ms(20),
+    },
+    actionSection: {
+      marginTop: ms(15),
+    },
+    actionText: {
+      color: theme.primary,
+      fontSize: ms(15),
+      lineHeight: ms(21)
     }
   })
 }

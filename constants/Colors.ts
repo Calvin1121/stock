@@ -1,30 +1,45 @@
-import * as commonTheme from "./common.theme";
-import * as headerTheme from "./header.theme";
-import * as inputTheme from "./input.theme";
-import * as tabbarTheme from "./tabbar.theme";
+import * as actionSheet from "./actionsheet.theme";
+import * as button from "./button.theme";
+import * as common from "./common.theme";
+import * as header from "./header.theme";
+import * as input from "./input.theme";
+import * as tab from "./tabbar.theme";
 
-
-type ThemeItem =  typeof commonTheme.dark & {
-  header: typeof headerTheme.dark,
-  input: typeof inputTheme.dark,
-  tab: typeof tabbarTheme.dark
+const themeMap = {
+  header, 
+  input,
+  tab,
+  button, 
+  actionSheet
 }
+
+type ThemeMap = typeof themeMap
+
+type ThemeMapDark = {
+  [K in keyof ThemeMap]: ThemeMap[K]['dark']
+}
+
+export type ThemeMapItemDark<Item extends keyof ThemeMap> = ThemeMap[Item]['dark']
+
+type ThemeItem = typeof common.dark & ThemeMapDark
+
 export enum THEME {
   LIGHT = 'light',
   DARK = 'dark',
   SYSTEM = 'system',
 }
+
 export const Colors = Object.values(THEME)
   .filter(theme => theme !== THEME.SYSTEM)
   .reduce((acc, theme) => {
-    const item = {
-      ...commonTheme[theme],
-      header: headerTheme[theme],
-      input: inputTheme[theme],
-      tab: tabbarTheme[theme],
-    };
-    return {...acc, [theme]: item};
+    const item = Object.entries(themeMap).reduce((prev, cur) => {
+      const [key, value] = cur;
+      return {...prev, [key]:value[theme]}
+    }, common[theme])
+    return {...acc, [theme]: item}
   }, {} as Record<Exclude<THEME, THEME.SYSTEM>, ThemeItem>);
+
+
 export type ColorsType = typeof Colors;
 
 export type ThemeType = typeof Colors[keyof typeof Colors];

@@ -1,5 +1,6 @@
+import { TouchableOpacity } from '@/components/ThemeWidget';
 import { useRouter } from 'expo-router';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 export default function Forgot() {
   const router = useRouter();

@@ -1,9 +1,9 @@
-import { View } from '@/components/ThemeWidget';
+import { TouchableOpacity } from '@/components/ThemeWidget';
 import SampleForm from '@/components/forms/SampleForm';
 import { THEME } from '@/constants/Colors';
 import { useThemeStore } from '@/lib/themeStore';
 import { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function ProfileScreen() {
   const { setTheme } = useThemeStore();

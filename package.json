@@ -47,7 +47,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "iconfont": "npx iconfont-rn"
+    "iconfont": "npx iconfont-rn",
+    "sync-i18n": "node ./scripts/sync-i18n.js",
+    "sync-i18n:watch": "node ./scripts/sync-i18n.js --watch"
   },
   "private": true
 }

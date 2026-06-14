@@ -52,6 +52,57 @@ export default {
         required: '密码不能为空',
         placeholder: '请输入密码',
       },
+      button: '登录',
+      register: '注册',
+      forgotPwd: '忘记密码'
+    },
+    register: {
+      phone: '手机号注册',
+      email: '邮箱注册',
+      invitationCode: {
+        placeholder: '请输入6位邀请码（选填）'
+      },
+      password: {
+        require: '请输入登录密码',
+        placeholder: '登录密码（8-20位，包含字母与数字）',
+        invalid: '密码不符合要求'
+      },
+      comfirmPassword: {
+        require: '请输入确认登录密码',
+        placeholder: '确认登录密码',
+        invalid: '确认密码与登录密码不一致'
+      },
+      tncAgreement: '我已阅读并接受',
+      tnc: '《用户服务协议》',
+      hasAccount: '已有账号？',
+      phoneType: {
+        phone: {
+          require: '请输入手机号',
+          placeholder: '请输入手机号',
+          invalid: '手机号格式错误',
+          wasTaken: '此号码已被使用'
+        },
+        verifyCode: {
+          require: '请输入验证码',
+          placeholder: '请输入验证码',
+          invalid: '请输入6位验证码',
+          getVerifyCode: '获取验证码',
+        }
+      },
+      emailType: {
+        email: {
+          require: '请输入电子邮箱',
+          placeholder: '请输入电子邮箱',
+          invalid: '邮箱号格式错误',
+          wasTaken: '此邮箱已被使用'
+        },
+        verifyCode: {
+          require: '请输入验证码',
+          invalid: '请输入6位验证码',
+          placeholder: '请输入验证码',
+          getVerifyCode: '获取验证码',
+        }
+      }
     }
   }
 } as const;

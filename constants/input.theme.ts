@@ -1,18 +1,14 @@
 import { ms } from "react-native-size-matters";
-
-export const baseInputTheme = {
-    borderActive: '#4D8EFF',
-    borderError: '#FF4D4F',
-    placeholder: '#6D7278',
+import { dark as darkVar } from "./common.theme";
+export const dark = {
+    borderActive: darkVar.primary,
+    borderError: darkVar.error,
+    placeholder: darkVar.secondary,
     color: '#fff',
     iconColor: '#ffffff5c',
-    caretColor: '#4D8EFF',
+    caretColor: darkVar.primary,
     background: 'transparent',
-    borderColor: '#6D7278',
-};
-
-export const dark = {
-    ...baseInputTheme,
+    borderColor: darkVar.secondary,
     rounded: {
         borderRadius: ms(22),
         borderWidth: ms(1),
