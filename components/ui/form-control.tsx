@@ -1,67 +1,75 @@
 import { Label } from '@/components/ui/label';
+import { ThemeType } from '@/constants/Colors';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { ms } from 'react-native-size-matters';
+import { useUnistyles } from 'react-native-unistyles';
 
 type FormControlProps = {
-  label?: string;
-  error?: string | boolean;
-  helperText?: string;
-  required?: boolean;
-  hideRequiredMark?: boolean;
-  reserveErrorSpace?: boolean;
-  children: React.ReactElement<{ error?: boolean }>;
-  style?: any;
+    label?: string;
+    error?: string | boolean;
+    helperText?: string;
+    required?: boolean;
+    hideRequiredMark?: boolean;
+    reserveErrorSpace?: boolean;
+    children: React.ReactElement<{ error?: boolean }>;
+    style?: any;
 };
 
 export function FormControl({
-  label,
-  error,
-  helperText,
-  required,
-  hideRequiredMark,
-  reserveErrorSpace,
-  children,
-  style,
+    label,
+    error,
+    helperText,
+    required,
+    hideRequiredMark,
+    reserveErrorSpace,
+    children,
+    style,
 }: FormControlProps) {
-  return (
-    <View style={[styles.wrapper, style]}>
-      {label ? (
-        <Label style={styles.label}>
-          {label}
-          {required && !hideRequiredMark ? ' *' : ''}
-        </Label>
-      ) : null}
+    const { theme } = useUnistyles();
+    const styles = React.useMemo(() => createStyles(theme), [theme]);
+    return (
+        <View style={[styles.wrapper, style]}>
+            {label ? (
+                <Label style={styles.label}>
+                    {label}
+                    {required && !hideRequiredMark ? ' *' : ''}
+                </Label>
+            ) : null}
 
-      {React.cloneElement(children, { error: !!error })}
+            {React.cloneElement(children, { error: !!error })}
 
-      {error ? (
-        <Text style={styles.error}>{typeof error === 'string' ? error : '错误'}</Text>
-      ) : helperText ? (
-        <Text style={styles.helper}>{helperText}</Text>
-      ) : reserveErrorSpace ? (
-        <Text style={styles.error}>{'\u00A0'}</Text>
-      ) : null}
-    </View>
-  );
+            {error ? (
+                <Text style={styles.error}>{typeof error === 'string' ? error : '错误'}</Text>
+            ) : helperText ? (
+                <Text style={styles.helper}>{helperText}</Text>
+            ) : reserveErrorSpace ? (
+                <Text style={styles.error}>{'\u00A0'}</Text>
+            ) : null}
+        </View>
+    );
 }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    marginBottom: 16,
-  },
-  label: {
-    marginBottom: 6,
-  },
-  error: {
-    marginTop: 6,
-    color: '#E74C3C',
-    fontSize: 12,
-  },
-  helper: {
-    marginTop: 6,
-    color: '#888',
-    fontSize: 12,
-  },
-});
-
+function createStyles(theme: ThemeType) {
+    return StyleSheet.create({
+        wrapper: {
+            marginBottom: ms(16),
+        },
+        label: {
+            marginBottom: ms(6),
+        },
+        error: {
+            marginTop: ms(6),
+            color: theme.error,
+            fontSize: ms(14),
+            lineHeight: ms(18),
+        },
+        helper: {
+            marginTop: ms(6),
+            color: theme.helper,
+            fontSize: ms(14),
+            lineHeight: ms(18),
+        },
+    })
+}
 export default FormControl;

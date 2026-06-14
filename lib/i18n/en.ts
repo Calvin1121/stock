@@ -43,10 +43,15 @@ export default {
       cancel: 'Cancel',
     },
     login: {
-      accountPlaceholder: 'Please enter your phone number or email',
-      passwordPlaceholder: 'Please enter your password',
-      accountRequired: 'Account cannot be empty',
-      passwordRequired: 'Password cannot be empty',
+      username: {
+        required: 'Account cannot be empty',
+        invalid: 'Please enter a valid email or phone number',
+        placeholder: 'Please enter your phone number or email',
+      },
+      password: {
+        required: 'Password cannot be empty',
+        placeholder: 'Please enter your password',
+      },
     }
   }
 } as const;

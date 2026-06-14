@@ -13,11 +13,11 @@ import IconFail from './IconFail';
 import IconSuccess from './IconSuccess';
 import IconRightArrow from './IconRightArrow';
 import IconInfo from './IconInfo';
-import IconAIcon48Biyan from './IconAIcon48Biyan';
-import IconAIcon24Xialaqianhuibeifen2 from './IconAIcon24Xialaqianhuibeifen2';
-import IconAIcon48Yincang from './IconAIcon48Yincang';
-import IconAIcon48Xianshidefuben from './IconAIcon48Xianshidefuben';
-import IconAIcon48Fenxiangbeifen3Defuben from './IconAIcon48Fenxiangbeifen3Defuben';
+import IconHidden from './IconHidden';
+import IconDropdown from './IconDropdown';
+import IconInvisible from './IconInvisible';
+import IconVisible from './IconVisible';
+import IconExpand from './IconExpand';
 import IconBack from './IconBack';
 import IconLangDark from './IconLangDark';
 export { default as IconSearch } from './IconSearch';
@@ -29,15 +29,15 @@ export { default as IconFail } from './IconFail';
 export { default as IconSuccess } from './IconSuccess';
 export { default as IconRightArrow } from './IconRightArrow';
 export { default as IconInfo } from './IconInfo';
-export { default as IconAIcon48Biyan } from './IconAIcon48Biyan';
-export { default as IconAIcon24Xialaqianhuibeifen2 } from './IconAIcon24Xialaqianhuibeifen2';
-export { default as IconAIcon48Yincang } from './IconAIcon48Yincang';
-export { default as IconAIcon48Xianshidefuben } from './IconAIcon48Xianshidefuben';
-export { default as IconAIcon48Fenxiangbeifen3Defuben } from './IconAIcon48Fenxiangbeifen3Defuben';
+export { default as IconHidden } from './IconHidden';
+export { default as IconDropdown } from './IconDropdown';
+export { default as IconInvisible } from './IconInvisible';
+export { default as IconVisible } from './IconVisible';
+export { default as IconExpand } from './IconExpand';
 export { default as IconBack } from './IconBack';
 export { default as IconLangDark } from './IconLangDark';
 
-export type IconNames = 'search' | 'msg' | 'plus' | 'copy' | 'minus' | 'fail' | 'success' | 'right-arrow' | 'info' | 'a-icon48biyan' | 'a-icon24xialaqianhuibeifen2' | 'a-icon48yincang' | 'a-icon48xianshidefuben' | 'a-icon48fenxiangbeifen3defuben' | 'back' | 'lang-dark';
+export type IconNames = 'search' | 'msg' | 'plus' | 'copy' | 'minus' | 'fail' | 'success' | 'right-arrow' | 'info' | 'hidden' | 'dropdown' | 'invisible' | 'visible' | 'expand' | 'back' | 'lang-dark';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -65,16 +65,16 @@ let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
       return <IconRightArrow key="8" {...rest} />;
     case 'info':
       return <IconInfo key="9" {...rest} />;
-    case 'a-icon48biyan':
-      return <IconAIcon48Biyan key="10" {...rest} />;
-    case 'a-icon24xialaqianhuibeifen2':
-      return <IconAIcon24Xialaqianhuibeifen2 key="11" {...rest} />;
-    case 'a-icon48yincang':
-      return <IconAIcon48Yincang key="12" {...rest} />;
-    case 'a-icon48xianshidefuben':
-      return <IconAIcon48Xianshidefuben key="13" {...rest} />;
-    case 'a-icon48fenxiangbeifen3defuben':
-      return <IconAIcon48Fenxiangbeifen3Defuben key="14" {...rest} />;
+    case 'hidden':
+      return <IconHidden key="10" {...rest} />;
+    case 'dropdown':
+      return <IconDropdown key="11" {...rest} />;
+    case 'invisible':
+      return <IconInvisible key="12" {...rest} />;
+    case 'visible':
+      return <IconVisible key="13" {...rest} />;
+    case 'expand':
+      return <IconExpand key="14" {...rest} />;
     case 'back':
       return <IconBack key="15" {...rest} />;
     case 'lang-dark':

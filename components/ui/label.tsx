@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
+import { ms } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
 
 const Label = React.forwardRef<Text, TextProps>(({ style, ...props }, ref) => {
@@ -8,10 +9,10 @@ const Label = React.forwardRef<Text, TextProps>(({ style, ...props }, ref) => {
     () =>
       StyleSheet.create({
         label: {
-          fontSize: 14,
-          fontWeight: '500',
+          fontSize: ms(14),
+          // fontWeight: '500',
           color: theme.text,
-          marginBottom: 8,
+          marginBottom: ms(8),
         },
       }),
     [theme]

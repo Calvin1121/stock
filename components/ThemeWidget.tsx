@@ -1,7 +1,7 @@
 import { ScrollView as DefaultScrollView, Text as DefaultText, View as DefaultView, ScrollViewProps, StatusBar, TextProps, ViewProps } from 'react-native';
 import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
+import { moderateScale } from 'react-native-size-matters';
 import { useUnistyles } from "react-native-unistyles";
-
 
 export function View(props: ViewProps) {
     const { theme } = useUnistyles();
@@ -38,8 +38,8 @@ export function SafeAreaView(props: ViewProps) {
     const { style: _style, ...otherProps } = props;
     const style = {
         ..._style,
-        paddingHorizontal: 15,
-        paddingVertical: 10,
+        paddingHorizontal: moderateScale(30),
+        paddingVertical: moderateScale(15),
         backgroundColor: theme.background,
     }
     return <>

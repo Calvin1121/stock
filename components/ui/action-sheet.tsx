@@ -16,6 +16,7 @@ import Animated, {
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
+import { ms, s, vs } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
 
 export type ActionSheetItem = {
@@ -235,37 +236,37 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingBottom: 20,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
+    paddingBottom: ms(20),
+    borderTopLeftRadius: ms(16),
+    borderTopRightRadius: ms(16),
     overflow: 'hidden',
   },
   handleContainer: {
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: ms(12),
   },
   dragHandle: {
-    width: 32,
-    height: 4,
-    borderRadius: 2,
+    width: s(32),
+    height: vs(4),
+    borderRadius: ms(2),
   },
   title: {
-    fontSize: 16,
+    fontSize: ms(16),
     fontWeight: '600',
-    paddingHorizontal: 16,
-    paddingBottom: 12,
+    paddingHorizontal: ms(16),
+    paddingBottom: ms(12),
   },
   itemsContainer: {
     paddingHorizontal: 0,
   },
   itemWrapper: {
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingHorizontal: ms(16),
+    paddingVertical: ms(14),
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0, 0, 0, 0.1)',
   },
   itemText: {
-    fontSize: 15,
-    fontWeight: '500',
+    fontSize: ms(15),
+    fontWeight: '400',
   },
 });

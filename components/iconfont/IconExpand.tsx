@@ -11,7 +11,7 @@ interface Props extends GProps, ViewProps {
   color?: string | string[];
 }
 
-let IconAIcon48Fenxiangbeifen3Defuben: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+let IconExpand: FunctionComponent<Props> = ({ size, color, ...rest }) => {
   return (
     <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
       <Path
@@ -22,10 +22,10 @@ let IconAIcon48Fenxiangbeifen3Defuben: FunctionComponent<Props> = ({ size, color
   );
 };
 
-IconAIcon48Fenxiangbeifen3Defuben.defaultProps = {
+IconExpand.defaultProps = {
   size: 18,
 };
 
-IconAIcon48Fenxiangbeifen3Defuben = React.memo ? React.memo(IconAIcon48Fenxiangbeifen3Defuben) : IconAIcon48Fenxiangbeifen3Defuben;
+IconExpand = React.memo ? React.memo(IconExpand) : IconExpand;
 
-export default IconAIcon48Fenxiangbeifen3Defuben;
+export default IconExpand;

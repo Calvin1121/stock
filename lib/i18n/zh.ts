@@ -43,10 +43,15 @@ export default {
       cancel: '取消',
     },
     login: {
-      accountPlaceholder: '请输入手机号或电子邮箱',
-      passwordPlaceholder: '请输入密码',
-      accountRequired: '账号不能为空',
-      passwordRequired: '密码不能为空',
+      username: {
+        required: '账号不能为空',
+        invalid: '请输入有效的邮箱或手机号',
+        placeholder: '请输入手机号或电子邮箱',
+      },
+      password: {
+        required: '密码不能为空',
+        placeholder: '请输入密码',
+      },
     }
   }
 } as const;

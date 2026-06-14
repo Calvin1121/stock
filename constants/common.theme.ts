@@ -9,7 +9,7 @@ export const dark = {
     textMuted: '#A5A5A5',
     border: '#2C2D3C',
     error: '#FF4D4F',
-    placeholder: '#5A5B6A',
+    helper: '#5A5B6A',
     ring: '#4D8EFF',
     tint: '#000',
 };
