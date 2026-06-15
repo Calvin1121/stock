@@ -1,54 +1,35 @@
-import { IconDropdown } from '@/components/iconfont';
+import IconFont from '@/components/iconfont';
+import { EmailRegister, EmailRegisterFormValues } from '@/components/register/email';
+import { PhoneRegister, PhoneRegisterFormValues } from '@/components/register/phone';
 import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWidget';
-import { Button, FormControl, Input } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { ThemeType } from '@/constants/Colors';
-import { pwdRegex, sixverifyCode } from '@/constants/utils';
 import { commonStyles } from '@/styles/util';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useMemo, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useRouter } from 'expo-router';
+import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
-import z from 'zod';
 
 export enum RegisterType {
   Phone = 'phone',
   Email = 'email'
 }
 
-const phomeSchema = z.object({
-  account: z.string(),
-  verifyCode: z.string().min(1, 'register.phoneType.verifyCode.require').refine((value) => sixverifyCode.test(value.toString()), { message: 'register.phoneType.verifyCode.invalid' }),
-  invitationCode: z.string(),
-  password: z.string().refine(value => pwdRegex.test(value), { message: 'register.password.invalid' }),
-  comfirmPassword: z.string().min(1, 'register.comfirmPassword.require'),
-}).superRefine((data, ctx) => {
-  if (data.password !== data.comfirmPassword) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: 'register.comfirmPassword.invalid',
-      path: ['comfirmPassword'],
-    });
-  }
-})
-type RegisterFormValues = z.infer<typeof phomeSchema>;
-
 export default function Register() {
   const { t } = useTranslation('auth');
   const tabs = Object.values(RegisterType).map(type => ({ label: `register.${type}`, value: type }))
   const [activeTab, setActiveTab] = useState(RegisterType.Phone)
+  const [isAgree, setIsAgree] = useState(false)
   const { theme } = useUnistyles()
-  const styles = useMemo(() => createStyles(theme), [theme])
-  const formKeys = Object.keys(phomeSchema.shape) as (keyof RegisterFormValues)[]
-  const { control, handleSubmit, formState: { errors }, clearErrors } = useForm<RegisterFormValues>({
-    resolver: zodResolver(phomeSchema),
-    defaultValues: formKeys.reduce((acc, key) => ({ ...acc, [key]: '' }), {}) as RegisterFormValues,
-    mode: 'onChange'
-  })
-  const onSubmit = (data: RegisterFormValues) => {
+  const styles = useMemo(() => createStyles(theme, isAgree), [theme])
+  const registerRef = useRef<any>(null)
+  const onSubmit = (data: PhoneRegisterFormValues | EmailRegisterFormValues) => {
     console.log('submit', data);
+  }
+  const onRegister = () => {
+    registerRef.current?.handleSubmit(onSubmit)()
   }
   return (
     <SafeAreaView>
@@ -58,50 +39,38 @@ export default function Register() {
             <TouchableOpacity onPress={() => setActiveTab(tab.value)}>
               <View style={commonStyles.relative}>
                 <Text style={[styles.tab, tab.value === activeTab ? styles.tabActive : null]}>{t(tab.label)}</Text>
-                {tab.value === activeTab && <IconDropdown color={styles.tabIndicator.color} style={styles.tabIndicator} size={ms(8)} />}
+                {tab.value === activeTab && <IconFont name="icon-16-triangle" color={styles.tabIndicator.color} style={styles.tabIndicator} size={ms(8)} />}
               </View>
             </TouchableOpacity>
           </View>)}
         </View>
         <View>
-          {formKeys.map((key) => <Controller control={control} key={key} name={key} render={({ field: { value, onChange, onBlur } }) => {
-            const require = key !== 'invitationCode'
-            const passwordToggle = ['password', 'comfirmPassword'].includes(key)
-            const _key = key === 'account'? activeTab : key
-            const isNestKey = ['account', 'verifyCode'].includes(key)
-            const placeholder = isNestKey ? `register.${activeTab}Type.${_key}.placeholder` : `register.${key}.placeholder`;
-            const errorMsg = errors[key]?.message ? t(errors[key].message as string) : undefined;
-            return <FormControl error={errorMsg} reserveErrorSpace required={require}>
-              <Input
-                placeholder={t(placeholder)}
-                passwordToggle={passwordToggle}
-                onChangeText={(text) => {
-                  onChange(text)
-                }} 
-                onBlur={onBlur}
-                value={value} />
-            </FormControl>
-          }} />)}
+          {activeTab === RegisterType.Phone && <PhoneRegister ref={registerRef} />}
+          {activeTab === RegisterType.Email && <EmailRegister ref={registerRef} />}
         </View>
         <View style={commonStyles.rowStart}>
-          <Text style={styles.tncAgreement}>{t('register.tncAgreement')}</Text>
-          <TouchableOpacity>
-            <Text style={styles.tnc}>{t('register.tnc')}</Text>
+          <TouchableOpacity onPress={() => setIsAgree(prev => !prev)} style={commonStyles.rowStart}>
+            <IconFont style={styles.tncAgreeIcon} color={styles.tncAgreeIcon.color} name={isAgree ? 'a-pic-36-Singlechoice-Selected' : 'a-icon-36-Singlechoice-default'} size={ms(18)} />
+            <Text style={styles.tncAgreement}>{t('register.tncAgreement')}</Text>
+            <TouchableOpacity>
+              <Text style={styles.tnc}>{t('register.tnc')}</Text>
+            </TouchableOpacity>
           </TouchableOpacity>
         </View>
         <View style={styles.button}>
-          <Button onPress={handleSubmit(onSubmit)}>{t('login.register')}</Button>
+          <Button disabled={!isAgree} onPress={onRegister}>{t('login.register')}</Button>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-function createStyles(theme: ThemeType) {
+function createStyles(theme: ThemeType, isAgree: boolean) {
   return StyleSheet.create({
     tabs: {
       gap: ms(30),
-      paddingVertical: ms(10)
+      paddingVertical: ms(10),
+      marginBottom: ms(30),
     },
     tab: {
       color: theme.secondary,
@@ -117,9 +86,12 @@ function createStyles(theme: ThemeType) {
       left: '50%',
       bottom: ms(-8),
       transform: [
-        { translateX: '-50%' },
-        { rotate: '180deg' }
+        { translateX: '-50%' }
       ]
+    },
+    tncAgreeIcon: {
+      color: isAgree ? theme.primary : theme.secondary,
+      marginRight: ms(10),
     },
     tncAgreement: {
       color: theme.secondary
@@ -130,6 +102,34 @@ function createStyles(theme: ThemeType) {
     button: {
       paddingTop: ms(10),
       paddingBottom: ms(20)
+    }
+  })
+}
+
+
+export const RegisterHeaderRight = () => {
+  const { t } = useTranslation('auth');
+  const { theme } = useUnistyles();
+  const router = useRouter();
+  const styles = useMemo(() => createHeaderStyles(theme), [theme])
+  return <View style={[commonStyles.rowEnd]}>
+    <Text style={styles.hasAccount}>{t('register.hasAccount')}</Text>
+    <TouchableOpacity onPress={() => router.back()}>
+      <Text style={styles.login}>{t('register.login')}</Text>
+    </TouchableOpacity>
+  </View>
+}
+
+function createHeaderStyles(theme: ThemeType) {
+  return StyleSheet.create({
+    hasAccount: {
+      color: theme.secondaryText,
+      fontSize: ms(15)
+    },
+    login: {
+      color: theme.primary,
+      fontSize: ms(15),
+      marginRight: ms(30)
     }
   })
 }

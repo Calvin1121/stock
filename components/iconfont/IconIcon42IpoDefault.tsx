@@ -1,0 +1,31 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { Svg, GProps, Path } from 'react-native-svg';
+import { getIconColor } from './helper';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+let IconIcon42IpoDefault: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
+      <Path
+        d="M512 950.857143a437.467429 437.467429 0 0 1-340.041143-161.426286L441.758476 519.070476l86.016 86.016a32.646095 32.646095 0 0 0 23.235048 9.606095h0.828952a32.670476 32.670476 0 0 0 23.28381-9.630476l145.481143-145.505524v74.898286a32.987429 32.987429 0 0 0 32.914285 32.889905 32.816762 32.816762 0 0 0 23.405715-9.752381 32.49981 32.49981 0 0 0 9.557333-23.186286v-153.990095a32.621714 32.621714 0 0 0-9.752381-23.673905 32.670476 32.670476 0 0 0-23.259429-9.752381h-158.281142a32.987429 32.987429 0 0 0-32.914286 32.914286 32.987429 32.987429 0 0 0 32.865524 32.938667h78.872381l-122.660572 122.611809-85.699047-85.723428a32.963048 32.963048 0 0 0-23.186286-9.752381h-1.462857a32.621714 32.621714 0 0 0-23.210667 9.630476L133.632 734.281143A438.467048 438.467048 0 0 1 73.142857 512 435.98019 435.98019 0 0 1 201.679238 201.679238 436.004571 436.004571 0 0 1 512 73.142857a436.004571 436.004571 0 0 1 310.320762 128.536381A436.004571 436.004571 0 0 1 950.857143 512a436.004571 436.004571 0 0 1-128.536381 310.320762A435.98019 435.98019 0 0 1 512 950.857143z"
+        fill={getIconColor(color, 0, '#A5A5A5')}
+      />
+    </Svg>
+  );
+};
+
+IconIcon42IpoDefault.defaultProps = {
+  size: 18,
+};
+
+IconIcon42IpoDefault = React.memo ? React.memo(IconIcon42IpoDefault) : IconIcon42IpoDefault;
+
+export default IconIcon42IpoDefault;

@@ -11,7 +11,7 @@ interface Props extends GProps, ViewProps {
   color?: string | string[];
 }
 
-let IconSearch: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+let IconIcon32Search: FunctionComponent<Props> = ({ size, color, ...rest }) => {
   return (
     <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
       <Path
@@ -22,10 +22,10 @@ let IconSearch: FunctionComponent<Props> = ({ size, color, ...rest }) => {
   );
 };
 
-IconSearch.defaultProps = {
+IconIcon32Search.defaultProps = {
   size: 18,
 };
 
-IconSearch = React.memo ? React.memo(IconSearch) : IconSearch;
+IconIcon32Search = React.memo ? React.memo(IconIcon32Search) : IconIcon32Search;
 
-export default IconSearch;
+export default IconIcon32Search;

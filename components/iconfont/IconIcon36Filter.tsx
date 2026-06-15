@@ -1,0 +1,31 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { Svg, GProps, Path } from 'react-native-svg';
+import { getIconColor } from './helper';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+let IconIcon36Filter: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
+      <Path
+        d="M594.204444 906.666667l-191.345777-149.788445a16.668444 16.668444 0 0 1-6.343111-13.027555v-222.293334a16.583111 16.583111 0 0 0-4.181334-10.979555L164.977778 254.236444a32.853333 32.853333 0 0 1-5.688889-35.584A32.682667 32.682667 0 0 1 189.582222 199.111111h644.864a32.625778 32.625778 0 0 1 30.264889 19.768889 32.711111 32.711111 0 0 1-5.831111 35.697778l-206.279111 226.133333h-45.681778a60.558222 60.558222 0 0 0-25.144889 5.404445 64.483556 64.483556 0 0 1 6.855111-8.931556l208.270223-228.238222H226.360889L429.511111 477.582222a66.133333 66.133333 0 0 1 16.696889 43.975111v206.136889l125.155556 98.019556V591.644444a60.672 60.672 0 0 0 35.584 11.377778h13.994666v290.616889a16.64 16.64 0 0 1-16.611555 16.583111 16.241778 16.241778 0 0 1-10.126223-3.555555z m106.410667-111.530667a28.131556 28.131556 0 0 1 0-56.263111h131.072a28.131556 28.131556 0 1 1 0 56.263111zM663.182222 682.666667a28.16 28.16 0 1 1 0-56.291556h168.533334a28.16 28.16 0 0 1 0 56.291556z m-56.206222-112.583111a28.16 28.16 0 0 1 0-56.291556h224.711111a28.16 28.16 0 0 1 0 56.291556z"
+        fill={getIconColor(color, 0, '#333333')}
+      />
+    </Svg>
+  );
+};
+
+IconIcon36Filter.defaultProps = {
+  size: 18,
+};
+
+IconIcon36Filter = React.memo ? React.memo(IconIcon36Filter) : IconIcon36Filter;
+
+export default IconIcon36Filter;

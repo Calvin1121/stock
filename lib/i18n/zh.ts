@@ -75,33 +75,33 @@ export default {
       tncAgreement: '我已阅读并接受',
       tnc: '《用户服务协议》',
       hasAccount: '已有账号？',
+      login: '登录',
       phoneType: {
-        phone: {
-          require: '请输入手机号',
-          placeholder: '请输入手机号',
-          invalid: '手机号格式错误',
-          wasTaken: '此号码已被使用'
-        },
-        verifyCode: {
-          require: '请输入验证码',
-          placeholder: '请输入验证码',
-          invalid: '请输入6位验证码',
-          getVerifyCode: '获取验证码',
-        }
+        require: '请输入手机号',
+        placeholder: '请输入手机号',
+        invalid: '手机号格式错误',
+        wasTaken: '此号码已被使用'
+      },
+      smsCode: {
+        require: '请输入验证码',
+        placeholder: '请输入验证码',
+        invalid: '请输入6位验证码',
+        getVerifyCode: '获取验证码',
       },
       emailType: {
-        email: {
-          require: '请输入电子邮箱',
-          placeholder: '请输入电子邮箱',
-          invalid: '邮箱号格式错误',
-          wasTaken: '此邮箱已被使用'
-        },
-        verifyCode: {
-          require: '请输入验证码',
-          invalid: '请输入6位验证码',
-          placeholder: '请输入验证码',
-          getVerifyCode: '获取验证码',
-        }
+        require: '请输入电子邮箱',
+        placeholder: '请输入电子邮箱',
+        invalid: '邮箱号格式错误',
+        wasTaken: '此邮箱已被使用'
+      },
+      emailCode: {
+        require: '请输入验证码',
+        invalid: '请输入6位验证码',
+        placeholder: '请输入验证码',
+        getVerifyCode: '获取验证码',
+      },
+      countryCode: {
+        title: '选择国家地区'
       }
     }
   }

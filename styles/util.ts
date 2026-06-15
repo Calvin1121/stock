@@ -51,6 +51,11 @@ export const commonStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
+    rowEnd: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+    },
     columnCenter: {
         flexDirection: 'column',
         alignItems: 'center',

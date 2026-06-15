@@ -11,7 +11,7 @@ interface Props extends GProps, ViewProps {
   color?: string | string[];
 }
 
-let IconRightArrow: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+let IconIcon44ArrowSelect: FunctionComponent<Props> = ({ size, color, ...rest }) => {
   return (
     <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
       <Path
@@ -22,10 +22,10 @@ let IconRightArrow: FunctionComponent<Props> = ({ size, color, ...rest }) => {
   );
 };
 
-IconRightArrow.defaultProps = {
+IconIcon44ArrowSelect.defaultProps = {
   size: 18,
 };
 
-IconRightArrow = React.memo ? React.memo(IconRightArrow) : IconRightArrow;
+IconIcon44ArrowSelect = React.memo ? React.memo(IconIcon44ArrowSelect) : IconIcon44ArrowSelect;
 
-export default IconRightArrow;
+export default IconIcon44ArrowSelect;
