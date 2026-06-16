@@ -1,4 +1,4 @@
-import { emailRegex, pwdRegex, sixverifyCode } from "@/constants/utils";
+import { emailRegex, pwdRegex, sixverifyCode } from "@/utils/regex";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forwardRef, useImperativeHandle } from "react";
 import { useForm } from "react-hook-form";
@@ -15,7 +15,7 @@ export interface EmailRegisterRef {
 }
 const emialSchema = z.object({
     emailType: z.string().min(1, 'register.emailType.require').refine(value => emailRegex.test(value), {message: 'register.emailType.invalid'}),
-    emailCode: z.string().min(1, 'register.emailCode.require').refine((value) => sixverifyCode.test(value.toString()), { message: 'register.emailCode.invalid' }),
+    verifyCode: z.string().min(1, 'register.verifyCode.require').refine((value) => sixverifyCode.test(value.toString()), { message: 'register.verifyCode.invalid' }),
     invitationCode: z.string(),
     password: z.string().refine(value => pwdRegex.test(value), { message: 'register.password.invalid' }),
     comfirmPassword: z.string().min(1, 'register.comfirmPassword.require'),

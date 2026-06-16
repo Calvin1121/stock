@@ -3,16 +3,16 @@ import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWi
 import { Button, FormControl, Input } from '@/components/ui';
 import { useActionSheet } from '@/components/ui/action-sheet-context';
 import { ThemeType } from '@/constants/Colors';
-import { emailRegex, globalPhoneRegex } from '@/constants/utils';
 import i18n from '@/lib/i18n';
 import { Language, useLanguageStore } from '@/lib/languageStore';
 import { commonStyles } from '@/styles/util';
+import { emailRegex, globalPhoneRegex } from '@/utils/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Text, View, ViewStyle } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { ms, s, vs } from 'react-native-size-matters';
 import { useUnistyles } from 'react-native-unistyles';
 import z from 'zod';
@@ -42,37 +42,14 @@ export default function LoginPage() {
   })
   const { theme } = useUnistyles();
   const styles = createStyles(theme);
-  const { show } = useActionSheet();
-  const setLanguage = useLanguageStore((s) => s.setLanguage);
-  const handleLanguageChange = useCallback((lang: Language) => {
-    setLanguage(lang);
-    i18n.changeLanguage(lang);
-  }, [])
   const router = useRouter()
-  const onChangeLang = useCallback(() => {
-    show({
-      title: t('lang.select'),
-      items: [
-        { label: t('lang.en'), value: 'en', onPress: (item) => handleLanguageChange(item.value as Language) },
-        { label: t('lang.zh'), value: 'zh', onPress: (item) => handleLanguageChange(item.value as Language) },
-      ],
-    })
-  }, [handleLanguageChange, show, t])
+
   const onSubmit = (data: LoginFormValues) => {
     console.log('submit', data);
   }
-  const langIcon = (styles: ViewStyle) => (<TouchableOpacity style={styles} onPress={onChangeLang}>
-    <IconFont name='lang-dark' size={29} />
-  </TouchableOpacity>)
   return (
     <SafeAreaView>
       <ScrollView>
-        <View style={
-          [commonStyles.alignEnd, commonStyles.relative]
-        }>
-          {langIcon({...styles.langIcon, ...commonStyles.absolute})}
-          {langIcon(commonStyles.invisible)}
-        </View>
         <View style={styles.logoSection}>
           <Text>Logo</Text>
         </View>
@@ -124,7 +101,8 @@ function createStyles(theme: ThemeType) {
       zIndex: 1,
     },
     logoSection: {
-      marginVertical: ms(40),
+      marginTop: ms(10),
+      marginBottom: ms(40),
       width: s(150),
       height: vs(50),
       backgroundColor: '#6D7278',
@@ -141,4 +119,30 @@ function createStyles(theme: ThemeType) {
       lineHeight: ms(21)
     }
   })
+}
+
+export const LoginHeaderRight = () => {
+  const { t } = useTranslation('auth');
+  const { theme } = useUnistyles();
+  const router = useRouter();
+  const { show } = useActionSheet();
+  const setLanguage = useLanguageStore((s) => s.setLanguage);
+  const handleLanguageChange = useCallback((lang: Language) => {
+    setLanguage(lang);
+    i18n.changeLanguage(lang);
+  }, [])
+  const onChangeLang = useCallback(() => {
+    show({
+      title: t('lang.select'),
+      items: [
+        { label: t('lang.en'), value: 'en', onPress: (item) => handleLanguageChange(item.value as Language) },
+        { label: t('lang.zh'), value: 'zh', onPress: (item) => handleLanguageChange(item.value as Language) },
+      ],
+    })
+  }, [handleLanguageChange, show, t])
+  return <View style={[commonStyles.alignEnd, commonStyles.relative]}>
+    <TouchableOpacity style={{marginRight: ms(15)}} onPress={onChangeLang}>
+      <IconFont name='lang-dark' size={ms(29)} />
+    </TouchableOpacity>
+  </View>
 }

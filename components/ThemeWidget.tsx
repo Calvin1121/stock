@@ -1,6 +1,7 @@
 import { commonStyles } from '@/styles/util';
-import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, TouchableOpacityProps, ViewProps } from 'react-native';
+import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StyleProp, Text, TextStyle, TouchableOpacityProps, ViewProps } from 'react-native';
 import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
+import { ms } from 'react-native-size-matters';
 import { useUnistyles } from "react-native-unistyles";
 
 export function ScrollView(props: ScrollViewProps) {
@@ -35,5 +36,13 @@ export function TouchableOpacity(props: TouchableOpacityProps) {
     const style = {
         ..._style,
     }
-    return <DefaultTouchableOpacity style={style} {...otherProps} activeOpacity={theme.touchOpacity}  />
+    return <DefaultTouchableOpacity style={style} {...otherProps} activeOpacity={theme.touchOpacity} />
+}
+
+export function VerifyCode(props: { title: string; onTap?: () => void; style?: StyleProp<TextStyle> }) {
+    const { theme } = useUnistyles();
+
+    return <TouchableOpacity onPress={props?.onTap}>
+        <Text style={{ color: theme.primary, fontSize: ms(13), ...props.style }}>{props.title}</Text>
+    </TouchableOpacity>
 }

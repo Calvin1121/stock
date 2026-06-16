@@ -1,4 +1,4 @@
-import { globalPhoneRegex, pwdRegex, sixverifyCode } from "@/constants/utils";
+import { globalPhoneRegex, pwdRegex, sixverifyCode } from "@/utils/regex";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forwardRef, useImperativeHandle } from "react";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ export interface PhoneRegisterRef {
 }
 const emialSchema = z.object({
     phoneType: z.string().min(1, 'register.phoneType.require').refine(value => globalPhoneRegex.test(value), {message: 'register.phoneType.invalid'}),
-    smsCode: z.string().min(1, 'register.smsCode.require').refine((value) => sixverifyCode.test(value.toString()), { message: 'register.smsCode.invalid' }),
+    verifyCode: z.string().min(1, 'register.verifyCode.require').refine((value) => sixverifyCode.test(value.toString()), { message: 'register.verifyCode.invalid' }),
     invitationCode: z.string(),
     password: z.string().refine(value => pwdRegex.test(value), { message: 'register.password.invalid' }),
     comfirmPassword: z.string().min(1, 'register.comfirmPassword.require'),

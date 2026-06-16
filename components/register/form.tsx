@@ -1,14 +1,18 @@
 import { ThemeType } from "@/constants/Colors";
+import { useLanguageStore } from "@/lib/languageStore";
+import { useRegisterStore } from "@/lib/registerStore";
 import { commonStyles } from "@/styles/util";
+import { countryCodes } from "@/utils/country-codes";
 import { useRouter } from "expo-router";
-import React, { useMemo } from "react";
+import { find, get } from 'lodash';
+import React, { useCallback, useMemo } from "react";
 import { Controller, FieldErrors } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import { ms, s, vs } from "react-native-size-matters";
 import { useUnistyles } from "react-native-unistyles";
 import IconFont from "../iconfont";
-import { TouchableOpacity } from "../ThemeWidget";
+import { TouchableOpacity, VerifyCode } from "../ThemeWidget";
 import { FormControl, Input } from "../ui";
 
 interface RegisterFormBaseProps {
@@ -23,26 +27,28 @@ export const RegisterFormBase: React.FC<RegisterFormBaseProps> = ({ formKeys, er
     const router = useRouter()
     const { theme } = useUnistyles();
     const styles = useMemo(() => createStyles(theme), [theme])
-    const onSuffixPress = (key: string) => {
-        onPrefixSuffixTap?.(key)
-    }
-    const onSuffixNode = (key: string) => {
-        if(['smsCode', 'emailCode'].includes(key)) {
-            return <TouchableOpacity onPress={() => onSuffixPress(key)}>
-                <Text style={styles.getVerifyCode}>{t(`register.${key}.getVerifyCode`)}</Text>
-            </TouchableOpacity>
+    const lang = useLanguageStore(s => s.language)
+    const countryCodeList = countryCodes.map(code => code.items)?.flat()
+    const countryCode = useRegisterStore(s => s.countryCode)
+
+    const onSuffixNode = useCallback((key: string) => {
+        if('verifyCode' === key) {
+            return <VerifyCode
+                onTap={() => onPrefixSuffixTap?.(key)}
+                title={t(`register.${key}.getVerifyCode`)} />
         }
-    }
-    const onPrefixNode = (key: string) => {
+    }, [t, onPrefixSuffixTap])
+    const onPrefixNode = useCallback((key: string) => {
         if(key === 'phoneType') {
+            const countryName = get(find(countryCodeList, {code: countryCode}), lang)
             return <TouchableOpacity onPress={() => router.push('/country-code')} style={commonStyles.rowStart}>
-                <Text style={styles.countryName}>中国大陆</Text>
-                <Text style={styles.countryCode}>+86</Text>
+                <Text style={styles.countryName}>{countryName}</Text>
+                <Text style={styles.countryCode}>{countryCode}</Text>
                 <IconFont style={styles.countryIcon} color={styles.countryIcon.color} size={ms(10)} name="a-icon-24-Lightgraydrop-down" />
                 <View style={styles.divied}></View>
             </TouchableOpacity>
         }
-    }
+    }, [router, countryCode, lang])
     return <>
         {formKeys.map((key) => <Controller control={control} key={key} name={key} render={({ field: { value, onChange, onBlur } }) => {
             const require = key !== 'invitationCode'
