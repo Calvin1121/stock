@@ -53,7 +53,7 @@ export function FormControl({
 function createStyles(theme: ThemeType) {
     return StyleSheet.create({
         wrapper: {
-            marginBottom: ms(16),
+            marginBottom: ms(6),
         },
         label: {
             marginBottom: ms(6),

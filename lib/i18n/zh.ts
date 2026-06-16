@@ -57,6 +57,7 @@ export default {
       forgotPwd: '忘记密码'
     },
     register: {
+      title: '注册',
       phone: '手机号注册',
       email: '邮箱注册',
       invitationCode: {
@@ -93,13 +94,47 @@ export default {
         placeholder: '请输入电子邮箱',
         invalid: '邮箱号格式错误',
         wasTaken: '此邮箱已被使用'
+      },
+      success: {
+        info: '恭喜，您已注册成功！',
+        button: '返回登陆'
+
+      },
+      fail: {
+        info: '抱歉，注册失败',
+        button: '返回'
       }
     },
     countryCode: {
       title: '选择国家地区'
     },
     forgot: {
-      title: '找回密码'
+      title: '找回密码',
+      username: {
+        require: '请输入手机号/邮箱/UID',
+        placeholder: '请输入手机号/邮箱/UID',
+        // invalid: '请输入有效的邮箱或手机号',
+      },
+      verifyCode: {
+        require: '请输入验证码',
+        placeholder: '请输入验证码',
+        invalid: '请输入6位验证码',
+        getVerifyCode: '获取验证码',
+      },
+      password: {
+        require: '请输入登录密码',
+        placeholder: '登录密码（8-20位，包含字母与数字）',
+        invalid: '密码不符合要求'
+      },
+      comfirmPassword: {
+        require: '请输入确认登录密码',
+        placeholder: '确认登录密码',
+        invalid: '确认密码与登录密码不一致'
+      },
+      success: {
+        info: '恭喜，密码已经重置成功！',
+        button: '返回登陆'
+      }
     }
   }
 } as const;

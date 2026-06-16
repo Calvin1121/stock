@@ -15,14 +15,13 @@ export const dark = {
     success: '#0AA88B',
     warning: '#FAAD14',
     info: 'rgba(#fff, .36)',
-
+    helper: '#5A5B6A',
 
     // foreground: '#FFFFFF',
     // card: '#1b1c28',
     // text: '#FFFFFF',
     // textMuted: '#A5A5A5',
     // border: '#2C2D3C',
-    // helper: '#5A5B6A',
     // ring: '#4D8EFF',
     // tint: '#000',
 };

@@ -14,7 +14,7 @@ export default function LaunchPage() {
     //   const isLoggedIn = false; // TODO: replace with real check
     //   if (isLoggedIn) router.replace('/home');
     //   else 
-    router.replace('/register');
+    // router.replace('/register');
     // }, 5000);
 
     // return () => clearTimeout(timer);

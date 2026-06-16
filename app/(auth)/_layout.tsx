@@ -11,7 +11,9 @@ export default function AuthLayout() {
         {name: 'login', options: { title: '', headerLeft: () => null, headerRight: LoginHeaderRight  }},
         {name: 'register', options: { title: '', headerRight: RegisterHeaderRight }},
         {name: 'forgot', options: {title: t('forgot.title')}},
-        {name: 'country-code', options: {title: t('countryCode.title')}}
+        {name: 'country-code', options: {title: t('countryCode.title')}},
+        {name: 'forgot-result', options: {title: t('forgot.title')}},
+        {name: 'register-result', options: {title: t('register.title')}}
     ]
     return (
         <Stack screenOptions={headerOption} >

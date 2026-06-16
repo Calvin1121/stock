@@ -100,7 +100,7 @@ export const Input = forwardRef<TextInput, InputProps>(({
           onPress={handleTogglePassword}
           style={[styles.iconWrapper]}
         >
-          <IconFont name={isPasswordVisible ? 'visible' : 'hidden'} size={ms(24)} color={themeInput.iconColor} />
+          <IconFont name={isPasswordVisible ? 'a-icon-48-Openeyes' : 'icon-42-Trade-hidden'} size={ms(24)} color={themeInput.iconColor} />
         </TouchableOpacity>
       ) : null}
     </View>

@@ -96,13 +96,46 @@ export default {
       countryCode: {
         title: ''
       },
-      login: ''
+      login: '',
+      title: '',
+      success: {
+        info: '',
+        button: ''
+      },
+      fail: {
+        info: '',
+        button: ''
+      }
     },
     countryCode: {
       title: ''
     },
     forgot: {
-      title: ''
+      title: '',
+      username: {
+        require: '',
+        placeholder: ''
+      },
+      verifyCode: {
+        require: '',
+        placeholder: '',
+        invalid: '',
+        getVerifyCode: ''
+      },
+      password: {
+        require: '',
+        placeholder: '',
+        invalid: ''
+      },
+      comfirmPassword: {
+        require: '',
+        placeholder: '',
+        invalid: ''
+      },
+      success: {
+        info: '',
+        button: ''
+      }
     }
   }
 } as const;
