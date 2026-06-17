@@ -1,23 +1,23 @@
 import { TouchableOpacity } from '@/components/ThemeWidget';
-import SampleForm from '@/components/forms/SampleForm';
 import { THEME } from '@/constants/Colors';
 import { useThemeStore } from '@/lib/themeStore';
+import { useTheme } from '@/lib/useTheme';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function ProfileScreen() {
   const { setTheme } = useThemeStore();
   const [value, setValue] = useState('')
+  const { theme} = useTheme();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
       <TouchableOpacity onPress={() => setTheme(THEME.DARK)}>
-        <Text>Dark</Text>
+        <Text style={{color: theme.primary}}>Dark</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setTheme(THEME.LIGHT)}>
-        <Text>Light</Text>
+        <Text style={{color: theme.primary}}>Light</Text>
       </TouchableOpacity>
-      <SampleForm />
     </View>
   );
 }

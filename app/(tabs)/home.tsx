@@ -1,16 +1,16 @@
 import { TouchableOpacity } from '@/components/ThemeWidget';
-import { SearchBar } from '@/components/ui';
+import { useTheme } from '@/lib/useTheme';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 export default function HomeScreen() {
   const router = useRouter();
+  const { theme } = useTheme();
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
       <TouchableOpacity onPress={() => router.push('/login')}>
-        <Text>Login</Text>
+        <Text style={{color: theme.primary}}>Login</Text>
       </TouchableOpacity>
-      <SearchBar placeholder="Search" />
     </View>
   );
 }

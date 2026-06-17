@@ -5,6 +5,7 @@ import { useActionSheet } from '@/components/ui/action-sheet-context';
 import { ThemeType } from '@/constants/Colors';
 import i18n from '@/lib/i18n';
 import { Language, useLanguageStore } from '@/lib/languageStore';
+import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { emailRegex, globalPhoneRegex } from '@/utils/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,7 +15,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import { ms, s, vs } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 import z from 'zod';
 
 const loginSchema = z.object({
@@ -40,7 +40,7 @@ export default function LoginPage() {
     defaultValues: formKeys.reduce((acc, key) => ({ ...acc, [key]: '' }), {}) as LoginFormValues,
     mode: 'onChange',
   })
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const styles = createStyles(theme);
   const router = useRouter()
 
@@ -123,7 +123,7 @@ function createStyles(theme: ThemeType) {
 
 export const LoginHeaderRight = () => {
   const { t } = useTranslation('auth');
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const router = useRouter();
   const { show } = useActionSheet();
   const setLanguage = useLanguageStore((s) => s.setLanguage);

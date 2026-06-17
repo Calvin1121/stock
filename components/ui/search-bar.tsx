@@ -1,6 +1,6 @@
 import { IconFail, IconSearch } from '@/components/iconfont';
+import { useTheme } from '@/lib/useTheme';
 import { StyleProp, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
-import { useUnistyles } from 'react-native-unistyles';
 import { Input, InputProps } from './input';
 
 export interface SearchBarProps extends Omit<InputProps, 'variant' | 'prefix' | 'suffix' | 'passwordToggle'> {
@@ -16,7 +16,7 @@ export function SearchBar({
   style,
   ...props
 }: SearchBarProps) {
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const themeInput = theme.input.rounded || {};
   const showClear = !!onClear && !!value && value.length > 0;
 
