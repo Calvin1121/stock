@@ -1,3 +1,4 @@
+import { useTheme } from '@/lib/useTheme';
 import React, { useCallback } from 'react';
 import {
     Dimensions,
@@ -17,7 +18,6 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 import { ms, s, vs } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 export type ActionSheetItem = {
   value: string | number;
@@ -48,7 +48,7 @@ export function ActionSheet({
   backgroundColor,
   overlayColor,
 }: ActionSheetProps) {
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const [isModalVisible, setIsModalVisible] = React.useState(visible);
   const translateY = useSharedValue(visible ? 0 : 1000);
   const opacityAnim = useSharedValue(visible ? 1 : 0);

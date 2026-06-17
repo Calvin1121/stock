@@ -12,7 +12,6 @@ import '@/lib/i18n';
 import { useLanguageStore } from '@/lib/languageStore';
 import { queryClient } from '@/lib/queryClient';
 import { useThemeStore } from '@/lib/themeStore';
-import '@/lib/unistyles';
 
 export {
   ErrorBoundary
@@ -61,12 +60,10 @@ export default function RootLayout() {
 function RootLayoutNav() {
   const systemColorScheme = useSystemColorScheme();
   const resolvedThemeName = useThemeStore((s) => s.resolvedThemeName);
-
   useEffect(() => {
     const scheme: keyof ColorsType = systemColorScheme === THEME.DARK ? THEME.DARK : THEME.LIGHT
     useThemeStore.getState().setSystemScheme(scheme)
   }, [systemColorScheme])
-
   return (
     <QueryClientProvider client={queryClient}>
       <ActionSheetProvider>

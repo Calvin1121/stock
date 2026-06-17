@@ -1,6 +1,7 @@
 import { SafeAreaView, ScrollView, VerifyCode } from '@/components/ThemeWidget';
 import { Button, FormControl, Input } from '@/components/ui';
 import { ThemeType } from '@/constants/Colors';
+import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { pwdRegex } from '@/utils/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,7 +10,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import { ms, s, vs } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 import z from 'zod';
 
 const forgotSchema = z.object({
@@ -37,7 +37,7 @@ export default function Forgot() {
     defaultValues: formKeys.reduce((acc, key) => ({ ...acc, [key]: '' }), {}) as ForgotFormValues,
     mode: 'onChange',
   })
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const styles = createStyles(theme);
   const onSubmit = (data?: ForgotFormValues) => {
     console.log('submit', data);
@@ -74,6 +74,7 @@ export default function Forgot() {
             }}
           />)}
           <View style={styles.buttonSection}>
+            <Button>{t('forgot.confimr')}</Button>
           </View>
         </View>
       </ScrollView>

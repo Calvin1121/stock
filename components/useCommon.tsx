@@ -1,12 +1,12 @@
 
+import { useTheme } from "@/lib/useTheme";
 import { NativeStackHeaderBackProps, NativeStackNavigationOptions, useRouter } from "expo-router";
 import { ColorValue, Text } from "react-native";
 import { ms } from "react-native-size-matters";
-import { useUnistyles } from "react-native-unistyles";
 import { TouchableOpacity } from "./ThemeWidget";
 import IconFont from "./iconfont";
 export function useHeaderOption(props?: NativeStackNavigationOptions): NativeStackNavigationOptions {
-    const { theme } = useUnistyles();
+    const { theme } = useTheme();
     const router = useRouter();
     const { headerStyle: _headerStyle, ...otherProps } = props || {};
     const headerStyle = {

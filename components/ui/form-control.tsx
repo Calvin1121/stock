@@ -1,9 +1,9 @@
 import { Label } from '@/components/ui/label';
 import { ThemeType } from '@/constants/Colors';
+import { useTheme } from '@/lib/useTheme';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 type FormControlProps = {
     label?: string;
@@ -26,7 +26,7 @@ export function FormControl({
     children,
     style,
 }: FormControlProps) {
-    const { theme } = useUnistyles();
+    const { theme } = useTheme();
     const styles = React.useMemo(() => createStyles(theme), [theme]);
     return (
         <View style={[styles.wrapper, style]}>

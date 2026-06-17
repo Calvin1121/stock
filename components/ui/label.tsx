@@ -1,10 +1,10 @@
+import { useTheme } from '@/lib/useTheme';
 import React from 'react';
 import { StyleSheet, Text, TextProps } from 'react-native';
 import { ms } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 const Label = React.forwardRef<Text, TextProps>(({ style, ...props }, ref) => {
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const styles = React.useMemo(
     () =>
       StyleSheet.create({

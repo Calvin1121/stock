@@ -4,13 +4,13 @@ import { PhoneRegister, PhoneRegisterFormValues } from '@/components/register/ph
 import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWidget';
 import { Button } from '@/components/ui';
 import { ThemeType } from '@/constants/Colors';
+import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { useRouter } from 'expo-router';
 import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 export enum RegisterType {
   Phone = 'phone',
@@ -22,7 +22,7 @@ export default function Register() {
   const tabs = Object.values(RegisterType).map(type => ({ label: `register.${type}`, value: type }))
   const [activeTab, setActiveTab] = useState(RegisterType.Phone)
   const [isAgree, setIsAgree] = useState(false)
-  const { theme } = useUnistyles()
+  const { theme } = useTheme()
   const styles = useMemo(() => createStyles(theme, isAgree), [theme])
   const registerRef = useRef<any>(null)
   const onSubmit = (data: PhoneRegisterFormValues | EmailRegisterFormValues) => {
@@ -112,7 +112,7 @@ function createStyles(theme: ThemeType, isAgree: boolean) {
 
 export const RegisterHeaderRight = () => {
   const { t } = useTranslation('auth');
-  const { theme } = useUnistyles();
+  const { theme } = useTheme();
   const router = useRouter();
   const styles = useMemo(() => createHeaderStyles(theme), [theme])
   return <View style={[commonStyles.rowEnd]}>

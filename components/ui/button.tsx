@@ -1,4 +1,5 @@
 import { ThemeType } from '@/constants/Colors';
+import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import React, { useMemo } from 'react';
 import {
@@ -11,7 +12,6 @@ import {
     ViewStyle
 } from 'react-native';
 import { ms, vs } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 export interface ButtonProps extends TouchableOpacityProps {
   title?: string;
@@ -43,7 +43,7 @@ export const Button = React.forwardRef<React.ElementRef<typeof TouchableOpacity>
     },
     ref
   ) => {
-    const { theme } = useUnistyles();
+    const { theme } = useTheme();
     const isDisabled = disabled || loading;
     const { button, buttonText, spinnerColor, loadingStyle } = useMemo(
       () => createStyles(theme, variant, type, isDisabled, fullWidth, rounded),

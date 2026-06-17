@@ -2,6 +2,7 @@ import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWi
 import { ThemeType } from '@/constants/Colors';
 import { useLanguageStore } from '@/lib/languageStore';
 import { useRegisterStore } from '@/lib/registerStore';
+import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { countryCodes } from '@/utils/country-codes';
 import { useRouter } from 'expo-router';
@@ -9,13 +10,12 @@ import { get } from 'lodash';
 import { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 export default function CountryCodee() {
     const router = useRouter();
     const language = useLanguageStore((s) => s.language);
     const setCountryCode = useRegisterStore(s => s.setCountryCode)
-    const { theme } = useUnistyles()
+    const { theme } = useTheme()
     const styles = useMemo(() => createStyles(theme), [theme])
     const onSelect = (code: string) => {
         setCountryCode(code)

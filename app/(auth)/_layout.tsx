@@ -17,7 +17,7 @@ export default function AuthLayout() {
     ]
     return (
         <Stack screenOptions={headerOption} >
-            {screenMap.map(screen => <Stack.Screen {...screen} />)}
+            {screenMap.map(screen => <Stack.Screen key={screen.name} {...screen} />)}
         </Stack>
     );
 }

@@ -1,7 +1,5 @@
 import { Colors, ColorsType, THEME } from '@/constants/Colors'
 import { storage } from '@/lib/storage'
-import '@/lib/unistyles'
-import { UnistylesRuntime } from 'react-native-unistyles'
 import { create } from 'zustand'
 
 const STORAGE_KEY = 'app_theme'
@@ -33,8 +31,6 @@ function resolveThemeName(theme: ThemeName, system: ResolvedTheme): ResolvedThem
 const storedTheme = getStoredTheme()
 const initialTheme: ResolvedTheme = storedTheme !== THEME.SYSTEM ? storedTheme : THEME.LIGHT
 
-UnistylesRuntime.setTheme(initialTheme)
-
 export const useThemeStore = create<ThemeState>((set, get) => ({
   themeName: storedTheme,
   systemScheme: THEME.LIGHT,
@@ -44,7 +40,6 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
     const { systemScheme } = get()
     const resolved = resolveThemeName(name, systemScheme)
     set({ themeName: name, resolvedThemeName: resolved })
-    UnistylesRuntime.setTheme(resolved)
   },
   setSystemScheme: (scheme) => {
     set({ systemScheme: scheme })
@@ -52,7 +47,6 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
     if (themeName === THEME.SYSTEM) {
       const resolved = resolveThemeName(THEME.SYSTEM, scheme)
       set({ resolvedThemeName: resolved })
-      UnistylesRuntime.setTheme(resolved)
     }
   },
 }))

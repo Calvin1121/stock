@@ -110,6 +110,7 @@ export default {
     },
     forgot: {
       title: '找回密码',
+      confimr: '确认',
       username: {
         require: '请输入手机号/邮箱/UID',
         placeholder: '请输入手机号/邮箱/UID',

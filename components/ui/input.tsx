@@ -1,16 +1,16 @@
 import IconFont from '@/components/iconfont';
 import { ThemeType } from '@/constants/Colors';
+import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import React, { forwardRef, useMemo, useState } from 'react';
 import {
-  StyleSheet,
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-  View
+    StyleSheet,
+    TextInput,
+    TextInputProps,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import { ms } from 'react-native-size-matters';
-import { useUnistyles } from 'react-native-unistyles';
 
 export interface InputProps extends TextInputProps {
   variant?: 'outline' | 'underline' | 'rounded';
@@ -41,9 +41,9 @@ export const Input = forwardRef<TextInput, InputProps>(({
   onFocus,
   ...props
 }, ref) => {
-  const { theme } = useUnistyles();
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const { theme } = useTheme();
 
   const handleClear = () => {
     if (onChangeText) {

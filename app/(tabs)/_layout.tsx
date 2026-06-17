@@ -1,39 +1,43 @@
-import { Tabs } from 'expo-router';
-import { useTranslation } from 'react-i18next';
-
 import { ThemeType } from '@/constants/Colors';
+import { useTheme } from '@/lib/useTheme';
+import { Tabs } from 'expo-router';
 import { BottomTabNavigationOptions } from 'expo-router/build/react-navigation/bottom-tabs/types';
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { useUnistyles } from 'react-native-unistyles';
 const iconSize = 20;
 
 export default function TabLayout() {
-  const { theme } = useUnistyles();
+  const {theme} = useTheme()
   const styles = useMemo(() => createStyles(theme), [theme])
   const { t } = useTranslation();
   const tabs = ['home', 'ipo', 'assets', 'news', 'profile'];
-  const screenOptions: BottomTabNavigationOptions = {
+  const screenOptions: BottomTabNavigationOptions = useMemo(() => ({
     headerShown: false,
     ...styles.screenStyle
-  }
-  const tabBarIcon = ({ focused }: { focused: boolean }) => {
+  }), [styles])
+  const tabBarIcon = useCallback(({ focused }: { focused: boolean }) => {
     return (
       <View style={[styles.tabIconStyle(focused)]} />
     );
-  };
+  }, [styles])
+  const tabScreenOptions = useMemo(() => tabs.map((tab) => ({
+    name: tab,
+    options: {
+      title: t(`tab:${tab}`),
+      ...styles.tabBarStyle,
+      tabBarIcon,
+    } as BottomTabNavigationOptions
+  })), [tabs, t, styles, tabBarIcon])
+
   return (
     <Tabs screenOptions={screenOptions}>
-      {tabs.map((tab) => {
-        const options: BottomTabNavigationOptions = {
-          title: t(`tab:${tab}`),
-          ...styles.tabBarStyle,
-          tabBarIcon,
-        }
-        return <Tabs.Screen
+      {tabScreenOptions.map(({ name, options }) => (
+        <Tabs.Screen
+          key={name}
           options={options}
-          name={tab} />
-      })}
+          name={name} />
+      ))}
     </Tabs>)
 }
 function createStyles(theme: ThemeType) {

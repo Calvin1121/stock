@@ -1,6 +1,7 @@
 import { ThemeType } from "@/constants/Colors";
 import { useLanguageStore } from "@/lib/languageStore";
 import { useRegisterStore } from "@/lib/registerStore";
+import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
 import { countryCodes } from "@/utils/country-codes";
 import { useRouter } from "expo-router";
@@ -10,7 +11,6 @@ import { Controller, FieldErrors } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import { ms, s, vs } from "react-native-size-matters";
-import { useUnistyles } from "react-native-unistyles";
 import IconFont from "../iconfont";
 import { TouchableOpacity, VerifyCode } from "../ThemeWidget";
 import { FormControl, Input } from "../ui";
@@ -25,7 +25,7 @@ interface RegisterFormBaseProps {
 export const RegisterFormBase: React.FC<RegisterFormBaseProps> = ({ formKeys, errors, control, onPrefixSuffixTap }) => {
     const { t } = useTranslation('auth');
     const router = useRouter()
-    const { theme } = useUnistyles();
+    const { theme } = useTheme();
     const styles = useMemo(() => createStyles(theme), [theme])
     const lang = useLanguageStore(s => s.language)
     const countryCodeList = countryCodes.map(code => code.items)?.flat()
