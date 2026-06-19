@@ -132,7 +132,7 @@ function createHeaderStyles(theme: ThemeType) {
     login: {
       color: theme.primary,
       fontSize: ms(15),
-      marginRight: ms(30)
+      marginRight: ms(20)
     }
   })
 }

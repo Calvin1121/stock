@@ -2,7 +2,6 @@ import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { ResultEnum } from '@/utils/consts';
 import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StyleProp, Text, TextStyle, TouchableOpacityProps, View, ViewProps } from 'react-native';
-import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
 import { ms, s } from 'react-native-size-matters';
 import IconFont from './iconfont';
 import { Button, ButtonProps } from './ui';
@@ -29,7 +28,8 @@ export function SafeAreaView(props: ViewProps) {
     }
     return <>
         <StatusBar />
-        <RNSafeAreaView style={style} {...otherProps} />
+        <View style={style} {...otherProps} />
+        {/* <RNSafeAreaView style={style} {...otherProps} /> */}
     </>;
 }
 

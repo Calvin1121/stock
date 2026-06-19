@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 import { ms } from "react-native-size-matters";
 export const commonStyles = StyleSheet.create({
+    flex0: {
+        flex: 0,
+    },
     flex1: {
         flex: 1,
     },
