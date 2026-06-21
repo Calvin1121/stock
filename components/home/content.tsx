@@ -2,6 +2,7 @@ import { HomeTab } from "@/app/(tabs)/home";
 import { ThemeType } from "@/constants/Colors";
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
+import { router } from "expo-router";
 import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
@@ -12,7 +13,7 @@ import { Button } from "../ui";
 import MiniSparkline from "../ui/mini-spark-line";
 
 
-export enum Tab {
+export enum Category {
     OTC = 'OTC',
     blockTrade = 'blockTrade',
     preMarket = 'preMarket',
@@ -52,10 +53,10 @@ export default function HomeContent(props: Props) {
         { name: 'TOPIX 1000 IN...', price: '3529.39', trend: '+0.00', change: '+0.00%' },
         { name: 'TOPIX 1000 IN...', price: '3529.39', trend: '+0.00', change: '+0.00%' }
     ]
-    const tabs = Object.keys(Tab).map(key => ({ value: key, label: `KSE.tabs.${key}` }))
+    const categories = Object.keys(Category).map(key => ({ value: key as Category, label: `category.${key}` }))
     const isUSS = tab === HomeTab.USS
     const styles = useMemo(() => createStyles(theme), [theme])
-    const mains = Object.keys(Main).map(key => ({ value: key as Main, label: `KSE.mains.${key}` }))
+    const mains = Object.keys(Main).map(key => ({ value: key as Main, label: `mains.${key}` }))
     const getColStyle = useCallback((key: Main) => {
         return key === Main.symbol ? { flex: 1.5, ...commonStyles.rowStart } :
             [commonStyles.flex1, key === Main.chg ? commonStyles.rowEnd : commonStyles.rowCenter]
@@ -75,6 +76,12 @@ export default function HomeContent(props: Props) {
         { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '30.65', trend: '-3.33', change: '-1.53%' }, { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '209.95', trend: '45.21', change: '+21.53%' },
         { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '-30.65', trend: '-3.33', change: '-1.53%' }
     ]
+    const onTabTap = (value: Category) => {
+        switch(value) {
+            case Category.OTC:
+                router.push('/(home)/OTC')
+        }
+    }
     return <>
         {isUSS && <View style={[styles.snapshots, commonStyles.rowCenter]}>
             {snapshots.map((snapshot, index) => {
@@ -92,25 +99,27 @@ export default function HomeContent(props: Props) {
                         <Text style={[styles.snapshotTrendChange, trendStyle]}>{snapshot.trend}</Text>
                         <Text style={[styles.snapshotTrendChange, changeStyle]}>{snapshot.change}</Text>
                     </View>
-                    <MiniSparkline color={!index? styles.downStyle.color: styles.upStyle.color} width={s(105)} height={vs(33)} data={data} />
+                    <MiniSparkline color={!index ? styles.downStyle.color : styles.upStyle.color} width={s(105)} height={vs(33)} data={data} />
                 </View>
             })}
         </View>}
-        <View style={[commonStyles.flex1, commonStyles.flexRow, styles.tabs]}>
-            {tabs.map(tab => <View style={[commonStyles.columnCenter, commonStyles.flex1]} key={tab.value}>
-                <View style={styles.tabIcon} />
-                <Text style={styles.tabText}>{t(tab.label)}</Text>
+        <View style={[commonStyles.flex1, commonStyles.flexRow, styles.categories]}>
+            {categories.map(category => <View style={[commonStyles.columnCenter, commonStyles.flex1]} key={category.value}>
+                <TouchableOpacity onPress={() => onTabTap(category.value)} style={commonStyles.columnCenter}>
+                    <View style={styles.categoryIcon} />
+                    <Text style={styles.categoryText}>{t(category.label)}</Text>
+                </TouchableOpacity>
             </View>)}
         </View>
         <View style={[styles.main]}>
             <View style={[commonStyles.rowBetween, commonStyles.mainLayoutPadding]}>
                 <View style={commonStyles.rowCenter}>
-                    <Text style={styles.mainTitleText}>{t('KSE.title')}</Text>
+                    <Text style={styles.mainTitleText}>{t('title')}</Text>
                     {/* <LinearGradient /> */}
                 </View>
                 <View>
                     <TouchableOpacity style={commonStyles.rowCenter}>
-                        <Text style={styles.mainTitleMoreText}>{t('KSE.more')}</Text>
+                        <Text style={styles.mainTitleMoreText}>{t('more')}</Text>
                         <IconFont color={styles.mainTitleMoreText.color} size={18} name="icon-32-arrow-left" />
                     </TouchableOpacity>
                 </View>
@@ -190,16 +199,16 @@ function createStyles(theme: ThemeType) {
             lineHeight: ms(13.5),
             marginBottom: ms(15)
         },
-        tabs: {
+        categories: {
             paddingVertical: ms(15)
         },
-        tabIcon: {
+        categoryIcon: {
             width: 32,
             height: 32,
             backgroundColor: '#41D6F5',
             borderRadius: 5
         },
-        tabText: {
+        categoryText: {
             color: theme.primaryText,
             marginTop: ms(7),
             fontSize: ms(10)

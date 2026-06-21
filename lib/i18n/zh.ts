@@ -6,6 +6,9 @@ export default {
     news: '资讯',
     profile: '个人资料',
   },
+  divider: {
+    text: '没有更多'
+  },
   home: {
     searchbar: {
       placeholder: '股票名称/代码'
@@ -14,20 +17,26 @@ export default {
       KSE: 'KSE',
       USS: 'US Stocks'
     },
-    KSE: {
-      tabs: {
-        OTC: 'OTC',
-        blockTrade: 'Block trade',
-        preMarket: 'Pre-market',
-        creditLoan: 'Credit loan'
-      },
-      title: 'STOCK',
-      more: '更多',
-      mains: {
-        symbol: 'Symbol',
-        price: 'Price',
-        chg: 'Chg'
-      }
+    category: {
+      OTC: 'OTC',
+      blockTrade: 'Block trade',
+      preMarket: 'Pre-market',
+      creditLoan: 'Credit loan'
+    },
+    title: 'STOCK',
+    more: '更多',
+    mains: {
+      symbol: 'Symbol',
+      price: 'Price',
+      chg: 'Chg'
+    },
+    OTC: {
+      issuePrice: '发行价',
+      minPurchaseQuantity: '最小购买数量',
+      startTime: '开始时间',
+      endTime: '截止时间',
+      IPOTime: '上市日期',
+      subscribe: '订阅'
     }
   },
   ipo: {
