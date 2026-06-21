@@ -5,10 +5,11 @@ import { commonStyles } from "@/styles/util";
 import React, { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import { ms, vs } from "react-native-size-matters";
+import { ms, s, vs } from "react-native-size-matters";
 import { TouchableOpacity } from "../ThemeWidget";
 import IconFont from "../iconfont";
 import { Button } from "../ui";
+import MiniSparkline from "../ui/mini-spark-line";
 
 
 export enum Tab {
@@ -32,6 +33,20 @@ export default function HomeContent(props: Props) {
     const { tab } = props
     const { t } = useTranslation('home');
     const { theme } = useTheme()
+    const data = [
+        100,
+        120,
+        110,
+        140,
+        130,
+        125,
+        150,
+        145,
+        155,
+        135,
+        120,
+        140,
+    ]
     const snapshots = [
         { name: 'TOPIX 1000 IN TOPIX 1000 IN', price: '3529.39', trend: '+0.00', change: '+0.00%' },
         { name: 'TOPIX 1000 IN...', price: '3529.39', trend: '+0.00', change: '+0.00%' },
@@ -68,7 +83,7 @@ export default function HomeContent(props: Props) {
                 const _change = parseFloat(snapshot.change)
                 const priceStyle = _price < 0 ? styles.downStyle : styles.upStyle
                 const trendStyle = _trend < 0 ? styles.downStyle : styles.upStyle
-                const changeStyle = _change <0 ? styles.downStyle : styles.upStyle
+                const changeStyle = _change < 0 ? styles.downStyle : styles.upStyle
 
                 return <View style={[commonStyles.flex1, styles.snapshot]} key={index}>
                     <View style={[styles.snapshotName]}><Text style={[styles.snapshotNameText]} numberOfLines={1}>{snapshot.name}</Text></View>
@@ -77,7 +92,7 @@ export default function HomeContent(props: Props) {
                         <Text style={[styles.snapshotTrendChange, trendStyle]}>{snapshot.trend}</Text>
                         <Text style={[styles.snapshotTrendChange, changeStyle]}>{snapshot.change}</Text>
                     </View>
-
+                    <MiniSparkline color={!index? styles.downStyle.color: styles.upStyle.color} width={s(105)} height={vs(33)} data={data} />
                 </View>
             })}
         </View>}
@@ -154,7 +169,8 @@ function createStyles(theme: ThemeType) {
         snapshot: {
             backgroundColor: theme.snapCard,
             borderRadius: ms(4),
-            paddingBottom: ms(8)
+            paddingBottom: ms(8),
+            overflow: 'hidden'
         },
         snapshotName: {
             padding: ms(10),
