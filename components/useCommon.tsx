@@ -12,7 +12,8 @@ import IconFont from "./iconfont";
 
 export function Header(props: NativeStackHeaderProps): React.ReactNode {
     const { top } = useSafeAreaInsets();
-    const { navigation: { canGoBack: canGoBackFn, goBack }, options = {}, back } = props;
+    const { navigation: { canGoBack: canGoBackFn, goBack }, options = {} } = props;
+    const back = get(props, 'back') || {}
     const canGoBack = canGoBackFn?.()
     const { headerLeft, headerRight, headerTintColor: tintColor, headerStyle, title, headerTitle, headerTitleAlign } = options
     const backgroundColor = get(headerStyle, 'backgroundColor')
@@ -25,21 +26,20 @@ export function Header(props: NativeStackHeaderProps): React.ReactNode {
     const height = HeaderHeight + top;
     const isCenter = headerTitleAlign === 'center'
     const flexStyle: ViewStyle = { maxWidth: '33%', flex: 1 };
-    const leftStyle = { ...flexStyle };
-    const rightStyle = { ...flexStyle };
-    const titleStyle: ViewStyle = { ...flexStyle, alignItems: !isCenter ? 'flex-start' : headerTitleAlign }
+    const leftStyle: ViewStyle = isTitleNode ? {} : hasTitle ? flexStyle : {};
+    const rightStyle: ViewStyle = isTitleNode ? {} : hasTitle ? flexStyle : {};
+    const titleStyle: ViewStyle = isTitleNode ? { flex: 1 } : { ...flexStyle, alignItems: !isCenter ? 'flex-start' : headerTitleAlign }
     return <>
         <View style={{ backgroundColor, paddingTop: top, height }}>
-            <View style={[commonStyles.rowBetween]}>
+            <View style={[commonStyles.rowBetween, commonStyles.flex1]}>
                 <View style={{ ...leftStyle }}>
-                    {canGoBack && _headerLeft}
+                    {_headerLeft}
                 </View>
                 {_title && <View style={{ ...titleStyle }}>
                     {isTitleNode ? _title : <Text style={{ color: tintColor, fontSize: ms(15) }}>{_title}</Text>}
                 </View>}
                 <View style={{ ...rightStyle }}>{_headerRight}</View>
             </View>
-
         </View>
     </>
 }
@@ -53,9 +53,11 @@ export function useHeaderOption(props?: NativeStackNavigationOptions): NativeSta
         ..._headerStyle,
     };
     const headerLeft = (props: NativeStackHeaderBackProps) => {
-        return <TouchableOpacity onPress={router.back} style={[commonStyles.rowCenter, { height: '100%' }]}>
-            <IconFont style={{ marginLeft: ms(20) }} name="a-icon-48-Arrow-rightsvg" color={theme.header.text} size={24} />
-        </TouchableOpacity>
+        return <View style={{ paddingLeft: ms(20) }}>
+            <TouchableOpacity onPress={router.back} style={[commonStyles.rowCenter, { height: '100%' }]}>
+                <IconFont name="a-icon-48-Arrow-rightsvg" color={theme.header.text} size={24} />
+            </TouchableOpacity>
+        </View>
     };
     return {
         headerTitleAlign: 'center',

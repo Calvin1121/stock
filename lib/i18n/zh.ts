@@ -7,10 +7,28 @@ export default {
     profile: '个人资料',
   },
   home: {
-    title: '首页',
-    marketOpen: '开市',
-    marketClose: '收市',
-    myPortfolio: '我的持仓',
+    searchbar: {
+      placeholder: '股票名称/代码'
+    },
+    tabs: {
+      KSE: 'KSE',
+      USS: 'US Stocks'
+    },
+    KSE: {
+      tabs: {
+        OTC: 'OTC',
+        blockTrade: 'Block trade',
+        preMarket: 'Pre-market',
+        creditLoan: 'Credit loan'
+      },
+      title: 'STOCK',
+      more: '更多',
+      mains: {
+        symbol: 'Symbol',
+        price: 'Price',
+        chg: 'Chg'
+      }
+    }
   },
   ipo: {
     title: 'IPO',
@@ -137,5 +155,5 @@ export default {
         button: '返回登陆'
       }
     }
-  }
+  },
 } as const;

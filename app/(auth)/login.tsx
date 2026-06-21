@@ -49,7 +49,7 @@ export default function LoginPage() {
   }
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView style={commonStyles.secondaryLayoutPadding}>
         <View style={styles.logoSection}>
           <Text>Logo</Text>
         </View>

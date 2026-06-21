@@ -3,14 +3,16 @@ import * as button from "./button.theme";
 import * as common from "./common.theme";
 import * as header from "./header.theme";
 import * as input from "./input.theme";
+import * as searchbar from "./searchbar.theme";
 import * as tab from "./tabbar.theme";
 
 const themeMap = {
-  header, 
+  header,
   input,
   tab,
-  button, 
-  actionSheet
+  button,
+  actionSheet,
+  searchbar
 }
 
 type ThemeMap = typeof themeMap
@@ -34,9 +36,9 @@ export const Colors = Object.values(THEME)
   .reduce((acc, theme) => {
     const item = Object.entries(themeMap).reduce((prev, cur) => {
       const [key, value] = cur;
-      return {...prev, [key]:value[theme]}
+      return { ...prev, [key]: value[theme] }
     }, common[theme])
-    return {...acc, [theme]: item}
+    return { ...acc, [theme]: item }
   }, {} as Record<Exclude<THEME, THEME.SYSTEM>, ThemeItem>);
 
 

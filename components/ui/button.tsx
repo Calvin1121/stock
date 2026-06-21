@@ -3,13 +3,13 @@ import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import React, { useMemo } from 'react';
 import {
-    ActivityIndicator,
-    StyleProp,
-    Text,
-    TextStyle,
-    TouchableOpacity,
-    TouchableOpacityProps,
-    ViewStyle
+  ActivityIndicator,
+  StyleProp,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  TouchableOpacityProps,
+  ViewStyle
 } from 'react-native';
 import { ms, vs } from 'react-native-size-matters';
 
@@ -17,7 +17,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   title?: string;
   children?: React.ReactNode;
   variant?: 'solid' | 'outline' | 'ghost';
-  type?: 'primary' | 'secondary' | 'danger' | 'info';
+  type?: 'primary' | 'secondary' | 'danger' | 'info' | 'success';
   fullWidth?: boolean;
   rounded?: boolean;
   containerStyle?: StyleProp<ViewStyle>;

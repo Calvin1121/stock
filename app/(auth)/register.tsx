@@ -33,7 +33,7 @@ export default function Register() {
   }
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView style={commonStyles.secondaryLayoutPadding}>
         <View style={[commonStyles.rowStart, styles.tabs]}>
           {tabs.map(tab => <View key={tab.value}>
             <TouchableOpacity onPress={() => setActiveTab(tab.value)}>

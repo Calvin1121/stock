@@ -41,11 +41,12 @@ export default function Forgot() {
   const styles = createStyles(theme);
   const onSubmit = (data?: ForgotFormValues) => {
     console.log('submit', data);
+    router.push({pathname: '/(auth)/forgot-result', params: {result: 'success'}})
   }
   const verifyCodeNode = <VerifyCode title={t('forgot.verifyCode.getVerifyCode')} />
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView style={commonStyles.secondaryLayoutPadding}>
         <View style={styles.logoSection}>
           <Text>Logo</Text>
         </View>
@@ -74,7 +75,7 @@ export default function Forgot() {
             }}
           />)}
           <View style={styles.buttonSection}>
-            <Button>{t('forgot.confimr')}</Button>
+            <Button onPress={()=>onSubmit()}>{t('forgot.confimr')}</Button>
           </View>
         </View>
       </ScrollView>

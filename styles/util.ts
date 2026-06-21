@@ -59,6 +59,11 @@ export const commonStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
+    columnStart: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+    },
     columnCenter: {
         flexDirection: 'column',
         alignItems: 'center',
@@ -95,8 +100,11 @@ export const commonStyles = StyleSheet.create({
     overflowHidden: {
         overflow: 'hidden',
     },
-    layoutPadding: {
+    mainLayoutPadding: {
+        padding: ms(15)
+    },
+    secondaryLayoutPadding: {
         paddingHorizontal: ms(30),
         paddingVertical: ms(15),
-    }
+    },
 });

@@ -1,6 +1,10 @@
-import { IconFail, IconSearch } from '@/components/iconfont';
+import IconFont, { IconFail } from '@/components/iconfont';
+import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
-import { StyleProp, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
+import { useMemo } from 'react';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { ms } from 'react-native-size-matters';
+import { TouchableOpacity } from '../ThemeWidget';
 import { Input, InputProps } from './input';
 
 export interface SearchBarProps extends Omit<InputProps, 'variant' | 'prefix' | 'suffix' | 'passwordToggle'> {
@@ -17,9 +21,8 @@ export function SearchBar({
   ...props
 }: SearchBarProps) {
   const { theme } = useTheme();
-  const themeInput = theme.input.rounded || {};
   const showClear = !!onClear && !!value && value.length > 0;
-
+  const styles = useMemo(() => createStyles(theme), [theme])
   const handleClear = () => {
     if (onClear) {
       onClear();
@@ -31,11 +34,11 @@ export function SearchBar({
   return (
     <Input
       variant="rounded"
-      prefix={<IconSearch size={16} color={themeInput.iconColor} />}
+      prefix={<IconFont name='icon-32-search' size={16} color={theme.searchbar.iconColor} />}
       onClear={handleClear}
       suffix={showClear ? (
-        <TouchableOpacity activeOpacity={0.7} onPress={handleClear}>
-          <IconFail size={16} color={themeInput.iconColor} />
+        <TouchableOpacity onPress={handleClear}>
+          <IconFail size={16} color={theme.searchbar.iconColor} />
         </TouchableOpacity>
       ) : undefined}
       value={value}
@@ -47,11 +50,19 @@ export function SearchBar({
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
-  input: {
-    minHeight: 32,
-  },
-});
+function createStyles(theme: ThemeType) {
+  const seachbarTheme = theme.searchbar || {}
+  return StyleSheet.create({
+    container: {
+      width: '100%',
+      paddingHorizontal: ms(10),
+      borderColor: seachbarTheme.borderColor,
+      backgroundColor: seachbarTheme.background
+    },
+    input: {
+      marginLeft: ms(10),
+      minHeight: 32,
+      paddingVertical: 0
+    },
+  });
+}

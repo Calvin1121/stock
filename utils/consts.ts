@@ -1,5 +1,5 @@
 export enum ResultEnum {
-    Success = 'succeess',
+    Success = 'success',
     Fail = 'fail'
 }
 

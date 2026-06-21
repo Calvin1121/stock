@@ -11,7 +11,6 @@ export function ScrollView(props: ScrollViewProps) {
     const { style: _style, ...otherProps } = props;
     const style = {
         ...commonStyles.flex1,
-        ...commonStyles.layoutPadding,
         backgroundColor: theme.background,
         ..._style,
     }

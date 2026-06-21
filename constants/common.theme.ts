@@ -8,14 +8,16 @@ export const dark = {
     secondary: '#6D7278',
     card: '#1B1C28',
     cardDivide: '#2C2E41',
+    snapCard: '#1B2036',
     primaryText: '#fff',
     secondaryText: '#A5A5A5',
     disabled: 'rgba(#fff, .2)',
     error: '#CD5252',
     success: '#0AA88B',
     warning: '#FAAD14',
-    info: 'rgba(#fff, .36)',
+    info: '#5A5B6A',
     helper: '#5A5B6A',
+    transparent: 'transparent'
 
     // foreground: '#FFFFFF',
     // card: '#1b1c28',

@@ -23,7 +23,7 @@ export default function CountryCodee() {
     }
     return (
         <SafeAreaView>
-            <ScrollView>
+            <ScrollView style={commonStyles.mainLayoutPadding}>
                 <View style={[styles.firstTitleContainer]}>{countryCodes.map((countryCode, c_index) =>
                     <View style={[styles.borderBottom]} key={c_index}>
                         <View style={[styles.borderBottom, !c_index ? styles.firstTitleContainer : styles.titleContainer]}>

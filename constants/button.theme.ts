@@ -61,6 +61,26 @@ export const dark = {
             spinnerColor: darkVar.error
         },
     },
+    success: {
+        solid: {
+            background: darkVar.success,
+            borderColor: darkVar.success,
+            textColor: '#fff',
+            spinnerColor: '#fff'
+        },
+        outline: {
+            background: 'transparent',
+            borderColor: darkVar.success,
+            textColor: darkVar.success,
+            spinnerColor: darkVar.success
+        },
+        ghost: {
+            background: 'transparent',
+            borderColor: 'transparent',
+            textColor: darkVar.success,
+            spinnerColor: darkVar.success
+        },
+    },
     info: {
         solid: {
             background: darkVar.info,

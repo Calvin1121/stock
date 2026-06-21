@@ -4,11 +4,11 @@ import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import React, { forwardRef, useMemo, useState } from 'react';
 import {
-    StyleSheet,
-    TextInput,
-    TextInputProps,
-    TouchableOpacity,
-    View
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { ms } from 'react-native-size-matters';
 

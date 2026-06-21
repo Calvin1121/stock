@@ -7,10 +7,36 @@ export default {
     profile: 'Profile'
   },
   home: {
-    title: 'Home',
-    marketOpen: 'Market Open',
-    marketClose: 'Market Close',
-    myPortfolio: 'My Portfolio'
+    searchbar: {
+      placeholder: 'Stock name / code'
+    },
+    tabs: {
+      KSE: '',
+      USS: ''
+    },
+    KSE: {
+      tabs: {
+        OTC: '',
+        blockTrade: '',
+        preMarket: '',
+        creditLoan: '',
+        BlockTrade: '',
+        PreMarket: '',
+        CreditLoan: ''
+      },
+      title: '',
+      more: '',
+      main: {
+        symbol: '',
+        price: '',
+        chg: ''
+      },
+      mains: {
+        symbol: '',
+        price: '',
+        chg: ''
+      }
+    }
   },
   ipo: {
     title: 'IPO',
@@ -135,7 +161,8 @@ export default {
       success: {
         info: '',
         button: ''
-      }
+      },
+      confimr: ''
     }
   }
 } as const;
