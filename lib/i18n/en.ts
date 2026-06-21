@@ -9,6 +9,10 @@ export default {
   divider: {
     text: '没有更多'
   },
+  modal: {
+    confirmText: '',
+    cancelText: ''
+  },
   home: {
     searchbar: {
       placeholder: '股票名称/代码'
@@ -36,48 +40,57 @@ export default {
       startTime: '开始时间',
       endTime: '截止时间',
       IPOTime: '上市日期',
-      subscribe: '订阅'
+      subscribe: '订阅',
+      purchaseQuantity: '',
+      amount: '',
+      frozenAmount: '',
+      detail: {
+        title: '',
+        confirm: '',
+        confirmTitle: '',
+        confirmContent: ''
+      }
     }
   },
   ipo: {
     title: 'IPO',
     upcoming: '即将上市',
     history: '历史记录',
-    subscribe: '申购',
+    subscribe: '申购'
   },
   assets: {
     title: '资产',
     totalAssets: '总资产',
     dailyReturn: '日收益',
-    holdings: '持仓',
+    holdings: '持仓'
   },
   news: {
     title: '资讯',
     latest: '最新',
     recommended: '推荐',
-    search: '搜索',
+    search: '搜索'
   },
   profile: {
     title: '个人资料',
     settings: '设置',
-    about: '关于',
+    about: '关于'
   },
   auth: {
     lang: {
       select: '切换语言',
       en: 'English',
       zh: '中文',
-      cancel: '取消',
+      cancel: '取消'
     },
     login: {
       username: {
         required: '账号不能为空',
         invalid: '请输入有效的邮箱或手机号',
-        placeholder: '请输入手机号或电子邮箱',
+        placeholder: '请输入手机号或电子邮箱'
       },
       password: {
         required: '密码不能为空',
-        placeholder: '请输入密码',
+        placeholder: '请输入密码'
       },
       button: '登录',
       register: '注册',
@@ -114,7 +127,7 @@ export default {
         require: '请输入验证码',
         placeholder: '请输入验证码',
         invalid: '请输入6位验证码',
-        getVerifyCode: '获取验证码',
+        getVerifyCode: '获取验证码'
       },
       emailType: {
         require: '请输入电子邮箱',
@@ -125,7 +138,6 @@ export default {
       success: {
         info: '恭喜，您已注册成功！',
         button: '返回登陆'
-
       },
       fail: {
         info: '抱歉，注册失败',
@@ -140,14 +152,13 @@ export default {
       confimr: '确认',
       username: {
         require: '请输入手机号/邮箱/UID',
-        placeholder: '请输入手机号/邮箱/UID',
-        // invalid: '请输入有效的邮箱或手机号',
+        placeholder: '请输入手机号/邮箱/UID'
       },
       verifyCode: {
         require: '请输入验证码',
         placeholder: '请输入验证码',
         invalid: '请输入6位验证码',
-        getVerifyCode: '获取验证码',
+        getVerifyCode: '获取验证码'
       },
       password: {
         require: '请输入登录密码',
@@ -164,5 +175,5 @@ export default {
         button: '返回登陆'
       }
     }
-  },
+  }
 } as const;

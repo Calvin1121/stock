@@ -1,23 +1,23 @@
 import { useTheme } from '@/lib/useTheme';
 import React, { useCallback } from 'react';
 import {
-    Dimensions,
-    Modal,
-    PanResponder,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Dimensions,
+  Modal,
+  PanResponder,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import Animated, {
-    Easing,
-    runOnJS,
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
+  Easing,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
 } from 'react-native-reanimated';
 import { ms, s, vs } from 'react-native-size-matters';
+import { TouchableOpacity } from '../ThemeWidget';
 
 export type ActionSheetItem = {
   value: string | number;
@@ -101,8 +101,8 @@ export function ActionSheet({
   });
 
   const finalBgColor = backgroundColor || theme.background;
-  const finalItemColor = itemColor || theme.text;
-  const finalTitleColor = titleColor || theme.text;
+  const finalItemColor = itemColor || theme.primaryText;
+  const finalTitleColor = titleColor || theme.primaryText;
   const finalOverlayColor = overlayColor || 'rgba(0, 0, 0, 0.5)';
   const maxContentHeight = Dimensions.get('window').height * 0.4;
 
@@ -201,7 +201,6 @@ export function ActionSheet({
             {items.map((item) => (
               <TouchableOpacity
                 key={item.value}
-                activeOpacity={0.7}
                 onPress={() => handleItemPress(item)}
                 disabled={item.disabled}
               >
@@ -211,7 +210,7 @@ export function ActionSheet({
                       styles.itemText,
                       {
                         color: item.color || finalItemColor,
-                        opacity: item.disabled ? 0.5 : 1,
+                        opacity: item.disabled ? theme.disabledOpacity : theme.enabledOpacity,
                       },
                     ]}
                   >

@@ -9,6 +9,10 @@ export default {
   divider: {
     text: '没有更多'
   },
+  modal: {
+    confirmText: '确认',
+    cancelText: '取消'
+  },
   home: {
     searchbar: {
       placeholder: '股票名称/代码'
@@ -36,7 +40,16 @@ export default {
       startTime: '开始时间',
       endTime: '截止时间',
       IPOTime: '上市日期',
-      subscribe: '订阅'
+      subscribe: '订阅',
+      purchaseQuantity: '購買數量',
+      amount: '金额',
+      frozenAmount: '冻结资金',
+      detail: {
+        title: '订阅详情',
+        confirm: '确认',
+        confirmTitle: '申请大量交易？',
+        confirmContent: '请确认你是否申请大量交易'
+      }
     }
   },
   ipo: {

@@ -16,13 +16,13 @@ interface Props {
   strokeWidth?: number
 }
 
-export default function MiniSparkline({
+export const MiniSparkline = ({
   data,
   width = 100,
   height = 50,
   color = '#00D39E',
   strokeWidth = ms(1),
-}: Props) {
+}: Props) => {
   const { linePath, areaPath } = useMemo(() => {
     if (data.length < 2) {
       return {

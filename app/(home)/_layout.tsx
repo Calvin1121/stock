@@ -10,7 +10,8 @@ export default function HomeLayout() {
 
     const screenMap: Array<{ name: string, options?: NativeStackNavigationOptions }> = [
         { name: 'search', options: { headerTitle: HomeSearchPageHeader } },
-        { name: 'OTC', options: { title: t('category.OTC'), headerRight: OTCHeaderRight } }
+        { name: 'OTC', options: { title: t('category.OTC'), headerRight: OTCHeaderRight } },
+        { name: 'OTC-detail', options: {title: t('OTC.detail.title')}}
     ]
     return (
         <Stack screenOptions={headerOption}>

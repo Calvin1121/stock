@@ -5,6 +5,7 @@ import { Divider } from "@/components/ui/divider"
 import { ThemeType } from "@/constants/Colors"
 import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
+import { router } from "expo-router"
 import { get } from "lodash"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
@@ -30,7 +31,7 @@ export default function OTCPage() {
                         <View style={[commonStyles.flex1]}>
                             <Text style={[styles.stockName]}>{item.name}</Text>
                         </View>
-                        <Button textStyle={styles.subscribeBtnText} style={[styles.subscribeBtn]}>{t('OTC.subscribe')}</Button>
+                        <Button onPress={() => router.push({pathname: '/(home)/OTC-detail', params: {id: item.id}})} textStyle={styles.subscribeBtnText} style={[styles.subscribeBtn]}>{t('OTC.subscribe')}</Button>
                     </View>
                     <View><Text style={[styles.itemId]}>{item.id}</Text></View>
                     {listRenderKey.map(key => <View style={[commonStyles.rowBetween, styles.itemField]} key={`${item.id}_${key}`}>
