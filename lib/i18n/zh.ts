@@ -9,6 +9,9 @@ export default {
   divider: {
     text: '没有更多'
   },
+  empty: {
+    text: '未搜到数据'
+  },
   modal: {
     confirmText: '确认',
     cancelText: '取消'

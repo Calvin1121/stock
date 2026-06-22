@@ -7,6 +7,7 @@ import { Header } from '@/components/useCommon';
 import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
+import { StockField } from '@/utils/consts';
 import { router } from 'expo-router';
 import { BottomTabHeaderProps } from 'expo-router/build/react-navigation/bottom-tabs';
 import React, { useCallback, useMemo, useState } from 'react';
@@ -17,11 +18,6 @@ import { ms, s, vs } from 'react-native-size-matters';
 export enum HomeTab {
   KSE = 'KSE',
   USS = 'USS'
-}
-export enum Main {
-  symbol = 'symbol',
-  price = 'price',
-  chg = 'chg'
 }
 export enum Category {
   OTC = 'OTC',
@@ -40,7 +36,7 @@ export default function HomeScreen() {
     { name: 'TOPIX 1000 IN...', price: '3529.39', trend: '+0.00', change: '+0.00%' },
     { name: 'TOPIX 1000 IN...', price: '3529.39', trend: '+0.00', change: '+0.00%' }
   ]
-  const mains = Object.keys(Main).map(key => ({ value: key as Main, label: `mains.${key}` }))
+  const mains = Object.keys(StockField).map(key => ({ value: key as StockField, label: `mains.${key}` }))
   const mockData = [
     { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '209.95', trend: '45.21', change: '+21.53%' },
     { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '30.65', trend: '-3.33', change: '-1.53%' },
@@ -78,9 +74,9 @@ export default function HomeScreen() {
         router.push('/(home)/OTC')
     }
   }
-  const getColStyle = useCallback((key: Main) => {
-    return key === Main.symbol ? { flex: 1.5, ...commonStyles.rowStart } :
-      [commonStyles.flex1, key === Main.chg ? commonStyles.rowEnd : commonStyles.rowCenter]
+  const getColStyle = useCallback((key: StockField) => {
+    return key === StockField.symbol ? { flex: 1.5, ...commonStyles.rowStart } :
+      [commonStyles.flex1, key === StockField.chg ? commonStyles.rowEnd : commonStyles.rowCenter]
   }, [])
   return <SafeAreaView>
     <ScrollView>

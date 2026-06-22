@@ -175,5 +175,8 @@ export default {
         button: '返回登陆'
       }
     }
+  },
+  empty: {
+    text: ''
   }
 } as const;

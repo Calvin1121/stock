@@ -21,21 +21,17 @@ export function SearchBar({
   ...props
 }: SearchBarProps) {
   const { theme } = useTheme();
-  const showClear = !!onClear && !!value && value.length > 0;
+  const showClear = !!value && value.length > 0;
   const styles = useMemo(() => createStyles(theme), [theme])
   const handleClear = () => {
-    if (onClear) {
-      onClear();
-      return;
-    }
     onChangeText?.('');
+    onClear?.();
   };
 
   return (
     <Input
       variant="rounded"
       prefix={<IconFont name='icon-32-search' size={16} color={theme.searchbar.iconColor} />}
-      onClear={handleClear}
       suffix={showClear ? (
         <TouchableOpacity onPress={handleClear}>
           <IconFail size={16} color={theme.searchbar.iconColor} />
@@ -43,6 +39,7 @@ export function SearchBar({
       ) : undefined}
       value={value}
       placeholder={placeholder}
+      onChangeText={onChangeText}
       containerStyle={[styles.container, containerStyle]}
       style={[styles.input, style]}
       {...props}

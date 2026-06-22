@@ -1,10 +1,11 @@
-import IconFont from '@/components/iconfont';
+import IconFont, { IconNames } from '@/components/iconfont';
 import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWidget';
 import { Button, FormControl, Input } from '@/components/ui';
 import { useActionSheet } from '@/components/ui/action-sheet-context';
 import { ThemeType } from '@/constants/Colors';
 import i18n from '@/lib/i18n';
 import { Language, useLanguageStore } from '@/lib/languageStore';
+import { useThemeStore } from '@/lib/themeStore';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { emailRegex, globalPhoneRegex } from '@/utils/regex';
@@ -127,6 +128,7 @@ export const LoginHeaderRight = () => {
   const router = useRouter();
   const { show } = useActionSheet();
   const setLanguage = useLanguageStore((s) => s.setLanguage);
+  const themeName = useThemeStore(s => s.themeName)
   const handleLanguageChange = useCallback((lang: Language) => {
     setLanguage(lang);
     i18n.changeLanguage(lang);
@@ -142,7 +144,7 @@ export const LoginHeaderRight = () => {
   }, [handleLanguageChange, show, t])
   return <View style={[commonStyles.alignEnd, commonStyles.relative]}>
     <TouchableOpacity style={{marginRight: ms(15)}} onPress={onChangeLang}>
-      <IconFont name='lang-dark' size={ms(29)} />
+      <IconFont name={`lang-${themeName}` as IconNames} size={ms(29)} />
     </TouchableOpacity>
   </View>
 }

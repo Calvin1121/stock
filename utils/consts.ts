@@ -4,3 +4,9 @@ export enum ResultEnum {
 }
 
 export const HeaderHeight = 44;
+
+export enum StockField {
+  symbol = 'symbol',
+  price = 'price',
+  chg = 'chg'
+}

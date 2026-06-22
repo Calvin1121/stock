@@ -49,6 +49,7 @@ import IconAIcon36SinglechoiceDefault from './IconAIcon36SinglechoiceDefault';
 import IconAIcon24LightgraydropDown from './IconAIcon24LightgraydropDown';
 import IconIcon16Triangle from './IconIcon16Triangle';
 import IconIcon32ArrowLeft from './IconIcon32ArrowLeft';
+import IconEmptyDark from './IconEmptyDark';
 import IconLangDark from './IconLangDark';
 export { default as IconSuccess } from './IconSuccess';
 export { default as IconFail } from './IconFail';
@@ -95,9 +96,10 @@ export { default as IconAIcon36SinglechoiceDefault } from './IconAIcon36Singlech
 export { default as IconAIcon24LightgraydropDown } from './IconAIcon24LightgraydropDown';
 export { default as IconIcon16Triangle } from './IconIcon16Triangle';
 export { default as IconIcon32ArrowLeft } from './IconIcon32ArrowLeft';
+export { default as IconEmptyDark } from './IconEmptyDark';
 export { default as IconLangDark } from './IconLangDark';
 
-export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-44-Arrow-Select' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-48-Display' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'a-icon-48-Closeeyes' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'lang-dark';
+export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-44-Arrow-Select' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-48-Display' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'a-icon-48-Closeeyes' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'empty-dark' | 'lang-dark';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -197,8 +199,10 @@ let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
       return <IconIcon16Triangle key="44" {...rest} />;
     case 'icon-32-arrow-left':
       return <IconIcon32ArrowLeft key="45" {...rest} />;
+    case 'empty-dark':
+      return <IconEmptyDark key="L1" {...rest} />;
     case 'lang-dark':
-      return <IconLangDark key="L1" {...rest} />;
+      return <IconLangDark key="L2" {...rest} />;
   }
 
   return null;

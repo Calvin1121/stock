@@ -1,7 +1,7 @@
-import { Main } from "@/app/(tabs)/home"
 import { ThemeType } from "@/constants/Colors"
 import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
+import { StockField } from "@/utils/consts"
 import React, { useCallback, useMemo } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { ms, vs } from "react-native-size-matters"
@@ -9,7 +9,7 @@ import IconFont from "../iconfont"
 import { Button } from "./button"
 
 interface StockItemProps {
-    mainKey: Main
+    mainKey: StockField
     price: string
     trend: string
     change: string
@@ -18,9 +18,9 @@ interface StockItemProps {
 }
 
 export default function StockItem(props: StockItemProps) {
-    const getColStyle = useCallback((key: Main) => {
-        return key === Main.symbol ? { flex: 1.5, ...commonStyles.rowStart } :
-            [commonStyles.flex1, key === Main.chg ? commonStyles.rowEnd : commonStyles.rowCenter]
+    const getColStyle = useCallback((key: StockField) => {
+        return key === StockField.symbol ? { flex: 1.5, ...commonStyles.rowStart } :
+            [commonStyles.flex1, key === StockField.chg ? commonStyles.rowEnd : commonStyles.rowCenter]
     }, [])
     const { theme } = useTheme()
     const styles = useMemo(() => createStyles(theme), [theme])
@@ -33,11 +33,11 @@ export default function StockItem(props: StockItemProps) {
     const trendStyle = isTrendDown ? styles.downStyle : styles.upStyle
     const changeType = _change > 0 ? 'success' : _change < 0 ? 'danger' : 'info'
     return <React.Fragment>
-        {props.mainKey === Main.symbol && <View style={[itemStyle, commonStyles.columnStart]}>
+        {props.mainKey === StockField.symbol && <View style={[itemStyle, commonStyles.columnStart]}>
             <Text style={[styles.textStyle, styles.symbolTextStyle]}>{props.text}</Text>
             <Text style={[styles.subTextStyle, styles.symbolSubTextStyle]}>{props.subText}</Text>
         </View>}
-        {props.mainKey === Main.price && <View style={[itemStyle, commonStyles.columnCenter]}>
+        {props.mainKey === StockField.price && <View style={[itemStyle, commonStyles.columnCenter]}>
             <Text style={[styles.textStyle, priceStyle]}>{props.price}</Text>
             <View style={commonStyles.rowCenter}>
                 <IconFont style={isTrendDown ? styles.downRotate : null} size={8} color={trendStyle.color} name='icon-16-triangle' />
@@ -45,7 +45,7 @@ export default function StockItem(props: StockItemProps) {
                 <Text style={[styles.subTextStyle, trendStyle]}>{props.trend}</Text>
             </View>
         </View>}
-        {props.mainKey === Main.chg && <View style={[itemStyle]}>
+        {props.mainKey === StockField.chg && <View style={[itemStyle]}>
             <Button textStyle={styles.changeTagText} style={styles.changeTag} type={changeType}>{props.change}</Button>
         </View>}
     </React.Fragment>
