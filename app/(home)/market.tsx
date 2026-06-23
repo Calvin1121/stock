@@ -1,25 +1,41 @@
 import IconFont from "@/components/iconfont"
 import { SafeAreaView, ScrollView, TouchableOpacity } from "@/components/ThemeWidget"
 import { Button } from "@/components/ui"
+import { Header } from "@/components/useCommon"
 import { ThemeType } from "@/constants/Colors"
+import { useGlobalStore } from "@/lib/globalStore"
 import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
-import { useMemo, useState } from "react"
+import { NativeStackHeaderProps, usePathname } from "expo-router"
+import * as ScreenOrientation from 'expo-screen-orientation'
+import { get } from "lodash"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { StyleSheet, Text, View } from "react-native"
 import { ms } from "react-native-size-matters"
 
 export default function MarketPage() {
+    const pathname = usePathname()
+    const fullScreenMap = useGlobalStore(s => s.fullScreenMap)
     const { theme } = useTheme()
     const { t } = useTranslation('home')
     const styles = useMemo(() => createStyles(theme), [theme])
+    const isFullScreen = useMemo(() => get(fullScreenMap, pathname), [fullScreenMap, pathname])
     const [isCollected, setIsCollected] = useState(false)
     const collectIcon = !isCollected ? 'icon-48-CollectionDefault' : 'a-icon-48-CollectionSelectedsvg'
     const infos = [['open', 'high', 'vol'], ['last', 'low', 'TO']]
+    const onFullScreen = useCallback(async () => {
+        if (isFullScreen) {
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+        }
+    }, [isFullScreen])
+    useEffect(() => {
+        onFullScreen()
+    }, [onFullScreen])
     return <>
         <SafeAreaView>
             <ScrollView style={commonStyles.flex1}>
-                <View style={[commonStyles.mainLayoutPadding, styles.breifSection]}>
+                {!isFullScreen && <View style={[commonStyles.mainLayoutPadding, styles.breifSection]}>
                     <View style={[commonStyles.rowCenter]}>
                         <View style={[commonStyles.flex1]}><Text style={styles.breifTitle}>Maruha Nichiro Corporation</Text></View>
                         <TouchableOpacity onPress={() => setIsCollected(prev => !prev)}>
@@ -39,25 +55,25 @@ export default function MarketPage() {
                         {infos.map((info, index) => <View key={index} style={[commonStyles.flex1, commonStyles.rowBetween, styles.infoSection]}>
                             {info.map(it => {
                                 const isLast = ['vol', 'TO'].includes(it)
-                                const rowStyle = isLast? commonStyles.rowEnd : commonStyles.rowStart
-                                const itemStyle = isLast? styles.lastItem: styles.nonLastItem
+                                const rowStyle = isLast ? commonStyles.rowEnd : commonStyles.rowStart
+                                const itemStyle = isLast ? styles.lastItem : styles.nonLastItem
                                 return <View key={`${index}_${it}`} style={[rowStyle, itemStyle]}>
-                                <Text style={[styles.infoLabel]}>{t(`market.${it}`)}</Text>
-                                <Text style={[styles.infoValue]}>{isLast? 0 : 1309.00}</Text>
-                            </View>
+                                    <Text style={[styles.infoLabel]}>{t(`market.${it}`)}</Text>
+                                    <Text style={[styles.infoValue]}>{isLast ? 0 : 1309.00}</Text>
+                                </View>
                             })}
                         </View>)}
                     </View>
-                </View>
+                </View>}
             </ScrollView>
-            <View style={[styles.buttons]}>
+            {!isFullScreen && <View style={[styles.buttons]}>
                 <View style={commonStyles.flex1}>
                     <Button type="success">{t('market.long')}</Button>
                 </View>
                 <View style={commonStyles.flex1}>
                     <Button type="danger">{t('market.short')}</Button>
                 </View>
-            </View>
+            </View>}
         </SafeAreaView>
     </>
 }
@@ -144,10 +160,23 @@ function createStyles(theme: ThemeType) {
 
 export const MarketHeaderRight = () => {
     const { theme } = useTheme()
+    const pathname = usePathname();
+    const setFullScreenMap = useGlobalStore(s => s.setFullScreenMap)
+    const onFullScreen = useCallback(() => {
+        setFullScreenMap(pathname, true)
+    }, [pathname, setFullScreenMap])
     return <View style={[commonStyles.alignEnd]}>
-        <TouchableOpacity style={{ marginRight: ms(15) }}>
+        <TouchableOpacity onPress={onFullScreen} style={{ marginRight: ms(15) }}>
             <IconFont color={theme.primaryText} size={ms(24)} name="a-icon-48-Fullscreen" />
         </TouchableOpacity>
     </View>
 
+}
+
+export const MarketHeader = (props: NativeStackHeaderProps) => {
+    const pathname = usePathname();
+    const fullScreenMap = useGlobalStore(s => s.fullScreenMap)
+    const isFullScreen = useMemo(() => get(fullScreenMap, pathname), [fullScreenMap, pathname])
+    if (isFullScreen) return null
+    return <Header {...props} />
 }

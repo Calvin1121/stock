@@ -1,7 +1,7 @@
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { ResultEnum } from '@/utils/consts';
-import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacityProps, View, ViewProps } from 'react-native';
+import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StatusBarProps, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacityProps, View, ViewProps } from 'react-native';
 import { ms, s } from 'react-native-size-matters';
 import IconFont from './iconfont';
 import { Button, ButtonProps } from './ui';
@@ -17,16 +17,16 @@ export function ScrollView(props: ScrollViewProps) {
     return <DefaultScrollView style={style} {...otherProps} />;
 }
 
-export function SafeAreaView(props: ViewProps) {
+export function SafeAreaView(props: ViewProps & {statusBar?: StatusBarProps}) {
     const { theme } = useTheme();
-    const { style: _style, ...otherProps } = props;
+    const { style: _style, statusBar, ...otherProps } = props;
     const style = {
         ..._style,
         ...commonStyles.flex1,
         backgroundColor: theme.background,
     }
     return <>
-        <StatusBar />
+        <StatusBar {...statusBar} />
         <View style={style} {...otherProps} />
         {/* <RNSafeAreaView style={style} {...otherProps} /> */}
     </>;

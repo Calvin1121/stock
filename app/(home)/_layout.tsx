@@ -1,7 +1,7 @@
 import { useHeaderOption } from "@/components/useCommon";
 import { NativeStackNavigationOptions, Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { MarketHeaderRight } from "./market";
+import { MarketHeader, MarketHeaderRight } from "./market";
 import { HomeMoreSearchPageHeader } from "./more";
 import { OTCHeaderRight } from "./OTC";
 import { HomeSearchPageHeader } from "./search";
@@ -15,7 +15,7 @@ export default function HomeLayout() {
         { name: 'OTC', options: { title: t('category.OTC'), headerRight: OTCHeaderRight } },
         { name: 'OTC-detail', options: {title: t('OTC.detail.title')}},
         { name: 'more', options: { headerTitle: HomeMoreSearchPageHeader}},
-        { name: 'market', options: { title: t('market.title'), headerRight: MarketHeaderRight}}
+        { name: 'market', options: { title: t('market.title'), headerRight: MarketHeaderRight, header: MarketHeader}}
     ]
     return (
         <Stack screenOptions={headerOption}>
