@@ -1,7 +1,7 @@
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { ResultEnum } from '@/utils/consts';
-import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StyleProp, Text, TextStyle, TouchableOpacityProps, View, ViewProps } from 'react-native';
+import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacityProps, View, ViewProps } from 'react-native';
 import { ms, s } from 'react-native-size-matters';
 import IconFont from './iconfont';
 import { Button, ButtonProps } from './ui';
@@ -35,9 +35,9 @@ export function SafeAreaView(props: ViewProps) {
 export function TouchableOpacity(props: TouchableOpacityProps) {
     const { theme } = useTheme();
     const { style: _style, ...otherProps } = props;
-    const style = {
-        ..._style,
-    }
+    const style = {};
+    if(Array.isArray(_style)) Object.assign(style, StyleSheet.flatten([_style]))
+    else Object.assign(style, _style)
     return <DefaultTouchableOpacity style={style} {...otherProps} activeOpacity={theme.touchOpacity} />
 }
 

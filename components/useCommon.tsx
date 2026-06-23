@@ -25,10 +25,9 @@ export function Header(props: NativeStackHeaderProps): React.ReactNode {
     const hasTitle = !!_title;
     const height = HeaderHeight + top;
     const isCenter = headerTitleAlign === 'center'
-    const flexStyle: ViewStyle = { maxWidth: '33%', flex: 1 };
-    const leftStyle: ViewStyle = isTitleNode ? {} : hasTitle ? flexStyle : {};
-    const rightStyle: ViewStyle = isTitleNode ? {} : hasTitle ? flexStyle : {};
-    const titleStyle: ViewStyle = isTitleNode ? { flex: 1 } : { ...flexStyle, alignItems: !isCenter ? 'flex-start' : headerTitleAlign }
+    const leftStyle: ViewStyle = hasTitle && !isTitleNode ? commonStyles.flex1 : {};
+    const rightStyle: ViewStyle = hasTitle && !isTitleNode ? commonStyles.flex1 : {};
+    const titleStyle: ViewStyle = isTitleNode ? { flex: 1 } : { flex: 2, alignItems: !isCenter ? 'flex-start' : headerTitleAlign }
     return <>
         <View style={{ backgroundColor, paddingTop: top, height }}>
             <View style={[commonStyles.rowBetween, commonStyles.flex1]}>
@@ -54,7 +53,7 @@ export function useHeaderOption(props?: NativeStackNavigationOptions): NativeSta
     };
     const headerLeft = (props: NativeStackHeaderBackProps) => {
         return <View style={{ paddingLeft: ms(20) }}>
-            <TouchableOpacity onPress={router.back} style={[commonStyles.rowCenter, { height: '100%' }]}>
+            <TouchableOpacity onPress={router.back} style={[commonStyles.rowStart, { height: '100%' }]}>
                 <IconFont name="a-icon-48-Arrow-rightsvg" color={theme.header.text} size={24} />
             </TouchableOpacity>
         </View>

@@ -50,6 +50,17 @@ export default {
         confirmTitle: '',
         confirmContent: ''
       }
+    },
+    market: {
+      title: '行情',
+      long: '开多',
+      short: '开空',
+      open: '开',
+      last: '昨收',
+      high: '高',
+      low: '低',
+      vol: 'Vol',
+      TO: 'T/O'
     }
   },
   ipo: {

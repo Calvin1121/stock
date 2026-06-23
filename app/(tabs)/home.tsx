@@ -71,7 +71,9 @@ export default function HomeScreen() {
   const onTabTap = (value: Category) => {
     switch (value) {
       case Category.OTC:
-        router.push('/(home)/OTC')
+        return router.push('/(home)/OTC')
+      case Category.preMarket:
+        return router.push('/(home)/market')
     }
   }
   const getColStyle = useCallback((key: StockField) => {
@@ -126,7 +128,7 @@ export default function HomeScreen() {
             {/* <LinearGradient /> */}
           </View>
           <View>
-            <TouchableOpacity style={commonStyles.rowCenter}>
+            <TouchableOpacity onPress={() => router.push({pathname: '/(home)/more'})} style={commonStyles.rowCenter}>
               <Text style={styles.mainTitleMoreText}>{t('more')}</Text>
               <IconFont color={styles.mainTitleMoreText.color} size={18} name="icon-32-arrow-left" />
             </TouchableOpacity>

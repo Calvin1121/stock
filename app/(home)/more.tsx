@@ -1,6 +1,6 @@
 import { SafeAreaView, ScrollView } from "@/components/ThemeWidget"
+import { SearchBar } from "@/components/ui"
 import { Empty } from "@/components/ui/empty"
-import { SearchBar } from "@/components/ui/search-bar"
 import StockItem from "@/components/ui/stock-item"
 import { ThemeType } from "@/constants/Colors"
 import { useTheme } from "@/lib/useTheme"
@@ -10,7 +10,7 @@ import React, { useMemo, useState } from "react"
 import { StyleSheet, View } from "react-native"
 import { ms } from "react-native-size-matters"
 
-export default function HomeSearchPage() {
+export default function HomeMorePage() {
     const mockData = [
         { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '209.95', trend: '45.21', change: '+21.53%' },
         { text: 'Eunisell Interlinked...', subText: 'Eunisell Interlinked Plc', price: '30.65', trend: '-3.33', change: '-1.53%' },
@@ -41,10 +41,10 @@ export default function HomeSearchPage() {
         </ScrollView>
     </SafeAreaView>
 }
-
 function createStyles(theme: ThemeType) {
     return StyleSheet.create({
         container: {
+            flex: 1,
             paddingHorizontal: ms(15),
             paddingBottom: ms(15)
         },
@@ -57,7 +57,7 @@ function createStyles(theme: ThemeType) {
         },
     })
 }
-export function HomeSearchPageHeader() {
+export function HomeMoreSearchPageHeader() {
     const [keyword, setKeyword] = useState('')
     return <View style={{ paddingRight: ms(15), paddingLeft: ms(10) }}>
         <SearchBar onChangeText={setKeyword} value={keyword} autoFocus />
