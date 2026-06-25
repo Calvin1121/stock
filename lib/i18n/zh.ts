@@ -63,7 +63,25 @@ export default {
       high: '高',
       low: '低',
       vol: 'Vol',
-      TO: 'T/O'
+      TO: 'T/O',
+      orderBook: '订单簿',
+      priceVol: '价格量',
+      orderBookKeys: {
+        buy: '买盘',
+        sale: '卖盘',
+        buyCount: '数量({{unit}})',
+        saleCount: '数量({{unit}})',
+        unit: '张',
+        price: '价格({{currency}})',
+        currency: 'USDT'
+      },
+      priceVolKeys: {
+        time: '时间',
+        dealPrice: '成交价格({{currency}})',
+        currency: 'USDT',
+        dealVol: '数量({{unit}})',
+        unit: '张',
+      }
     }
   },
   ipo: {
