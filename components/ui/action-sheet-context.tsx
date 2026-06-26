@@ -13,6 +13,8 @@ interface ShowActionSheetOptions {
   itemColor?: string;
   backgroundColor?: string;
   overlayColor?: string;
+  dragHandler?: boolean;
+  activeItem?: ActionSheetItem
 }
 
 const ActionSheetContext = createContext<ActionSheetContextType | undefined>(undefined);
@@ -44,6 +46,8 @@ export function ActionSheetProvider({ children }: { children: React.ReactNode })
         itemColor={state.itemColor}
         backgroundColor={state.backgroundColor}
         overlayColor={state.overlayColor}
+        dragHandler={state.dragHandler}
+        activeItem={state.activeItem}
       />
     </ActionSheetContext.Provider>
   );

@@ -14,6 +14,7 @@ type FormControlProps = {
     reserveErrorSpace?: boolean;
     children: React.ReactElement<{ error?: boolean }>;
     style?: any;
+    labelStyle?: any
 };
 
 export function FormControl({
@@ -25,13 +26,14 @@ export function FormControl({
     reserveErrorSpace,
     children,
     style,
+    labelStyle
 }: FormControlProps) {
     const { theme } = useTheme();
     const styles = React.useMemo(() => createStyles(theme), [theme]);
     return (
         <View style={[styles.wrapper, style]}>
             {label ? (
-                <Label style={styles.label}>
+                <Label style={[styles.label, labelStyle]}>
                     {label}
                     {required && !hideRequiredMark ? ' *' : ''}
                 </Label>

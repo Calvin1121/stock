@@ -1,5 +1,7 @@
+import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
-import React, { useCallback } from 'react';
+import { commonStyles } from '@/styles/util';
+import React, { useCallback, useMemo } from 'react';
 import {
   Dimensions,
   Modal,
@@ -36,6 +38,8 @@ export interface ActionSheetProps {
   itemColor?: string;
   backgroundColor?: string;
   overlayColor?: string;
+  dragHandler?: boolean;
+  activeItem?: ActionSheetItem
 }
 
 export function ActionSheet({
@@ -47,8 +51,11 @@ export function ActionSheet({
   itemColor,
   backgroundColor,
   overlayColor,
+  dragHandler = true,
+  activeItem
 }: ActionSheetProps) {
   const { theme } = useTheme();
+  const styles = useMemo(() => createStyles(theme), [theme])
   const [isModalVisible, setIsModalVisible] = React.useState(visible);
   const translateY = useSharedValue(visible ? 0 : 1000);
   const opacityAnim = useSharedValue(visible ? 1 : 0);
@@ -103,8 +110,8 @@ export function ActionSheet({
   const finalBgColor = backgroundColor || theme.background;
   const finalItemColor = itemColor || theme.primaryText;
   const finalTitleColor = titleColor || theme.primaryText;
-  const finalOverlayColor = overlayColor || 'rgba(0, 0, 0, 0.5)';
-  const maxContentHeight = Dimensions.get('window').height * 0.4;
+  const finalOverlayColor = overlayColor || theme.overlayBackground;
+  const maxContentHeight = Dimensions.get('window').height * 0.5;
 
   const handleItemPress = useCallback(
     (item: ActionSheetItem) => {
@@ -164,10 +171,10 @@ export function ActionSheet({
       animationType="none"
       onRequestClose={onClose}
     >
-      <Animated.View style={[styles.overlay, { backgroundColor: finalOverlayColor }, overlayStyle]}>
+      <Animated.View style={[commonStyles.flex1, commonStyles.justifyEnd, { backgroundColor: finalOverlayColor }, overlayStyle]}>
         <TouchableOpacity
           activeOpacity={1}
-          style={styles.overlayTouchable}
+          style={commonStyles.flex1}
           onPress={onClose}
         />
 
@@ -180,40 +187,26 @@ export function ActionSheet({
           {...panResponder.panHandlers}
         >
           {/* Drag Handle */}
-          <View style={styles.handleContainer}>
-            <View style={[styles.dragHandle, { backgroundColor: theme.border }]} />
-          </View>
+          {dragHandler && <View style={styles.handleContainer}>
+            <View style={[styles.dragHandle, { backgroundColor: theme.backgroundDivide }]} />
+          </View>}
 
           {/* Title */}
           {title && (
-            <Text
-              style={[
-                styles.title,
-                { color: finalTitleColor },
-              ]}
-            >
-              {title}
-            </Text>
-          )}
+            <Text style={[styles.title, { color: finalTitleColor }]}> {title}</Text>)}
 
           {/* Items */}
           <ScrollView style={[styles.itemsContainer, { maxHeight: maxContentHeight }]}>
-            {items.map((item) => (
+            {items.map((item, index) => (
               <TouchableOpacity
                 key={item.value}
                 onPress={() => handleItemPress(item)}
-                disabled={item.disabled}
-              >
-                <View style={styles.itemWrapper}>
-                  <Text
-                    style={[
-                      styles.itemText,
-                      {
-                        color: item.color || finalItemColor,
-                        opacity: item.disabled ? theme.disabledOpacity : theme.enabledOpacity,
-                      },
-                    ]}
-                  >
+                disabled={item.disabled}>
+                <View style={[styles.itemWrapper, {borderBottomWidth: index !== items?.length -1? ms(1): 0}]}>
+                  <Text style={[styles.itemText, {
+                      color: item.value === activeItem?.value ? theme.primary : (item.color || finalItemColor),
+                      opacity: item.disabled ? theme.disabledOpacity : theme.enabledOpacity,
+                    }]}>
                     {item.label}
                   </Text>
                 </View>
@@ -226,46 +219,42 @@ export function ActionSheet({
   );
 }
 
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  overlayTouchable: {
-    flex: 1,
-  },
-  container: {
-    paddingBottom: ms(20),
-    borderTopLeftRadius: ms(16),
-    borderTopRightRadius: ms(16),
-    overflow: 'hidden',
-  },
-  handleContainer: {
-    alignItems: 'center',
-    paddingVertical: ms(12),
-  },
-  dragHandle: {
-    width: s(32),
-    height: vs(4),
-    borderRadius: ms(2),
-  },
-  title: {
-    fontSize: ms(16),
-    fontWeight: '600',
-    paddingHorizontal: ms(16),
-    paddingBottom: ms(12),
-  },
-  itemsContainer: {
-    paddingHorizontal: 0,
-  },
-  itemWrapper: {
-    paddingHorizontal: ms(16),
-    paddingVertical: ms(14),
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0, 0, 0, 0.1)',
-  },
-  itemText: {
-    fontSize: ms(15),
-    fontWeight: '400',
-  },
-});
+function createStyles(theme: ThemeType) {
+  return StyleSheet.create({
+
+    container: {
+      paddingBottom: ms(20),
+      borderTopLeftRadius: ms(16),
+      borderTopRightRadius: ms(16),
+      overflow: 'hidden',
+    },
+    handleContainer: {
+      alignItems: 'center',
+      paddingVertical: ms(12),
+    },
+    dragHandle: {
+      width: s(32),
+      height: vs(4),
+      borderRadius: ms(2),
+    },
+    title: {
+      fontSize: ms(16),
+      fontWeight: '600',
+      paddingHorizontal: ms(16),
+      paddingBottom: ms(12),
+    },
+    itemsContainer: {
+      paddingHorizontal: 0,
+    },
+    itemWrapper: {
+      ...commonStyles.rowCenter,
+      paddingHorizontal: ms(16),
+      paddingVertical: ms(14),
+      borderBottomColor: theme.backgroundDivide,
+    },
+    itemText: {
+      fontSize: ms(15),
+      fontWeight: '400',
+    },
+  })
+}

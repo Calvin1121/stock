@@ -56,8 +56,8 @@ export const Input = forwardRef<TextInput, InputProps>(({
     setPasswordVisible((prev) => !prev);
   };
 
-  
-  const isDisabled = props.readOnly || !editable;
+  const isReadOnly = !!props.readOnly;
+  const isDisabled = !editable && !isReadOnly;
   const styles = useMemo(
     () => createStyles(theme, variant, isDisabled, !!error, isFocused),
     [theme, variant, isDisabled, error, isFocused]
@@ -73,7 +73,7 @@ export const Input = forwardRef<TextInput, InputProps>(({
         ref={ref}
         value={value}
         onChangeText={onChangeText}
-        editable={!isDisabled}
+        editable={!isDisabled && !isReadOnly}
         placeholder={placeholder}
         placeholderTextColor={placeholderTextColor || themeInput.placeholder}
         secureTextEntry={passwordToggle ? !isPasswordVisible : secureTextEntry}

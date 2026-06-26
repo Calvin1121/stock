@@ -14,7 +14,7 @@ export default {
   },
   modal: {
     confirmText: '确认',
-    cancelText: '取消'
+    cancelText: '取消',
   },
   home: {
     searchbar: {
@@ -82,7 +82,38 @@ export default {
         dealVol: '数量({{unit}})',
         unit: '张',
       }
-    }
+    },
+    loan: {
+      title: '贷款',
+      historyText: '贷款记录',
+      currency: '円',
+      loanForm: {
+        loanTerm: {
+          label: '貸款期限',
+          placeholder: '选择期限',
+          require: '选择期限',
+          termOption: '{{term}}天'
+        },
+        loanAmount: {
+          label: '貸款金額',
+          placeholder: '金額',
+          require: '貸款金額'
+        },
+        loanAmountAvailable: {
+          label: '可貸金額: {{amount}} {{currency}}'
+        },
+        loanRate: {
+          label: '貸款比率',
+        },
+        totalLoanAmount: {
+          label: '總貸款金額'
+        },
+        dailyInterestRate: {
+          label: '日利率'
+        },
+        confirm: '确认'
+      }
+    },
   },
   ipo: {
     title: 'IPO',

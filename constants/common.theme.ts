@@ -6,7 +6,7 @@ export const dark = {
     background: '#11121A',
     backgroundDivide: '#1B1C28',
     secondary: '#6D7278',
-    overlayBackground: 'rgba(0,0,0,.8)',
+    overlayBackground: 'rgba(0,0,0,.5)',
     card: '#1B1C28',
     cardDivide: '#2C2E41',
     snapCard: '#1B2036',
