@@ -11,5 +11,7 @@ export type { InputProps } from './input';
 export { MiniSparkline } from './mini-spark-line';
 export { Modal } from './modal';
 export type { ModalProps } from './modal';
+export { Popup } from './popup';
+export type { PopupProps } from './popup';
 export { SearchBar } from './search-bar';
 

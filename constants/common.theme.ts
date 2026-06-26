@@ -18,8 +18,8 @@ export const dark = {
     warning: '#E18721',
     info: '#5A5B6A',
     helper: '#5A5B6A',
-    transparent: 'transparent'
-
+    transparent: 'transparent',
+    signatureBackground: '#fff'
     // foreground: '#FFFFFF',
     // card: '#1b1c28',
     // text: '#FFFFFF',

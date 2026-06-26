@@ -87,6 +87,14 @@ export default {
       title: '贷款',
       historyText: '贷款记录',
       currency: '円',
+      signature: {
+        title: '签名',
+        cancel: '取消',
+        confirm: '确认',
+        openmore: '多开',
+        tnc1: 'Confirmation and Acceptance of Agreement.These Terms and Conditions govern the terms and conditionsof use between the user of the stock trading platform service(hereinafter referred to as "the Service") and Lampert CapitalMarkets (hereinafter referred to as "the Company").By clicking the "Agree" button during the registration process,the user is deemed to have agreed to all the terms and conditions of these Terms and Conditions.',
+        tnc2: 'Amendment of Agreement \n The Company reserves the right to revise these Terms and Conditions from time to time as needed. The revised terms and conditions will become effective immediately uponpublication.If the user does not agree to the revised terms and conditions,the user must immediately cease using the Service.',
+      },
       loanForm: {
         loanTerm: {
           label: '貸款期限',
