@@ -37,15 +37,15 @@ export default function LoanDetailPage() {
                     const isStatus = key === 'status'
                     const value = get(data, key)
                     return <View style={[commonStyles.rowBetween, styles.fieldItem, index? styles.borderTop: null]} key={key}>
-                    <Text style={styles.fieldLabel}>{t(`loanDetail.${key}`)}</Text>
+                    <Text style={styles.fieldLabel}>{t(`loan.detail.${key}`)}</Text>
                     {!isStatus && <Text style={[styles.fieldValue]}>{value}</Text>}
-                    {isStatus && <Text style={[styles.fieldValue, {color: get(statusColorMap, value)}]}>{t(`loanHistory.tabs.${value}`)}</Text>}
+                    {isStatus && <Text style={[styles.fieldValue, {color: get(statusColorMap, value)}]}>{t(`loan.history.tabs.${value}`)}</Text>}
                 </View>
                 }))}
             </View>
         </ScrollView>
         <View style={[commonStyles.mainLayoutPadding]}>
-            <Button>{t('loanDetail.repay')}</Button>
+            <Button>{t('loan.detail.repay')}</Button>
         </View>
     </SafeAreaView>
 }

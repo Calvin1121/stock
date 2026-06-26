@@ -52,7 +52,15 @@ export default {
         confirm: '确认',
         confirmTitle: '申请大量交易？',
         confirmContent: '请确认你是否申请大量交易'
-      }
+      },
+      history: {
+        title: 'OTC记录',
+        tabs: {
+          subscribed: 'Subscribed',
+          inProgress: 'In progress',
+          IPOSuccessful: 'IPO successful'
+        },
+      },
     },
     market: {
       title: '行情',
@@ -120,35 +128,35 @@ export default {
           label: '日利率'
         },
         confirm: '确认'
-      }
-    },
-    loanHistory: {
-      title: '贷款记录',
-      tabs: {
-        reviewing: '审核中',
-        reject: '拒绝',
-        inProgress: '进行中',
-        expired: '逾期',
-        repaid: '已还款'
       },
-      loanTerm: '贷款期限',
-      createTime: '申请时间',
-      loanTime: '放款时间'
-    },
-    loanDetail: {
-      title: '贷款详情',
-      repay: '还款',
-      status: '状态',
-      loanNo: '贷款编号',
-      loanAmount: '贷款金额',
-      loanTerm: '贷款期限',
-      loanRate: '贷款比率',
-      dailyInterestRate: '日利率',
-      loanTime: '放款时间'
+      history: {
+        title: '贷款记录',
+        tabs: {
+          reviewing: '审核中',
+          reject: '拒绝',
+          inProgress: '进行中',
+          expired: '逾期',
+          repaid: '已还款'
+        },
+        loanTerm: '贷款期限',
+        createTime: '申请时间',
+        loanTime: '放款时间'
+      },
+      detail: {
+        title: '贷款详情',
+        repay: '还款',
+        status: '状态',
+        loanNo: '贷款编号',
+        loanAmount: '贷款金额',
+        loanTerm: '贷款期限',
+        loanRate: '贷款比率',
+        dailyInterestRate: '日利率',
+        loanTime: '放款时间'
+      }
     },
     blockTrade: {
       title: 'Block Trade',
-      subscribe: '订阅',
+      subscribeBtn: '订阅',
       tabs: {
         subscribed: 'Subscribed',
         inProgress: 'In progress',
@@ -160,20 +168,20 @@ export default {
       priceUnit: 'NGN',
       discountRate: '折扣率',
       buyCount: '总认购数',
-      buyTime: '认购日期'
+      buyTime: '认购日期',
+      subscribe: {
+        title: '订阅详情',
+        submit: '提交',
+        openDate: '开盘日期',
+        closeDate: '收盘日期',
+        matchDate: '配股日期',
+        IPODate: '上市日期',
+        IPOPrice: '发行价格',
+        currency: 'NGN',
+        stockCount: '分配股数',
+        confirmPrice: '最终要约价格'
+      }
     },
-    blockTradeSubscribe: {
-      title: '订阅详情',
-      submit: '提交',
-      openDate: '开盘日期',
-      closeDate: '收盘日期',
-      matchDate: '配股日期',
-      IPODate: '上市日期',
-      IPOPrice: '发行价格',
-      currency: 'NGN',
-      stockCount: '分配股数',
-      confirmPrice: '最终要约价格'
-    }
   },
   ipo: {
     title: 'IPO',

@@ -104,7 +104,7 @@ function createSyles(theme: ThemeType) {
 export const OTCHeaderRight = () => {
     const { theme } = useTheme()
     return <View style={[commonStyles.alignEnd]}>
-        <TouchableOpacity style={{ marginRight: ms(15) }}>
+        <TouchableOpacity onPress={() => router.push('/(home)/OTC-history')} style={{ marginRight: ms(15) }}>
             <IconFont color={theme.primaryText} size={ms(29)} name="a-icon-48-Historicalrecords" />
         </TouchableOpacity>
     </View>

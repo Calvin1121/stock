@@ -49,7 +49,7 @@ export default function BlockTradePage() {
                             <View style={[styles.tradeName, commonStyles.flex1]}>
                                 <Text style={[styles.tradeNameText]}>{item.tradeName}</Text>
                             </View>
-                            {isSubscribed && <Button onPress={() => router.push('/block-trade-subscribe')} variant="solid" textStyle={styles.subscribeBtnText} style={[styles.subscribeBtn]}>{t('blockTrade.subscribe')}</Button>}
+                            {isSubscribed && <Button onPress={() => router.push('/block-trade-subscribe')} variant="solid" textStyle={styles.subscribeBtnText} style={[styles.subscribeBtn]}>{t('blockTrade.subscribeBtn')}</Button>}
                         </View>
                         <View><Text style={[styles.tradeShortNameText]}>{item.tradeShortName}</Text></View>
                         <View style={[styles.fieldItems]}>

@@ -59,8 +59,8 @@ export default function BlockTradeSubscribePage() {
                         const value = get(data, field)
                         const isCurrency = ['IPOPrice', 'confirmPrice'].includes(field)
                         return <View key={field} style={[styles.infoItem, rowStyle, index ? styles.borderTop : null]}>
-                            <Text style={[styles.infoItemLabel]}>{t(`blockTradeSubscribe.${field}`)}</Text>
-                            {!isStockCount && <Text style={[styles.infoItemValue]}>{value}{isCurrency ? ` ${t('blockTradeSubscribe.currency')}` : ''}</Text>}
+                            <Text style={[styles.infoItemLabel]}>{t(`blockTrade.subscribe.${field}`)}</Text>
+                            {!isStockCount && <Text style={[styles.infoItemValue]}>{value}{isCurrency ? ` ${t('blockTrade.subscribe.currency')}` : ''}</Text>}
                             {isStockCount && <Input
                                 containerStyle={styles.stockCountInput}
                                 variant="outline"
@@ -72,7 +72,7 @@ export default function BlockTradeSubscribePage() {
             </View>
         </ScrollView>
         <View style={[commonStyles.mainLayoutPadding]}>
-            <Button>{t('blockTradeSubscribe.submit')}</Button>
+            <Button>{t('blockTrade.subscribe.submit')}</Button>
         </View>
     </SafeAreaView>
 }

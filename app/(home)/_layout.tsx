@@ -15,13 +15,14 @@ export default function HomeLayout() {
         { name: 'search', options: { headerTitle: HomeSearchPageHeader } },
         { name: 'OTC', options: { title: t('category.OTC'), headerRight: OTCHeaderRight } },
         { name: 'OTC-detail', options: { title: t('OTC.detail.title') } },
+        { name: 'OTC-history', options: { title: t('OTC.history.title') } },
         { name: 'more', options: { headerTitle: HomeMoreSearchPageHeader } },
         { name: 'market', options: { title: t('market.title'), headerRight: MarketHeaderRight, header: MarketHeader } },
         { name: 'loan', options: { title: t('loan.title'), headerRight: LoanHeaderRight } },
-        { name: 'loan-history', options: { title: t('loanHistory.title') } },
-        { name: 'loan-detail', options: { title: t('loanDetail.title') } },
+        { name: 'loan-history', options: { title: t('loan.history.title') } },
+        { name: 'loan-detail', options: { title: t('loan.detail.title') } },
         { name: 'block-trade', options: { title: t('blockTrade.title') } },
-        { name: 'block-trade-subscribe', options: { title: t('blockTradeSubscribe.title') } },
+        { name: 'block-trade-subscribe', options: { title: t('blockTrade.subscribe.title') } },
 
     ]
     return (

@@ -10,11 +10,11 @@ import { StyleSheet, Text, View } from "react-native";
 import { ms } from "react-native-size-matters";
 
 const tabs = [
-    { label: 'loanHistory.tabs.reviewing', value: 'reviewing' },
-    { label: 'loanHistory.tabs.reject', value: 'reject' },
-    { label: 'loanHistory.tabs.inProgress', value: 'inProgress' },
-    { label: 'loanHistory.tabs.expired', value: 'expired' },
-    { label: 'loanHistory.tabs.repaid', value: 'repaid' }
+    { label: 'loan.history.tabs.reviewing', value: 'reviewing' },
+    { label: 'loan.history.tabs.reject', value: 'reject' },
+    { label: 'loan.history.tabs.inProgress', value: 'inProgress' },
+    { label: 'loan.history.tabs.expired', value: 'expired' },
+    { label: 'loan.history.tabs.repaid', value: 'repaid' }
 ]
 export default function LoanHistoryPage() {
     const { t } = useTranslation('home');
@@ -61,10 +61,10 @@ export default function LoanHistoryPage() {
                 {mockData.map((item, index) => <TouchableOpacity onPress={() => router.push({pathname: '/(home)/loan-detail', params: {id: '1'}})} style={[styles.loanItem]} key={index}>
                     <View style={[styles.loanAmountAndStatus, commonStyles.rowBetween]}>
                         <Text style={[styles.loanAmountStatusText]}>{item.loanAmount}</Text>
-                        <Text style={[styles.loanAmountStatusText, { color: get(statusColorMap, item.status) }]}>{t(`loanHistory.tabs.${item.status}`)}</Text>
+                        <Text style={[styles.loanAmountStatusText, { color: get(statusColorMap, item.status) }]}>{t(`loan.history.tabs.${item.status}`)}</Text>
                     </View>
                     {loanFields.map((key) => <View style={[styles.fieldItem, commonStyles.rowBetween]} key={`${index}_${key}`}>
-                        <Text style={styles.fieldLabel}>{t(`loanHistory.${key}`)}</Text>
+                        <Text style={styles.fieldLabel}>{t(`loan.history.${key}`)}</Text>
                         <Text style={styles.fieldValue}>{get(item, key) || '--'}</Text>
                     </View>)}
                 </TouchableOpacity>)}
