@@ -2,6 +2,7 @@ import { SafeAreaView, ScrollView, TouchableOpacity } from "@/components/ThemeWi
 import { ThemeType } from "@/constants/Colors";
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
+import { router } from "expo-router";
 import { get } from "lodash";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,7 +12,7 @@ import { ms } from "react-native-size-matters";
 const tabs = [
     { label: 'loanHistory.tabs.reviewing', value: 'reviewing' },
     { label: 'loanHistory.tabs.reject', value: 'reject' },
-    { label: 'loanHistory.tabs.pending', value: 'pending' },
+    { label: 'loanHistory.tabs.inProgress', value: 'inProgress' },
     { label: 'loanHistory.tabs.expired', value: 'expired' },
     { label: 'loanHistory.tabs.repaid', value: 'repaid' }
 ]
@@ -26,22 +27,22 @@ export default function LoanHistoryPage() {
     const statusColorMap = {
         reviewing: theme.warning,
         reject: theme.secondaryText,
-        pending: theme.primary,
+        inProgress: theme.primary,
         expired: theme.error,
         repaid: theme.primaryText
     }
     const loanFields = ['loanTerm', 'createTime', 'loanTime']
     const mockData = [
-        { name: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'reject', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'pending', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'expired', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'repaid', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
-        { name: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reject', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'inProgress', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'expired', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'repaid', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
+        { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
     ]
     return <SafeAreaView>
         <View style={styles.tabs}>
@@ -57,16 +58,16 @@ export default function LoanHistoryPage() {
         </View>
         <ScrollView style={[commonStyles.flex1]}>
             <View style={[styles.loanList]}>
-                {mockData.map((item, index) => <View style={[styles.loanItem]} key={index}>
-                    <View style={[styles.nameAndStatus, commonStyles.rowBetween]}>
-                        <Text style={[styles.nameStatusText]}>{item.name}</Text>
-                        <Text style={[styles.nameStatusText, { color: get(statusColorMap, item.status) }]}>{t(`loanHistory.tabs.${item.status}`)}</Text>
+                {mockData.map((item, index) => <TouchableOpacity onPress={() => router.push({pathname: '/(home)/loan-detail', params: {id: '1'}})} style={[styles.loanItem]} key={index}>
+                    <View style={[styles.loanAmountAndStatus, commonStyles.rowBetween]}>
+                        <Text style={[styles.loanAmountStatusText]}>{item.loanAmount}</Text>
+                        <Text style={[styles.loanAmountStatusText, { color: get(statusColorMap, item.status) }]}>{t(`loanHistory.tabs.${item.status}`)}</Text>
                     </View>
                     {loanFields.map((key) => <View style={[styles.fieldItem, commonStyles.rowBetween]} key={`${index}_${key}`}>
                         <Text style={styles.fieldLabel}>{t(`loanHistory.${key}`)}</Text>
                         <Text style={styles.fieldValue}>{get(item, key) || '--'}</Text>
                     </View>)}
-                </View>)}
+                </TouchableOpacity>)}
             </View>
         </ScrollView>
     </SafeAreaView>
@@ -110,11 +111,11 @@ function createStyles(theme: ThemeType) {
             paddingHorizontal: ms(15),
             gap: ms(10)
         },
-        nameAndStatus: {
+        loanAmountAndStatus: {
             gap: ms(15),
             paddingBlock: ms(5)
         },
-        nameStatusText: {
+        loanAmountStatusText: {
             fontSize: ms(15),
             lineHeight: ms(21),
             color: theme.primaryText

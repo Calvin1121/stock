@@ -14,11 +14,13 @@ export default function HomeLayout() {
     const screenMap: Array<{ name: string, options?: NativeStackNavigationOptions }> = [
         { name: 'search', options: { headerTitle: HomeSearchPageHeader } },
         { name: 'OTC', options: { title: t('category.OTC'), headerRight: OTCHeaderRight } },
-        { name: 'OTC-detail', options: {title: t('OTC.detail.title')}},
-        { name: 'more', options: { headerTitle: HomeMoreSearchPageHeader}},
-        { name: 'market', options: { title: t('market.title'), headerRight: MarketHeaderRight, header: MarketHeader}},
-        { name: 'loan', options: { title: t('loan.title'), headerRight: LoanHeaderRight}},
-        { name: 'loan-history', options: {title: t('loanHistory.title')}}
+        { name: 'OTC-detail', options: { title: t('OTC.detail.title') } },
+        { name: 'more', options: { headerTitle: HomeMoreSearchPageHeader } },
+        { name: 'market', options: { title: t('market.title'), headerRight: MarketHeaderRight, header: MarketHeader } },
+        { name: 'loan', options: { title: t('loan.title'), headerRight: LoanHeaderRight } },
+        { name: 'loan-history', options: { title: t('loanHistory.title') } },
+        { name: 'loan-detail', options: { title: t('loanDetail.title') } },
+
     ]
     return (
         <Stack screenOptions={headerOption}>

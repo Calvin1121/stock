@@ -119,7 +119,7 @@ export default {
       tabs: {
         reviewing: '审核中',
         reject: '拒绝',
-        pending: '进行中',
+        inProgress: '进行中',
         expired: '逾期',
         repaid: '已还款'
       },
@@ -127,6 +127,17 @@ export default {
       createTime: '申请时间',
       loanTime: '放款时间'
     },
+    loanDetail: {
+      title: '贷款详情',
+      repay: '还款',
+      status: '状态',
+      loanNo: '贷款编号',
+      loanAmount: '贷款金额',
+      loanTerm: '贷款期限',
+      loanRate: '贷款比率',
+      dailyInterestRate: '日利率',
+      loanTime: '放款时间'
+    }
   },
   ipo: {
     title: 'IPO',

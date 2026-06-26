@@ -12,7 +12,6 @@ export function ScrollView(props: ScrollViewProps) {
     const style = { ...commonStyles.flex1, backgroundColor: theme.background }
     if (Array.isArray(_style)) Object.assign(style, StyleSheet.flatten(_style))
     else Object.assign(style, _style)
-console.log(style)
     return <DefaultScrollView style={style} {...otherProps} />;
 }
 
