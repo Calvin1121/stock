@@ -145,6 +145,34 @@ export default {
       loanRate: '贷款比率',
       dailyInterestRate: '日利率',
       loanTime: '放款时间'
+    },
+    blockTrade: {
+      title: 'Block Trade',
+      subscribe: '订阅',
+      tabs: {
+        subscribed: 'Subscribed',
+        inProgress: 'In progress',
+        IPOSuccessful: 'IPO successful'
+      },
+      marketPrice: '市场价格（{{priceUnit}}）',
+      priceDiff: '价格差（{{priceUnit}}）',
+      publishPrice: '发行价 ({{priceUnit}})',
+      priceUnit: 'NGN',
+      discountRate: '折扣率',
+      buyCount: '总认购数',
+      buyTime: '认购日期'
+    },
+    blockTradeSubscribe: {
+      title: '订阅详情',
+      submit: '提交',
+      openDate: '开盘日期',
+      closeDate: '收盘日期',
+      matchDate: '配股日期',
+      IPODate: '上市日期',
+      IPOPrice: '发行价格',
+      currency: 'NGN',
+      stockCount: '分配股数',
+      confirmPrice: '最终要约价格'
     }
   },
   ipo: {

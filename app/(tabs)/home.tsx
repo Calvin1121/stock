@@ -76,6 +76,8 @@ export default function HomeScreen() {
         return router.push('/(home)/market')
       case Category.creditLoan:
         return router.push('/(home)/loan')
+      case Category.blockTrade:
+        return router.push('/(home)/block-trade')
     }
   }
   const getColStyle = useCallback((key: StockField) => {

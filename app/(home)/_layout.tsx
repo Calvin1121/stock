@@ -20,6 +20,8 @@ export default function HomeLayout() {
         { name: 'loan', options: { title: t('loan.title'), headerRight: LoanHeaderRight } },
         { name: 'loan-history', options: { title: t('loanHistory.title') } },
         { name: 'loan-detail', options: { title: t('loanDetail.title') } },
+        { name: 'block-trade', options: { title: t('blockTrade.title') } },
+        { name: 'block-trade-subscribe', options: { title: t('blockTradeSubscribe.title') } },
 
     ]
     return (

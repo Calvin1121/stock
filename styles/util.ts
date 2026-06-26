@@ -72,7 +72,7 @@ export const commonStyles = StyleSheet.create({
     columnEnd: {
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-end'
     },
     rowBetween: {
         flexDirection: 'row',
