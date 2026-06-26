@@ -5,6 +5,7 @@ import { ThemeType } from "@/constants/Colors";
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { router } from "expo-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -142,7 +143,7 @@ export const LoanHeaderRight = () => {
     const { theme } = useTheme()
     const styles = useMemo(() => createHeaderStyles(theme), [theme])
     return <View style={[commonStyles.alignEnd]}>
-        <TouchableOpacity style={styles.rightTextContent}>
+        <TouchableOpacity onPress={() => router.push('/(home)/loan-history')} style={styles.rightTextContent}>
             <Text style={styles.historyText}>{t('loan.historyText')}</Text>
         </TouchableOpacity>
     </View>

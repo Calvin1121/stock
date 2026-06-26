@@ -114,6 +114,19 @@ export default {
         confirm: '确认'
       }
     },
+    loanHistory: {
+      title: '贷款记录',
+      tabs: {
+        reviewing: '审核中',
+        reject: '拒绝',
+        pending: '进行中',
+        expired: '逾期',
+        repaid: '已还款'
+      },
+      loanTerm: '贷款期限',
+      createTime: '申请时间',
+      loanTime: '放款时间'
+    },
   },
   ipo: {
     title: 'IPO',

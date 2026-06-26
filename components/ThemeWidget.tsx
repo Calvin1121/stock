@@ -9,22 +9,20 @@ import { Button, ButtonProps } from './ui';
 export function ScrollView(props: ScrollViewProps) {
     const { theme } = useTheme();
     const { style: _style, ...otherProps } = props;
-    const style = {
-        ...commonStyles.flex1,
-        backgroundColor: theme.background,
-        ..._style,
-    }
+    const style = { ...commonStyles.flex1, backgroundColor: theme.background }
+    if (Array.isArray(_style)) Object.assign(style, StyleSheet.flatten(_style))
+    else Object.assign(style, _style)
+console.log(style)
     return <DefaultScrollView style={style} {...otherProps} />;
 }
 
-export function SafeAreaView(props: ViewProps & {statusBar?: StatusBarProps}) {
+export function SafeAreaView(props: ViewProps & { statusBar?: StatusBarProps }) {
     const { theme } = useTheme();
     const { style: _style, statusBar, ...otherProps } = props;
-    const style = {
-        ..._style,
-        ...commonStyles.flex1,
-        backgroundColor: theme.background,
-    }
+    const style = { ...commonStyles.flex1, backgroundColor: theme.background }
+    if (Array.isArray(_style)) Object.assign(style, StyleSheet.flatten(_style))
+    else Object.assign(style, _style)
+
     return <>
         <StatusBar {...statusBar} />
         <View style={style} {...otherProps} />
@@ -36,7 +34,7 @@ export function TouchableOpacity(props: TouchableOpacityProps) {
     const { theme } = useTheme();
     const { style: _style, ...otherProps } = props;
     const style = {};
-    if(Array.isArray(_style)) Object.assign(style, StyleSheet.flatten([_style]))
+    if (Array.isArray(_style)) Object.assign(style, StyleSheet.flatten([_style]))
     else Object.assign(style, _style)
     return <DefaultTouchableOpacity style={style} {...otherProps} activeOpacity={theme.touchOpacity} />
 }

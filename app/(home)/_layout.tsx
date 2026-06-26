@@ -17,7 +17,8 @@ export default function HomeLayout() {
         { name: 'OTC-detail', options: {title: t('OTC.detail.title')}},
         { name: 'more', options: { headerTitle: HomeMoreSearchPageHeader}},
         { name: 'market', options: { title: t('market.title'), headerRight: MarketHeaderRight, header: MarketHeader}},
-        { name: 'loan', options: { title: t('loan.title'), headerRight: LoanHeaderRight}}
+        { name: 'loan', options: { title: t('loan.title'), headerRight: LoanHeaderRight}},
+        { name: 'loan-history', options: {title: t('loanHistory.title')}}
     ]
     return (
         <Stack screenOptions={headerOption}>

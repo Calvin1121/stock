@@ -15,7 +15,7 @@ export const dark = {
     disabled: 'rgba(#fff, .2)',
     error: '#CD5252',
     success: '#0AA88B',
-    warning: '#FAAD14',
+    warning: '#E18721',
     info: '#5A5B6A',
     helper: '#5A5B6A',
     transparent: 'transparent'
