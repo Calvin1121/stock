@@ -1,17 +1,23 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import { DarkTheme, DefaultTheme, NativeStackHeaderProps, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { useColorScheme as useSystemColorScheme } from 'react-native';
 import 'react-native-reanimated';
 
 import { ActionSheetProvider } from '@/components/ui/action-sheet-context';
-import { ColorsType, THEME } from '@/constants/Colors';
+import { ColorsType, THEME, ThemeType } from '@/constants/Colors';
 import '@/lib/i18n';
 import { useLanguageStore } from '@/lib/languageStore';
 import { queryClient } from '@/lib/queryClient';
 import { useThemeStore } from '@/lib/themeStore';
+import { TFunction } from 'i18next';
+
+export interface GlobalHeaderProps extends NativeStackHeaderProps {
+  t: TFunction<"translation", undefined>
+  theme: ThemeType
+}
 
 export {
   ErrorBoundary
@@ -64,6 +70,18 @@ function RootLayoutNav() {
     const scheme: keyof ColorsType = systemColorScheme === THEME.DARK ? THEME.DARK : THEME.LIGHT
     useThemeStore.getState().setSystemScheme(scheme)
   }, [systemColorScheme])
+  // const { theme } = useTheme()
+  // const { t } = useTranslation()
+  // const pathname = usePathname()
+
+  // const onHeader = useCallback((props: NativeStackHeaderProps) => {
+  //   const _props = {...props, t, theme}
+  //   if(pathname === '/home')
+  //     return HomeSearchBarHeader(_props)
+  //   if(pathname === '/ipo')
+  //     return IPOHeader(_props)
+  //   return null
+  // }, [pathname, t, theme])
   return (
     <QueryClientProvider client={queryClient}>
       <ActionSheetProvider>

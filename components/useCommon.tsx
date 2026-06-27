@@ -10,9 +10,11 @@ import { ms } from "react-native-size-matters";
 import { TouchableOpacity } from "./ThemeWidget";
 import IconFont from "./iconfont";
 
-export function Header(props: NativeStackHeaderProps): React.ReactNode {
+export type CustomHeaderProps = Partial<NativeStackHeaderProps>
+
+export function Header(props: CustomHeaderProps): React.ReactNode {
     const { top } = useSafeAreaInsets();
-    const { navigation: { canGoBack: canGoBackFn, goBack }, options = {} } = props;
+    const { navigation: { canGoBack: canGoBackFn, } = {}, options = {} } = props;
     const back = get(props, 'back') || {}
     const canGoBack = canGoBackFn?.()
     const { headerLeft, headerRight, headerTintColor: tintColor, headerStyle, title, headerTitle, headerTitleAlign } = options

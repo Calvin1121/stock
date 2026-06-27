@@ -9,7 +9,6 @@ import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { StockField } from '@/utils/consts';
 import { router } from 'expo-router';
-import { BottomTabHeaderProps } from 'expo-router/build/react-navigation/bottom-tabs';
 import React, { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
@@ -85,7 +84,8 @@ export default function HomeScreen() {
       [commonStyles.flex1, key === StockField.chg ? commonStyles.rowEnd : commonStyles.rowCenter]
   }, [])
   return <SafeAreaView>
-    <ScrollView>
+    <HomeSearchBarHeader />
+    <ScrollView style={commonStyles.flex1}>
       <View style={[styles.tabs, commonStyles.rowCenter]}>
         {tabs.map(item => {
           const isActive = tab === item.value;
@@ -132,7 +132,7 @@ export default function HomeScreen() {
             {/* <LinearGradient /> */}
           </View>
           <View>
-            <TouchableOpacity onPress={() => router.push({pathname: '/(home)/more'})} style={commonStyles.rowCenter}>
+            <TouchableOpacity onPress={() => router.push({ pathname: '/(home)/more' })} style={commonStyles.rowCenter}>
               <Text style={styles.mainTitleMoreText}>{t('more')}</Text>
               <IconFont color={styles.mainTitleMoreText.color} size={18} name="icon-32-arrow-left" />
             </TouchableOpacity>
@@ -267,15 +267,12 @@ function createStyles(theme: ThemeType) {
   })
 }
 
-export function HomeSearchBarHeader(props: BottomTabHeaderProps): React.ReactNode {
-  const { options, ...rest } = props
-  const { theme } = useTheme();
+export function HomeSearchBarHeader(): React.ReactNode {
+  const { t } = useTranslation('home')
+  const { theme } = useTheme()
   const sideStyle = { width: ms(29), height: ms(29) }
-  const { t } = useTranslation('home');
-  const _props = {
-    ...rest,
+  const props = {
     options: {
-      ...options,
       headerLeft: () => <View style={{ paddingLeft: ms(15) }}>
         <View style={{ ...sideStyle, backgroundColor: '#fff', borderRadius: ms(99) }}>
         </View>
@@ -287,12 +284,8 @@ export function HomeSearchBarHeader(props: BottomTabHeaderProps): React.ReactNod
       </View>,
       headerTitle: () => <View style={{ paddingHorizontal: ms(10) }}>
         <SearchBar onPress={() => router.push('/(home)/search')} placeholder={t('searchbar.placeholder')} editable={false} />
-      </View>,
-      headerTintColor: '#000',
-      headerStyle: {
-        backgroundColor: theme.background,
-      }
+      </View>
     }
-  } as any
-  return <Header {..._props} />
+  }
+  return <Header {...props} />
 }

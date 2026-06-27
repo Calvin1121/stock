@@ -82,11 +82,11 @@ function createStyles(theme: ThemeType) {
         },
         changeTag: {
             height: vs(24),
-            paddingHorizontal: ms(4),
+            paddingHorizontal: ms(6),
             borderRadius: ms(2)
         },
         changeTagText: {
-            fontSize: vs(15)
+            fontSize: ms(15)
         }
     })
 }

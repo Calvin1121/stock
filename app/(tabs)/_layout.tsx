@@ -1,11 +1,10 @@
 import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
 import { Tabs } from 'expo-router';
-import { BottomTabHeaderProps, BottomTabNavigationOptions } from 'expo-router/build/react-navigation/bottom-tabs/types';
+import { BottomTabNavigationOptions } from 'expo-router/build/react-navigation/bottom-tabs/types';
 import { useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
-import { HomeSearchBarHeader } from './home';
 const iconSize = 20;
 
 export default function TabLayout() {
@@ -13,15 +12,8 @@ export default function TabLayout() {
   const styles = useMemo(() => createStyles(theme), [theme])
   const { t } = useTranslation();
   const tabs = ['home', 'ipo', 'assets', 'news', 'profile'];
-  const onHeaderRender = useCallback((props: BottomTabHeaderProps) => {
-    switch(props?.route.name) {
-      case 'home':
-        return HomeSearchBarHeader(props)
-    }
-  }, [])
   const screenOptions: BottomTabNavigationOptions = useMemo(() => ({
-    headerShown: true,
-    header: onHeaderRender,
+    headerShown: false,
     ...styles.screenStyle
   }), [styles])
   const tabBarIcon = useCallback(({ focused }: { focused: boolean }) => {
