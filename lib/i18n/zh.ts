@@ -241,7 +241,7 @@ export default {
     tabs: {
       recharge: '充值',
       withdraw: '提现',
-      redeem: '兑换',
+      exchange: '兑换',
       records: '历史记录'
     },
     holdingStocks: '我的持股',
@@ -268,7 +268,7 @@ export default {
       incomeAmount: '到账数量',
       selectCurrency: '选择币种',
     },
-    redeem: {
+    exchange: {
       title: '兑换',
     },
     records: {

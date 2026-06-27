@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next"
 import { TouchableOpacity, View } from "react-native"
 import { ms } from "react-native-size-matters"
 
-export default function RedeemPage() {
+export default function ExchangePage() {
     const { theme } = useTheme()
     const { t } = useTranslation('assets')
     return <SafeAreaView>
@@ -17,7 +17,7 @@ export default function RedeemPage() {
     </SafeAreaView>
 }
 
-export const RedeemHeaderRight = () => {
+export const ExchangeHeaderRight = () => {
     const { theme } = useTheme()
     return <View style={[commonStyles.alignEnd]}>
         <TouchableOpacity style={{ marginRight: ms(15) }}>

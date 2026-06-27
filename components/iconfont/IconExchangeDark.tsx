@@ -23,16 +23,16 @@ const xml = `
 </svg>
 `
 
-let IconRedeemDark: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+let IconExchangeDark: FunctionComponent<Props> = ({ size, color, ...rest }) => {
   return (
     <SvgXml xml={xml}  width={size} height={size} {...rest} />
   );
 };
 
-IconRedeemDark.defaultProps = {
+IconExchangeDark.defaultProps = {
   size: 18,
 };
 
-IconRedeemDark = React.memo ? React.memo(IconRedeemDark) : IconRedeemDark;
+IconExchangeDark = React.memo ? React.memo(IconExchangeDark) : IconExchangeDark;
 
-export default IconRedeemDark;
+export default IconExchangeDark;

@@ -6,11 +6,33 @@ import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { router } from 'expo-router';
 import { get } from 'lodash';
-import { useCallback, useMemo, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ImageBackground, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, Text, View } from 'react-native';
 import { ms } from 'react-native-size-matters';
 const cardBg = require('@/assets/images/assets-card.png')
+
+const cardFields = ['stockTotalAssets', 'enteringAssets', 'historicalIncome', 'cashBalance', 'frozenAmount', 'pendingSubscription'] as const;
+const actionTabs = ['recharge', 'withdraw', 'exchange', 'records'] as const;
+const stickyTabs = ['holdingStocks', 'orders'] as const;
+const dataItemFieldMap = {
+  symbolAndName: ['symbol', 'name'],
+  priceAndQuantity: ['price', 'quantity'],
+  currentPriceAndCost: ['currentPrice', 'cost'],
+  profitAndLoss: ['profit', 'loss'],
+  tradeType: ['tradeType']
+} as const;
+const mockFieldData = {
+  symbol: '4311',
+  name: 'Test',
+  price: '12.34',
+  quantity: '100',
+  currentPrice: '12.34',
+  cost: '12.34',
+  profit: '12.34',
+  loss: '12.34',
+  tradeType: 'buy'
+};
 
 type InfoSectionProps = {
   isVisible: boolean
@@ -28,11 +50,9 @@ type StickySectionProps = {
   sticky: boolean
 }
 
-function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionProps) {
-  const { theme } = useTheme()
-  const dailyReturnVolStyle = true ? theme.success : theme.error
-  const cardFields = ['stockTotalAssets', 'enteringAssets', 'historicalIncome', 'cashBalance', 'frozenAmount', 'pendingSubscription']
-  const tabs = ['recharge', 'withdraw', 'redeem', 'records']
+const InfoSection = memo(function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionProps) {
+  const { theme } = useTheme();
+  const dailyReturnVolStyle = true ? theme.success : theme.error;
   const onPressTab = useCallback((tab: string) => {
     switch (tab) {
       case 'recharge':
@@ -41,14 +61,15 @@ function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionPr
       case 'withdraw':
         router.push('/(trade)/withdraw')
         break
-      case 'redeem':
-        router.push('/(trade)/redeem')
+      case 'exchange':
+        router.push('/(trade)/exchange')
         break
       case 'records':
         router.push('/(trade)/records')
         break
     }
   }, [])
+
   return <View style={[styles.infoSection]}>
     <ImageBackground style={[styles.cardContainer]} source={cardBg}>
       <View style={[commonStyles.mainLayoutPadding]}>
@@ -77,22 +98,20 @@ function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionPr
       </View>
     </ImageBackground>
     <View style={[styles.tabs, commonStyles.rowCenter]}>
-      {tabs.map((tab) => <View style={[commonStyles.flex1, commonStyles.columnCenter]} key={tab}>
+      {actionTabs.map((tab) => <View style={[commonStyles.flex1, commonStyles.columnCenter]} key={tab}>
         <TouchableOpacity onPress={() => onPressTab(tab)} style={[commonStyles.columnCenter]}>
-          {/* TODO */}
           <IconFont name={`${tab}-dark` as IconNames} size={ms(29)} />
           <Text style={[styles.tabText]}>{t(`tabs.${tab}`)}</Text>
         </TouchableOpacity>
       </View>)}
     </View>
   </View>
-}
+});
 
-function StickySection({ t, styles, selectedTab, setSelectedTab, subTabs, sticky }: StickySectionProps) {
-  const tabs = ['holdingStocks', 'orders']
+const StickySection = memo(function StickySection({ t, styles, selectedTab, setSelectedTab, subTabs, sticky }: StickySectionProps) {
   return <View style={[styles.stickySection, !sticky && styles.stickySectionRound]}>
     <View style={[styles.stocksAndOrders]}>
-      {tabs.map((tab) => {
+      {stickyTabs.map((tab) => {
         return <TouchableOpacity key={tab} onPress={() => setSelectedTab(tab)}>
           <Text style={[styles.stocksAndOrdersText, selectedTab === tab ? styles.stocksAndOrdersActiveText : null]}>{t(tab)}</Text>
         </TouchableOpacity>
@@ -106,7 +125,7 @@ function StickySection({ t, styles, selectedTab, setSelectedTab, subTabs, sticky
       })}
     </View>
   </View>
-}
+});
 
 export default function AssetsScreen() {
   const { t } = useTranslation('assets')
@@ -122,28 +141,10 @@ export default function AssetsScreen() {
       return ['symbolAndName', 'priceAndQuantity', 'currentPriceAndCost', 'profitAndLoss']
     return ['symbolAndName', 'tradeType', 'priceAndQuantity', 'profitAndLoss']
   }, [selectedTab])
-  const dataItemFieldMap = {
-    symbolAndName: ['symbol', 'name'],
-    priceAndQuantity: ['price', 'quantity'],
-    currentPriceAndCost: ['currentPrice', 'cost'],
-    profitAndLoss: ['profit', 'loss'],
-    tradeType: ['tradeType']
-  }
-  const mockFieldData = {
-    symbol: '4311',
-    name: 'Test',
-    price: '12.34',
-    quantity: '100',
-    currentPrice: '12.34',
-    cost: '12.34',
-    profit: '12.34',
-    loss: '12.34',
-    tradeType: 'buy'
-  }
   const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (!infoSectionHeight) return
     const isNowSticky = event.nativeEvent.contentOffset.y >= infoSectionHeight - 1
-    setSticky(isNowSticky)
+    setSticky(prevSticky => prevSticky === isNowSticky ? prevSticky : isNowSticky)
   }, [infoSectionHeight])
   const handleInfoLayout = useCallback((event: NativeSyntheticEvent<{ layout: { height: number } }>) => {
     setInfoSectionHeight(event.nativeEvent.layout.height)

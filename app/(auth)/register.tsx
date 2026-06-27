@@ -117,7 +117,7 @@ export const RegisterHeaderRight = () => {
   const styles = useMemo(() => createHeaderStyles(theme), [theme])
   return <View style={[commonStyles.rowEnd]}>
     <Text style={styles.hasAccount}>{t('register.hasAccount')}</Text>
-    <TouchableOpacity onPress={() => router.back()}>
+    <TouchableOpacity onPress={() => router.replace('/login')}>
       <Text style={styles.login}>{t('register.login')}</Text>
     </TouchableOpacity>
   </View>

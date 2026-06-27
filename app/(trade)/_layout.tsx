@@ -1,7 +1,7 @@
 import { useHeaderOption } from "@/components/useCommon";
 import { NativeStackNavigationOptions, Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { RedeemHeaderRight } from "./redeem";
+import { ExchangeHeaderRight } from "./exchange";
 import { WithdrawHeaderRight } from "./withdraw";
 
 export default function TradeLayout() {
@@ -10,7 +10,7 @@ export default function TradeLayout() {
 
     const screenMap: Array<{ name: string, options?: NativeStackNavigationOptions }> = [
         { name: 'withdraw', options: { title: t('withdraw.title'), headerRight: WithdrawHeaderRight } },
-        { name: 'redeem', options: { title: t('redeem.title'), headerRight: RedeemHeaderRight } },
+        { name: 'exchange', options: { title: t('exchange.title'), headerRight: ExchangeHeaderRight } },
         { name: 'records', options: { title: t('records.title') } },
     ]
     return (
