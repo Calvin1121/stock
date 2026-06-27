@@ -234,10 +234,10 @@ export default {
     holdings: '持仓',
   },
   news: {
-    title: '资讯',
-    latest: '最新',
-    recommended: '推荐',
-    search: '搜索',
+    title: '新闻',
+    detial: {
+      title: '新闻详情'
+    }
   },
   profile: {
     title: '个人资料',

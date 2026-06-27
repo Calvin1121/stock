@@ -15,6 +15,7 @@ export const dark = {
     snapCard: '#1B2036',
     primaryText: '#fff',
     secondaryText: '#A5A5A5',
+    newsContentText: '#CCCCCC',
     disabled: 'rgba(#fff, .2)',
     error: '#CD5252',
     success: '#0AA88B',

@@ -2,9 +2,10 @@
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
 import { HeaderHeight } from "@/utils/consts";
-import { NativeStackHeaderBackProps, NativeStackHeaderProps, NativeStackNavigationOptions, useRouter } from "expo-router";
+import { NativeStackHeaderBackProps, NativeStackHeaderProps, NativeStackNavigationOptions, router, useRouter } from "expo-router";
 import { get } from "lodash";
-import { Text, View, ViewStyle } from "react-native";
+import { useCallback } from "react";
+import { Linking, Text, View, ViewStyle } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ms } from "react-native-size-matters";
 import { TouchableOpacity } from "./ThemeWidget";
@@ -70,4 +71,21 @@ export function useHeaderOption(props?: NativeStackNavigationOptions): NativeSta
         headerTransparent: false,
         ...otherProps,
     }
+}
+
+export function useMarkdownLink() {
+    const tabLink = ['/home', '/ipo', '/news', '/profile', '/assets', '(tabs)']
+    const onLinkPress = useCallback((url: string) => {
+        if (url.startsWith('/') && tabLink.includes(url)) {
+            router.dismissAll()
+            router.replace({ pathname: url as any })
+            return
+        }
+        if (url.startsWith('/')) {
+            router.push({ pathname: url as any })
+            return
+        }
+        Linking.openURL(url)
+    }, [])
+    return { onLinkPress }
 }
