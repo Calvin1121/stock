@@ -1,4 +1,5 @@
 import { SafeAreaView, ScrollView, TouchableOpacity } from "@/components/ThemeWidget";
+import { ScrollTabs } from "@/components/ui/scroll-tabs";
 import { ThemeType } from "@/constants/Colors";
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
@@ -9,17 +10,18 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import { ms } from "react-native-size-matters";
 
-const tabs = [
-    { label: 'loan.history.tabs.reviewing', value: 'reviewing' },
-    { label: 'loan.history.tabs.reject', value: 'reject' },
-    { label: 'loan.history.tabs.inProgress', value: 'inProgress' },
-    { label: 'loan.history.tabs.expired', value: 'expired' },
-    { label: 'loan.history.tabs.repaid', value: 'repaid' }
-]
+
 export default function LoanHistoryPage() {
     const { t } = useTranslation('home');
     const { theme } = useTheme()
     const styles = useMemo(() => createStyles(theme), [theme])
+    const tabs = useMemo(() => [
+        { label: t('loan.history.tabs.reviewing'), value: 'reviewing' },
+        { label: t('loan.history.tabs.reject'), value: 'reject' },
+        { label: t('loan.history.tabs.inProgress'), value: 'inProgress' },
+        { label: t('loan.history.tabs.expired'), value: 'expired' },
+        { label: t('loan.history.tabs.repaid'), value: 'repaid' }
+    ], [t])
     const [tab, setTab] = useState(tabs[0].value)
     const onSetTab = (tab: string) => {
         setTab(tab)
@@ -45,20 +47,10 @@ export default function LoanHistoryPage() {
         { loanAmount: '1000 NGN', status: 'reviewing', loanTerm: '10天', createTime: '2026-04-28 00:45:57', loanTime: '2026-04-28 00:45:57' },
     ]
     return <SafeAreaView>
-        <View style={styles.tabs}>
-            <ScrollView style={styles.tabsScrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={styles.tabsWrapper}>
-                    {tabs.map((item, index) => <View style={[index ? styles.tab : null]} key={item.value}>
-                        <TouchableOpacity onPress={() => onSetTab(item.value)}>
-                            <Text style={[styles.tabText, item.value === tab ? styles.tabActiveText : null]}>{t(item.label)}</Text>
-                        </TouchableOpacity>
-                    </View>)}
-                </View>
-            </ScrollView>
-        </View>
+        <ScrollTabs tabs={tabs} tab={tab} onTab={item => setTab(item.value)} />
         <ScrollView style={[commonStyles.flex1]}>
             <View style={[styles.loanList]}>
-                {mockData.map((item, index) => <TouchableOpacity onPress={() => router.push({pathname: '/(home)/loan-detail', params: {id: '1'}})} style={[styles.loanItem]} key={index}>
+                {mockData.map((item, index) => <TouchableOpacity onPress={() => router.push({ pathname: '/(home)/loan-detail', params: { id: '1' } })} style={[styles.loanItem]} key={index}>
                     <View style={[styles.loanAmountAndStatus, commonStyles.rowBetween]}>
                         <Text style={[styles.loanAmountStatusText]}>{item.loanAmount}</Text>
                         <Text style={[styles.loanAmountStatusText, { color: get(statusColorMap, item.status) }]}>{t(`loan.history.tabs.${item.status}`)}</Text>
@@ -75,30 +67,6 @@ export default function LoanHistoryPage() {
 
 function createStyles(theme: ThemeType) {
     return StyleSheet.create({
-        tabs: {
-            height: ms(45),
-            paddingVertical: ms(7.5),
-            overflow: 'hidden'
-        },
-        tab: {
-            marginLeft: ms(30)
-        },
-        tabsScrollView: {
-            ...commonStyles.flexRow,
-            height: '100%',
-        },
-        tabsWrapper: {
-            paddingHorizontal: ms(15),
-            ...commonStyles.flexRow
-        },
-        tabText: {
-            color: theme.secondaryText,
-            fontSize: ms(18),
-            lineHeight: ms(25)
-        },
-        tabActiveText: {
-            color: theme.primary
-        },
         loanList: {
             paddingHorizontal: ms(15),
             paddingVertical: ms(7.5),

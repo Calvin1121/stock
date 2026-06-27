@@ -192,6 +192,40 @@ export default {
     daysRest: '<0>{{day}}</0> days left',
     progress: '进度',
     subscribeBtn: '订阅',
+    subscribe: {
+      title: 'IPO申购',
+      confirm: '确认',
+      publishPrice: '发行价',
+      deadline: '截止日期',
+      buyCount: '購買數量',
+      amount: '金额',
+      frozenAmount: '冻结资金'
+    },
+    history: {
+      title: '首次公開發行歷史',
+      tabs: {
+        all: 'ALL',
+        submitted: 'Submitted',
+        winner: 'Winner',
+        No: 'No',
+        canceled: 'Canceled',
+        paid: 'Paid'
+      }
+    },
+    historyDetail: {
+      title: '详情',
+      newStockPrice: '新股价格',
+      count: '数量',
+      subscribeTime: '订阅日期',
+      startTime: '起始时间',
+      endTime: '截止日期',
+      IPOTime: '上市日期',
+      selectedPrice: '中签价格',
+      selectedCount: '中签数量',
+      payAmount: '需支付的价格',
+      paidAmount: '已支付金额',
+      payingAmount:'剩余待支付金额'
+    }
   },
   assets: {
     title: '资产',

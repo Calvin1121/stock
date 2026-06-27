@@ -1,5 +1,6 @@
 import { SafeAreaView, ScrollView, TouchableOpacity } from "@/components/ThemeWidget";
 import { Button, Divider } from "@/components/ui";
+import { ScrollTabs } from "@/components/ui/scroll-tabs";
 import { ThemeType } from "@/constants/Colors";
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
@@ -10,14 +11,15 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ms } from "react-native-size-matters";
 
-const tabs = [
-    { label: 'blockTrade.tabs.subscribed', value: 'subscribed' },
-    { label: 'blockTrade.tabs.inProgress', value: 'inProgress' },
-    { label: 'blockTrade.tabs.IPOSuccessful', value: 'IPOSuccessful' }
-]
+
 export default function BlockTradePage() {
     const { t } = useTranslation('home')
     const { theme } = useTheme()
+    const tabs = useMemo(() => [
+        { label: t('blockTrade.tabs.subscribed'), value: 'subscribed' },
+        { label: t('blockTrade.tabs.inProgress'), value: 'inProgress' },
+        { label: t('blockTrade.tabs.IPOSuccessful'), value: 'IPOSuccessful' }
+    ], [t])
     const [tab, setTab] = useState(tabs[0].value)
     const styles = useMemo(() => creareStyles(theme), [theme])
     const onSetTab = (tab: string) => {
@@ -30,17 +32,7 @@ export default function BlockTradePage() {
     ]
     const fields = ['marketPrice', 'priceDiff', 'publishPrice', 'discountRate', 'buyCount']
     return <SafeAreaView>
-        <View style={styles.tabs}>
-            <ScrollView style={styles.tabsScrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={styles.tabsWrapper}>
-                    {tabs.map((item, index) => <View style={[index ? styles.tab : null]} key={item.value}>
-                        <TouchableOpacity onPress={() => onSetTab(item.value)}>
-                            <Text style={[styles.tabText, item.value === tab ? styles.tabActiveText : null]}>{t(item.label)}</Text>
-                        </TouchableOpacity>
-                    </View>)}
-                </View>
-            </ScrollView>
-        </View>
+        <ScrollTabs tabs={tabs} tab={tab} onTab={(item) => onSetTab(item.value)} />
         <ScrollView style={[commonStyles.flex1]}>
             <View style={[styles.tradeList]}>
                 {mockData.map((item, index) => <TouchableOpacity style={[styles.tradeItem]} key={index}>
@@ -83,30 +75,6 @@ export default function BlockTradePage() {
 
 function creareStyles(theme: ThemeType) {
     return StyleSheet.create({
-        tabs: {
-            height: ms(45),
-            paddingVertical: ms(7.5),
-            overflow: 'hidden'
-        },
-        tab: {
-            marginLeft: ms(30)
-        },
-        tabsScrollView: {
-            ...commonStyles.flexRow,
-            height: '100%',
-        },
-        tabsWrapper: {
-            paddingHorizontal: ms(15),
-            ...commonStyles.flexRow
-        },
-        tabText: {
-            color: theme.secondaryText,
-            fontSize: ms(18),
-            lineHeight: ms(25)
-        },
-        tabActiveText: {
-            color: theme.primary
-        },
         tradeList: {
             paddingHorizontal: ms(15),
             paddingVertical: ms(7.5),

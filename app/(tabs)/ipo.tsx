@@ -5,6 +5,7 @@ import { Header } from '@/components/useCommon';
 import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
+import { router } from 'expo-router';
 import { get } from 'lodash';
 import React, { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -31,7 +32,7 @@ export default function IPOScreen() {
           return <View style={[styles.listItem]} key={index}>
             <View style={[styles.nameAndSubscribe, commonStyles.rowStart]}>
               <View style={commonStyles.flex1}><Text style={[styles.nameText]}>{get(item, 'stockName')}</Text></View>
-              <Button textStyle={commonStyles.subscribeBtnText} style={commonStyles.subscribeBtn}>{t('subscribeBtn')}</Button>
+              <Button onPress={() => router.push('/(ipo)/subscribe')} textStyle={commonStyles.subscribeBtnText} style={commonStyles.subscribeBtn}>{t('subscribeBtn')}</Button>
             </View>
             <View style={[styles.labelAndId, commonStyles.rowStart]}>
               <View style={styles.stockLabel}><Text style={styles.stockLabelText}>US</Text></View>
@@ -56,7 +57,7 @@ export default function IPOScreen() {
               <View style={[commonStyles.rowBetween]}>
                 <Text style={[styles.fieldLabel]}>{t('progress')}</Text>
                 <View style={[styles.progressBar]}>
-                  <View style={[styles.progress, {width: progress}]} />
+                  <View style={[styles.progress, { width: progress }]} />
                 </View>
               </View>
             </View>
@@ -148,7 +149,7 @@ export function IPOHeader(): React.ReactNode {
         <Text style={[styles.titleText]}>{t('title')}</Text>
       </View>,
       headerRight: () => <View style={[commonStyles.alignEnd]}>
-        <TouchableOpacity style={styles.historyIcon}>
+        <TouchableOpacity onPress={() => router.push('/(ipo)/history')} style={styles.historyIcon}>
           <IconFont color={theme.primaryText} size={ms(29)} name="a-icon-48-Historicalrecords" />
         </TouchableOpacity>
       </View>

@@ -1,5 +1,6 @@
-import { SafeAreaView, ScrollView, TouchableOpacity } from "@/components/ThemeWidget";
+import { SafeAreaView, ScrollView } from "@/components/ThemeWidget";
 import { Divider } from "@/components/ui";
+import { ScrollTabs } from "@/components/ui/scroll-tabs";
 import { ThemeType } from "@/constants/Colors";
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
@@ -9,15 +10,16 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import { ms } from "react-native-size-matters";
 
-const tabs = [
-    { label: 'OTC.history.tabs.subscribed', value: 'subscribed' },
-    { label: 'OTC.history.tabs.inProgress', value: 'inProgress' },
-    { label: 'OTC.history.tabs.IPOSuccessful', value: 'IPOSuccessful' }
-]
 export default function OTCHistoryPage() {
     const { t } = useTranslation()
     const { theme } = useTheme()
     const styles = useMemo(() => creareStyles(theme), [theme])
+    const tabs = useMemo(() => [
+        { label: t('OTC.history.tabs.subscribed'), value: 'subscribed' },
+        { label: t('OTC.history.tabs.inProgress'), value: 'inProgress' },
+        { label: t('OTC.history.tabs.IPOSuccessful'), value: 'IPOSuccessful' }
+    ], [t])
+
     const [tab, setTab] = useState(tabs[0].value)
     const listRenderKey = ['issuePrice', 'minPurchaseQuantity', 'startTime', 'endTime', 'IPOTime']
     const onSetTab = (tab: string) => {
@@ -29,17 +31,7 @@ export default function OTCHistoryPage() {
     ]
 
     return <SafeAreaView>
-        <View style={styles.tabs}>
-            <ScrollView style={styles.tabsScrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-                <View style={styles.tabsWrapper}>
-                    {tabs.map((item, index) => <View style={[index ? styles.tab : null]} key={item.value}>
-                        <TouchableOpacity onPress={() => onSetTab(item.value)}>
-                            <Text style={[styles.tabText, item.value === tab ? styles.tabActiveText : null]}>{t(item.label)}</Text>
-                        </TouchableOpacity>
-                    </View>)}
-                </View>
-            </ScrollView>
-        </View>
+        <ScrollTabs tabs={tabs} tab={tab} onTab={item => setTab(item.value)} />
         <ScrollView style={[commonStyles.flex1]}>
             <View style={styles.list}>
                 {list.map(item => <View key={item.id} style={styles.item}>
@@ -60,30 +52,6 @@ export default function OTCHistoryPage() {
 
 function creareStyles(theme: ThemeType) {
     return StyleSheet.create({
-        tabs: {
-            height: ms(45),
-            paddingVertical: ms(7.5),
-            overflow: 'hidden'
-        },
-        tab: {
-            marginLeft: ms(30)
-        },
-        tabsScrollView: {
-            ...commonStyles.flexRow,
-            height: '100%',
-        },
-        tabsWrapper: {
-            paddingHorizontal: ms(15),
-            ...commonStyles.flexRow
-        },
-        tabText: {
-            color: theme.secondaryText,
-            fontSize: ms(18),
-            lineHeight: ms(25)
-        },
-        tabActiveText: {
-            color: theme.primary
-        },
         list: {
             paddingHorizontal: ms(15)
         },

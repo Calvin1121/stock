@@ -10,6 +10,7 @@ export const dark = {
     card: '#1B1C28',
     cardDivide: '#2C2E41',
     ipoCard: '#2C2D38',
+    ipoStatusBackground: 'rgba(255,255,255, .1)',
     stockLabel: '#222841',
     snapCard: '#1B2036',
     primaryText: '#fff',
