@@ -1,0 +1,38 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { GProps, SvgXml } from 'react-native-svg';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+const xml = `
+<svg id="icon_58_提现" data-name="icon/58/提现" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.043" y1="0.225" x2="0.908" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#41d6f5"/>
+      <stop offset="1" stop-color="#1b52b2"/>
+    </linearGradient>
+  </defs>
+  <rect id="icon_58_提币_background" data-name="icon/58/提币 background" width="58" height="58" fill="#11121a" opacity="0"/>
+  <path id="减去_18" data-name="减去 18" d="M-233.2-6229H-264a3.008,3.008,0,0,1-2.22-.983,3.01,3.01,0,0,1-.766-2.307l1.682-17.375V-6257a3,3,0,0,1,3-3h5.37a16.1,16.1,0,0,0-4.369,10.747,16.841,16.841,0,0,0,1.394,6.537.027.027,0,0,1,0-.012l0-.012a48.578,48.578,0,0,1,1.875-5.05c.214-.488.43-.958.642-1.4a26.473,26.473,0,0,1,2.958-4.893,9.282,9.282,0,0,1,3.914-3.153l4.758,4.053a.112.112,0,0,1,0-.03,61.388,61.388,0,0,1,.272-6.789h-11.447a15.876,15.876,0,0,1,2.025-1.909l-3.315-4.162,15.156-2.925c-1.189,1.762-2,4.789-2.418,9h22.879a3.006,3.006,0,0,1,2.22.983,3.016,3.016,0,0,1,.766,2.308l-1.633,16.864a11.967,11.967,0,0,1-3.878,7.729A11.974,11.974,0,0,1-233.2-6229Zm-18.1-11a2,2,0,0,0-2,2,2,2,0,0,0,2,2h20a2,2,0,0,0,2-2,2,2,0,0,0-2-2Zm11-6a2,2,0,0,0-2,2,2,2,0,0,0,2,2h9a2,2,0,0,0,2-2,2,2,0,0,0-2-2Z" transform="translate(273.304 6278.002)" fill="url(#linear-gradient)"/>
+</svg>
+`
+
+let IconWithdrawDark: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <SvgXml xml={xml}  width={size} height={size} {...rest} />
+  );
+};
+
+IconWithdrawDark.defaultProps = {
+  size: 18,
+};
+
+IconWithdrawDark = React.memo ? React.memo(IconWithdrawDark) : IconWithdrawDark;
+
+export default IconWithdrawDark;

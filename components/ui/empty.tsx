@@ -18,7 +18,8 @@ export const Empty = (props: Props) => {
     const { theme } = useTheme()
     const themeName = useThemeStore(e => e.themeName)
     const styles = useMemo(() => createStyles(theme), [theme])
-    const defaultIcon = `empty-${themeName}` as IconNames
+    // TODO
+    const defaultIcon = `empty-dark` as IconNames
     return <View style={[commonStyles.columnCenter, styles.comtainer]}>
         {props.children || <View style={[commonStyles.columnCenter, {marginTop: vs(150)}]}>
             <IconFont size={ms(150)} name={defaultIcon} />

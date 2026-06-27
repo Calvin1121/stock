@@ -224,14 +224,44 @@ export default {
       selectedCount: '中签数量',
       payAmount: '需支付的价格',
       paidAmount: '已支付金额',
-      payingAmount:'剩余待支付金额'
+      payingAmount: '剩余待支付金额'
     }
   },
   assets: {
-    title: '资产',
-    totalAssets: '总资产',
-    dailyReturn: '日收益',
-    holdings: '持仓',
+    title: '交易',
+    expectTotalAssets: '预计总资产（{{currency}}）',
+    currency: '₦',
+    dailyReturn: '每日增益',
+    stockTotalAssets: '股票總價值',
+    enteringAssets: '待入账',
+    historicalIncome: '歷史收益',
+    cashBalance: '現金餘額',
+    frozenAmount: '凍結資金',
+    pendingSubscription: '待處理訂閱',
+    tabs: {
+      recharge: '充值',
+      withdraw: '提现',
+      redeem: '兑换',
+      records: '历史记录'
+    },
+    holdingStocks: '我的持股',
+    orders: '訂單',
+    holdingStocksTabs: {
+      symbolAndName: '符号/名称',
+      priceAndQuantity: '價值/數量',
+      currentPriceAndCost: '現價/成本',
+      profitAndLoss: '損益'
+    },
+    ordersTabs: {
+      symbolAndName: '符号/名称',
+      tradeType: '方向',
+      priceAndQuantity: '數量/價值',
+      profitAndLoss: '盈亏'
+    },
+    tradeType: {
+      buy: '买入',
+      sell: '卖出'
+    }
   },
   news: {
     title: '新闻',

@@ -1,0 +1,10 @@
+<svg id="icon_58_兑换" data-name="icon/58/兑换" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <linearGradient id="linear-gradient" x2="0.957" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#41d6f5"/>
+      <stop offset="1" stop-color="#1b52b2"/>
+    </linearGradient>
+  </defs>
+  <rect id="icon_58_兑换_background" data-name="icon/58/兑换 background" width="58" height="58" fill="#11121a" opacity="0"/>
+  <path id="减去_19" data-name="减去 19" d="M-404.736-6236h-33.527a2.74,2.74,0,0,1-2.737-2.737v-29.526a2.74,2.74,0,0,1,2.737-2.737h33.527a2.74,2.74,0,0,1,2.737,2.737v29.526A2.74,2.74,0,0,1-404.736-6236Zm-28.278-16.08a.371.371,0,0,0-.376.365v2.743a.371.371,0,0,0,.376.365h12.946a.371.371,0,0,1,.375.365v4.308a.373.373,0,0,0,.378.367.38.38,0,0,0,.228-.077l10.241-7.614a.437.437,0,0,0,.166-.5.461.461,0,0,0-.448-.32Zm10.28-10.406a.381.381,0,0,0-.228.077L-433.2-6254.8a.441.441,0,0,0-.164.5.464.464,0,0,0,.45.32h23.883a.371.371,0,0,0,.376-.365v-2.743a.377.377,0,0,0-.379-.365h-12.946a.371.371,0,0,1-.375-.365v-4.309A.372.372,0,0,0-422.734-6262.486Z" transform="translate(451 6282)" fill="url(#linear-gradient)"/>
+</svg>

@@ -144,7 +144,8 @@ export const LoginHeaderRight = () => {
   }, [handleLanguageChange, show, t])
   return <View style={[commonStyles.alignEnd, commonStyles.relative]}>
     <TouchableOpacity style={{marginRight: ms(15)}} onPress={onChangeLang}>
-      <IconFont name={`lang-${themeName}` as IconNames} size={ms(29)} />
+      {/* // TODO */}
+      <IconFont name={`lang-dark` as IconNames} size={ms(29)} />
     </TouchableOpacity>
   </View>
 }

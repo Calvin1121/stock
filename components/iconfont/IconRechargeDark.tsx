@@ -1,0 +1,38 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { GProps, SvgXml } from 'react-native-svg';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+const xml = `
+<svg id="icon_58_充值" data-name="icon/58/充值" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.111" y1="0.203" x2="0.897" y2="1.065" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#41d6f5"/>
+      <stop offset="1" stop-color="#1b52b2"/>
+    </linearGradient>
+  </defs>
+  <rect id="icon_58_充币_background" data-name="icon/58/充币 background" width="58" height="58" fill="#11121a" opacity="0"/>
+  <path id="减去_16" data-name="减去 16" d="M-58.2-6219H-87a3,3,0,0,1-2.221-.983,3.015,3.015,0,0,1-.767-2.306l2.421-25a3,3,0,0,1,.561-1.482,3.008,3.008,0,0,1,2.426-1.23h11.621c-1.582,2.4-3.231,3.917-4.9,4.52l-4.757-4.053a.064.064,0,0,1,0,.017v.016c.012.685.034,3.141-.2,5.975l-.019.226,0,.028v.008c-.007.079-.014.16-.022.242a27.754,27.754,0,0,1-1.752,8.033,8.668,8.668,0,0,1-.693,1.272l15.153-2.924-3.316-4.164.006,0a16.542,16.542,0,0,0,2.478-2.441c.163-.2.315-.385.465-.578A16.843,16.843,0,0,0-67.482-6250h-5.476a43.022,43.022,0,0,0,4.5-10,15.773,15.773,0,0,1,.981,10h19.875a2.979,2.979,0,0,1,1.689.523,3.013,3.013,0,0,1,.533.46,3.02,3.02,0,0,1,.765,2.307l-.859,8.864-.775,8a11.973,11.973,0,0,1-3.879,7.728A11.971,11.971,0,0,1-58.2-6219ZM-74.3-6230a2,2,0,0,0-2,2,2,2,0,0,0,2,2h20a2,2,0,0,0,2-2,2,2,0,0,0-2-2Zm11-6a2,2,0,0,0-2,2,2,2,0,0,0,2,2h9a2,2,0,0,0,2-2,2,2,0,0,0-2-2Z" transform="translate(96.303 6268)" fill="url(#linear-gradient)"/>
+</svg>
+`
+
+let IconRechargeDark: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <SvgXml xml={xml}  width={size} height={size} {...rest} />
+  );
+};
+
+IconRechargeDark.defaultProps = {
+  size: 18,
+};
+
+IconRechargeDark = React.memo ? React.memo(IconRechargeDark) : IconRechargeDark;
+
+export default IconRechargeDark;

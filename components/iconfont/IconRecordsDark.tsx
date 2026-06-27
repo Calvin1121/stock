@@ -1,0 +1,38 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { GProps, SvgXml } from 'react-native-svg';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+const xml = `
+<svg id="icon_58_历史记录" data-name="icon/58/历史记录" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="58" height="58" viewBox="0 0 58 58">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.04" x2="0.856" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#41d6f5"/>
+      <stop offset="1" stop-color="#1b52b2"/>
+    </linearGradient>
+  </defs>
+  <rect id="icon_58_划转_background" data-name="icon/58/划转 background" width="58" height="58" fill="#11121a" opacity="0"/>
+  <path id="路径_19" data-name="路径 19" d="M38.1,53.348a11.332,11.332,0,1,1,8.013,3.319A11.258,11.258,0,0,1,38.1,53.348ZM44.777,40v5.333a1.326,1.326,0,0,0,.207.712,1.334,1.334,0,0,0,.751.984l3.625,1.691a1.322,1.322,0,0,0,.563.125,1.335,1.335,0,0,0,1.254-1.79,1.322,1.322,0,0,0-.689-.753l-3.043-1.419V40a1.333,1.333,0,1,0-2.667,0ZM37.888,56.667H21.364a1.92,1.92,0,0,1-1.92-1.92V18.587a1.92,1.92,0,0,1,1.92-1.92H50.857a1.92,1.92,0,0,1,1.92,1.92V33.02A14,14,0,0,0,37.889,56.667Zm-11.778-22A1.333,1.333,0,0,0,27.444,36h5.333a1.333,1.333,0,1,0,0-2.667H27.444a1.333,1.333,0,0,0-1.333,1.333Zm0-8A1.333,1.333,0,0,0,27.444,28H44.777a1.333,1.333,0,1,0,0-2.667H27.444a1.333,1.333,0,0,0-1.333,1.333Z" transform="translate(-9.632 -7.708)" fill="url(#linear-gradient)"/>
+</svg>
+`
+
+let IconRecordsDark: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <SvgXml xml={xml}  width={size} height={size} {...rest} />
+  );
+};
+
+IconRecordsDark.defaultProps = {
+  size: 18,
+};
+
+IconRecordsDark = React.memo ? React.memo(IconRecordsDark) : IconRecordsDark;
+
+export default IconRecordsDark;
