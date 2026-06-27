@@ -1,0 +1,47 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { GProps, SvgXml } from 'react-native-svg';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+const xml = `
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.077" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff8b8b"/>
+      <stop offset="1" stop-color="#b41d1d"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#41d6f5"/>
+      <stop offset="1" stop-color="#0f97b4"/>
+    </linearGradient>
+  </defs>
+  <g id="icon_64_Pre-market" data-name="icon/64/Pre-market" transform="translate(7 7)">
+    <rect id="矩形_3371" data-name="矩形 3371" width="64" height="64" rx="20" transform="translate(-7 -7)" fill="url(#linear-gradient)"/>
+    <g id="浏览器" transform="translate(5.991 5)">
+      <rect id="矩形" width="40" height="40" transform="translate(-0.991)" opacity="0" fill="url(#linear-gradient-2)"/>
+      <path id="联合_7" data-name="联合 7" d="M-255.358-466.65a.954.954,0,0,1-.953-.951v-23.792l-3.936,2.812a.95.95,0,0,1-1.328-.225.95.95,0,0,1,.225-1.328l19.036-13.6a.959.959,0,0,1,1.106,0l19.036,13.6a.949.949,0,0,1,.223,1.328.951.951,0,0,1-.775.4.975.975,0,0,1-.553-.176l-18.484-13.2-12.643,9.034v24.2h16.087a9.566,9.566,0,0,0,2.392,1.9Zm15.987-8.358a8.066,8.066,0,0,1,8.016-8.1,8.066,8.066,0,0,1,8.016,8.1,8.067,8.067,0,0,1-8.016,8.1A8.067,8.067,0,0,1-239.371-475.008Zm1.651,0a6.406,6.406,0,0,0,6.366,6.431,6.406,6.406,0,0,0,6.366-6.431,6.406,6.406,0,0,0-6.366-6.431A6.405,6.405,0,0,0-237.721-475.008Zm-4.992,3.045V-481.2a.953.953,0,0,1,.951-.951.954.954,0,0,1,.953.951v9.236a.954.954,0,0,1-.953.953A.954.954,0,0,1-242.713-471.964Zm-6.041,0V-481.2a.954.954,0,0,1,.953-.951.953.953,0,0,1,.951.951v9.236a.954.954,0,0,1-.951.953A.954.954,0,0,1-248.754-471.964Zm17.279-1.723a.954.954,0,0,1-.953-.953v-3.619a.952.952,0,0,1,.949-.949.953.953,0,0,1,.953.949v2.668h2.667a.953.953,0,0,1,.951.951.954.954,0,0,1-.951.953Zm2.362-10.6v-2.384a.954.954,0,0,1,.953-.953.954.954,0,0,1,.951.953v3.081A9.089,9.089,0,0,0-229.113-484.286ZM-250.71-486a.949.949,0,0,1,.263-1.321l6.206-4.135a.954.954,0,0,1,1.242.165l3.022,3.429,5.782-4.938a.95.95,0,0,1,1.34.106.951.951,0,0,1-.106,1.341l-6.493,5.548a.955.955,0,0,1-1.333-.093l-3.092-3.512-5.511,3.673a.943.943,0,0,1-.526.16A.956.956,0,0,1-250.71-486Z" transform="translate(260.761 504.907)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
+`
+
+let IconPreMarket: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <SvgXml xml={xml}  width={size} height={size} {...rest} />
+  );
+};
+
+IconPreMarket.defaultProps = {
+  size: 18,
+};
+
+IconPreMarket = React.memo ? React.memo(IconPreMarket) : IconPreMarket;
+
+export default IconPreMarket;

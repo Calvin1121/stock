@@ -120,7 +120,7 @@ export default function HomeScreen() {
       <View style={[commonStyles.flex1, commonStyles.flexRow, styles.categories]}>
         {categories.map(category => <View style={[commonStyles.columnCenter, commonStyles.flex1]} key={category.value}>
           <TouchableOpacity onPress={() => onTabTap(category.value)} style={commonStyles.columnCenter}>
-            <View style={styles.categoryIcon} />
+            <IconFont size={ms(32)} name={category.value} />
             <Text style={styles.categoryText}>{t(category.label)}</Text>
           </TouchableOpacity>
         </View>)}
@@ -212,19 +212,12 @@ function createStyles(theme: ThemeType) {
     categories: {
       paddingVertical: ms(15)
     },
-    categoryIcon: {
-      width: 32,
-      height: 32,
-      backgroundColor: '#41D6F5',
-      borderRadius: 5
-    },
     categoryText: {
       color: theme.primaryText,
       marginTop: ms(7),
       fontSize: ms(10)
     },
     main: {
-      // paddingVertical: ms(15)
     },
     mainTitleBorder: {
     },

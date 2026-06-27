@@ -1,0 +1,47 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { GProps, SvgXml } from 'react-native-svg';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+const xml = `
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.077" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffb78d"/>
+      <stop offset="1" stop-color="#ef571e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#41d6f5"/>
+      <stop offset="1" stop-color="#0f97b4"/>
+    </linearGradient>
+  </defs>
+  <g id="icon_64_Block_trade" data-name="icon/64/Block trade" transform="translate(7 7)">
+    <rect id="矩形_3371" data-name="矩形 3371" width="64" height="64" rx="20" transform="translate(-7 -7)" fill="url(#linear-gradient)"/>
+    <g id="浏览器" transform="translate(5 5)">
+      <rect id="矩形" width="40" height="40" opacity="0" fill="url(#linear-gradient-2)"/>
+      <path id="路径_2" data-name="路径 2" d="M49.873,13.975l5.812,7.167h-3.6v2.941a14.932,14.932,0,0,0-4.743.081V21.142H44.058l5.812-7.167Zm-11.857,5.65,4.958,6.12H39.908v2.139A8.823,8.823,0,0,0,35.857,32.8V25.742H33.05l4.964-6.12ZM64.18,39.665a14.31,14.31,0,1,1-14.31-14.31A14.31,14.31,0,0,1,64.18,39.665Zm-2.021.014a12.289,12.289,0,1,0-24.575-.392q0,.2,0,.392a12.289,12.289,0,0,0,24.575,0Zm-8.588-.255a4.464,4.464,0,0,0-1.356-.877,13.554,13.554,0,0,0-1.776-.518V32.974a2.417,2.417,0,0,1,1.368.726,3,3,0,0,1,.657,1.583L54.3,35.01a3.977,3.977,0,0,0-1.4-2.619,4.436,4.436,0,0,0-2.462-.9v-.839H49.4v.839a4.736,4.736,0,0,0-2.666.952,3.808,3.808,0,0,0-1.343,3.032,3.756,3.756,0,0,0,.459,1.879,3.259,3.259,0,0,0,1.3,1.3,7.492,7.492,0,0,0,2.243.839v5.58a2.612,2.612,0,0,1-1.8-1.04,4.456,4.456,0,0,1-.729-2.076l-1.779.33a4.81,4.81,0,0,0,.7,2.309,3.785,3.785,0,0,0,1.441,1.372,6.549,6.549,0,0,0,2.17.588v1.754h1.043V46.539a4.33,4.33,0,0,0,3.042-1.306,4.2,4.2,0,0,0,1.178-3.039,4.1,4.1,0,0,0-.284-1.539,3.52,3.52,0,0,0-.8-1.23ZM49.4,37.807a3.461,3.461,0,0,1-1.725-.963,2.413,2.413,0,0,1,.088-3.066,2.646,2.646,0,0,1,1.638-.821Zm2.757,6.385a2.626,2.626,0,0,1-1.714.883V39.738a4.126,4.126,0,0,1,1.911,1.036,2.325,2.325,0,0,1,.478,1.536,2.719,2.719,0,0,1-.675,1.878Z" transform="translate(-29.05 -13.975)" fill="#fff"/>
+    </g>
+  </g>
+</svg>
+`
+
+let IconBlockTrade: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <SvgXml xml={xml}  width={size} height={size} {...rest} />
+  );
+};
+
+IconBlockTrade.defaultProps = {
+  size: 18,
+};
+
+IconBlockTrade = React.memo ? React.memo(IconBlockTrade) : IconBlockTrade;
+
+export default IconBlockTrade;
