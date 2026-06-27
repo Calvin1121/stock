@@ -4,6 +4,7 @@ import { Header } from '@/components/useCommon';
 import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
+import { router } from 'expo-router';
 import { get } from 'lodash';
 import { useCallback, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -32,21 +33,36 @@ function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionPr
   const dailyReturnVolStyle = true ? theme.success : theme.error
   const cardFields = ['stockTotalAssets', 'enteringAssets', 'historicalIncome', 'cashBalance', 'frozenAmount', 'pendingSubscription']
   const tabs = ['recharge', 'withdraw', 'redeem', 'records']
-
+  const onPressTab = useCallback((tab: string) => {
+    switch (tab) {
+      case 'recharge':
+        // router.push('/(trade)/recharge')
+        break
+      case 'withdraw':
+        router.push('/(trade)/withdraw')
+        break
+      case 'redeem':
+        router.push('/(trade)/redeem')
+        break
+      case 'records':
+        router.push('/(trade)/records')
+        break
+    }
+  }, [])
   return <View style={[styles.infoSection]}>
     <ImageBackground style={[styles.cardContainer]} source={cardBg}>
       <View style={[commonStyles.mainLayoutPadding]}>
         <View style={commonStyles.rowBetween}>
           <Text style={styles.expectTotalAssets}>{t('expectTotalAssets', { currency: t('currency') })}</Text>
           <TouchableOpacity onPress={onToggleVisibility}>
-            <IconFont {...styles.visibleIcon} size={ms(21)} name={!isVisible ? 'icon-48-Hide' : 'icon-42-Trade-display'} />
+            <IconFont {...styles.visibleIcon} size={ms(21)} name={!isVisible ? 'icon-42-Trade-hidden' : 'icon-42-Trade-display'} />
           </TouchableOpacity>
         </View>
         <View style={[styles.expectTotalAssetsAndDailyReturn]}>
-          <Text style={[styles.expectTotalAssetsText]}>{isVisible ? 0 : '-'}</Text>
+          <Text style={[styles.expectTotalAssetsText]}>{isVisible ? 0 : '***'}</Text>
           <View style={[styles.dailyReturn, commonStyles.rowStart]}>
             <Text style={[styles.dailyReturnText]}>{t('dailyReturn')}</Text>
-            <Text style={[styles.dailyReturnText, { color: dailyReturnVolStyle }]}>{isVisible ? 0 : '-'}</Text>
+            <Text style={[styles.dailyReturnText, { color: dailyReturnVolStyle }]}>{isVisible ? 0 : '***'}</Text>
           </View>
         </View>
         <View style={[styles.fieldItems]}>
@@ -54,7 +70,7 @@ function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionPr
             const isLast = index % 3 === 2
             return <View style={[styles.fieldItem, isLast ? commonStyles.alignEnd : commonStyles.alignStart]} key={field}>
               <Text style={[styles.fieldLabel]}>{t(field)}</Text>
-              <Text style={[styles.fieldValue]}>{isVisible ? '514,517' : '-'}</Text>
+              <Text style={[styles.fieldValue]}>{isVisible ? '514,517' : '***'}</Text>
             </View>
           })}
         </View>
@@ -62,7 +78,7 @@ function InfoSection({ isVisible, onToggleVisibility, t, styles }: InfoSectionPr
     </ImageBackground>
     <View style={[styles.tabs, commonStyles.rowCenter]}>
       {tabs.map((tab) => <View style={[commonStyles.flex1, commonStyles.columnCenter]} key={tab}>
-        <TouchableOpacity style={[commonStyles.columnCenter]}>
+        <TouchableOpacity onPress={() => onPressTab(tab)} style={[commonStyles.columnCenter]}>
           {/* TODO */}
           <IconFont name={`${tab}-dark` as IconNames} size={ms(29)} />
           <Text style={[styles.tabText]}>{t(`tabs.${tab}`)}</Text>
@@ -139,7 +155,7 @@ export default function AssetsScreen() {
       style={commonStyles.flex1}
       stickyHeaderIndices={[1]}
       onScroll={handleScroll}
-      scrollEventThrottle={16}
+      scrollEventThrottle={15}
     >
       <View onLayout={handleInfoLayout}>
         <InfoSection isVisible={isVisible} onToggleVisibility={handleToggleVisibility} t={t} styles={styles} />
@@ -332,7 +348,7 @@ function createStyles(theme: ThemeType) {
 
 export function AssetsHeader(): React.ReactNode {
   const { theme } = useTheme()
-  const { t } = useTranslation('news')
+  const { t } = useTranslation('assets')
   const styles = useMemo(() => createHeaderStyles(theme), [theme])
   const props = {
     options: {

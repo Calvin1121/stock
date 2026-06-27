@@ -261,6 +261,18 @@ export default {
     tradeType: {
       buy: '买入',
       sell: '卖出'
+    },
+    withdraw: {
+      title: '提现',
+      withdrawBtn: '提现',
+      incomeAmount: '到账数量',
+      selectCurrency: '选择币种',
+    },
+    redeem: {
+      title: '兑换',
+    },
+    records: {
+      title: '历史记录',
     }
   },
   news: {
