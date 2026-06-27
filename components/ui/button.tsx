@@ -90,12 +90,11 @@ function createStyles(
             borderColor: variantTheme.borderColor,
             borderWidth: variant === 'ghost'? 0 : ms(1),
             paddingHorizontal: ms(15),
+            height: vs(45)
         },
         buttonText: {
             color: variantTheme.textColor,
             fontSize: ms(18),
-            height: vs(45),
-            lineHeight: vs(45),
         } as TextStyle,
         spinnerColor: variantTheme.spinnerColor,
         loadingStyle: {

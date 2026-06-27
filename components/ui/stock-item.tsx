@@ -86,7 +86,7 @@ function createStyles(theme: ThemeType) {
             borderRadius: ms(2)
         },
         changeTagText: {
-            fontSize: ms(15)
+            fontSize: vs(15)
         }
     })
 }

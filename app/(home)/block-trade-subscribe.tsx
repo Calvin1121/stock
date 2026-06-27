@@ -21,6 +21,8 @@ export default function BlockTradeSubscribePage() {
         marketPrice: '9.50',
         priceDiff: '15.50',
         publishPrice: '25.00',
+        discountRate: '123.88%', 
+        buyCount: '25560000',
         openDate: '2026-06-10',
         closeDate: '2026-06-17',
         matchDate: '2026-06-17',

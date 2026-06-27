@@ -20,7 +20,6 @@ export default function OTCPage() {
     const list = [
         { name: 'Japan Physical Gold ETF Japan Physical Gold ETF Japan Physical Gold ETF', id: '1540', issuePrice: '21340 円', minPurchaseQuantity: 500, startTime: '2025/10/01 00:00:00', endTime: '2025/10/01 00:00:00', IPOTime: '2026/11/11 13:00:00' },
         { name: 'Japan Physical Gold ETF Japan Physical Gold ETF Japan Physical Gold ETF', id: '1541', issuePrice: '21340 円', minPurchaseQuantity: 500, startTime: '2025/10/01 00:00:00', endTime: '2025/10/01 00:00:00', IPOTime: '2026/11/11 13:00:00' }
-
     ]
     return <SafeAreaView>
         <ScrollView style={commonStyles.mainLayoutPadding}>
@@ -53,9 +52,7 @@ function createSyles(theme: ThemeType) {
             borderRadius: ms(10),
             backgroundColor: theme.primary
         },
-        list: {
-
-        },
+        list: {},
         item: {
             backgroundColor: theme.card,
             borderRadius: ms(10),
