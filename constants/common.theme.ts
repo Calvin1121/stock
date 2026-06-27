@@ -9,6 +9,8 @@ export const dark = {
     overlayBackground: 'rgba(0,0,0,.5)',
     card: '#1B1C28',
     cardDivide: '#2C2E41',
+    ipoCard: '#2C2D38',
+    stockLabel: '#222841',
     snapCard: '#1B2036',
     primaryText: '#fff',
     secondaryText: '#A5A5A5',

@@ -185,9 +185,13 @@ export default {
   },
   ipo: {
     title: 'IPO',
-    upcoming: '即将上市',
-    history: '历史记录',
-    subscribe: '申购',
+    publishPrice: '发行价',
+    currency: 'USD',
+    deadline: '截止日期',
+    dayRest: '<0>{{day}}</0> day left',
+    daysRest: '<0>{{day}}</0> days left',
+    progress: '进度',
+    subscribeBtn: '订阅',
   },
   assets: {
     title: '资产',

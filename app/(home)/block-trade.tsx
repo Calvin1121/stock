@@ -8,7 +8,7 @@ import { get } from "lodash";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
-import { ms, s, vs } from "react-native-size-matters";
+import { ms } from "react-native-size-matters";
 
 const tabs = [
     { label: 'blockTrade.tabs.subscribed', value: 'subscribed' },
@@ -49,7 +49,7 @@ export default function BlockTradePage() {
                             <View style={[styles.tradeName, commonStyles.flex1]}>
                                 <Text style={[styles.tradeNameText]}>{item.tradeName}</Text>
                             </View>
-                            {isSubscribed && <Button onPress={() => router.push('/block-trade-subscribe')} variant="solid" textStyle={styles.subscribeBtnText} style={[styles.subscribeBtn]}>{t('blockTrade.subscribeBtn')}</Button>}
+                            {isSubscribed && <Button onPress={() => router.push('/block-trade-subscribe')} variant="solid" textStyle={commonStyles.subscribeBtnText} style={[commonStyles.subscribeBtn]}>{t('blockTrade.subscribeBtn')}</Button>}
                         </View>
                         <View><Text style={[styles.tradeShortNameText]}>{item.tradeShortName}</Text></View>
                         <View style={[styles.fieldItems]}>
@@ -130,14 +130,6 @@ function creareStyles(theme: ThemeType) {
             color: theme.primaryText,
             fontSize: ms(15),
             lineHeight: ms(21)
-        },
-        subscribeBtn: {
-            minWidth: s(60),
-            height: vs(25),
-            borderRadius: ms(25)
-        },
-        subscribeBtnText: {
-            fontSize: ms(13)
         },
         tradeShortNameText: {
             marginTop: ms(5),

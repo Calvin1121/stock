@@ -10,7 +10,7 @@ import { get } from "lodash"
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { StyleSheet, Text, View } from "react-native"
-import { ms, s, vs } from "react-native-size-matters"
+import { ms, vs } from "react-native-size-matters"
 
 export default function OTCPage() {
     const { theme } = useTheme()
@@ -30,7 +30,7 @@ export default function OTCPage() {
                         <View style={[commonStyles.flex1]}>
                             <Text style={[styles.stockName]}>{item.name}</Text>
                         </View>
-                        <Button onPress={() => router.push({pathname: '/(home)/OTC-detail', params: {id: item.id}})} textStyle={styles.subscribeBtnText} style={[styles.subscribeBtn]}>{t('OTC.subscribe')}</Button>
+                        <Button onPress={() => router.push({pathname: '/(home)/OTC-detail', params: {id: item.id}})} textStyle={commonStyles.subscribeBtnText} style={[commonStyles.subscribeBtn]}>{t('OTC.subscribe')}</Button>
                     </View>
                     <View><Text style={[styles.itemId]}>{item.id}</Text></View>
                     {listRenderKey.map(key => <View style={[commonStyles.rowBetween, styles.itemField]} key={`${item.id}_${key}`}>
@@ -68,14 +68,6 @@ function createSyles(theme: ThemeType) {
             fontSize: ms(15),
             lineHeight: ms(21),
             fontWeight: 500
-        },
-        subscribeBtn: {
-            minWidth: s(60),
-            height: vs(25),
-            borderRadius: ms(25)
-        },
-        subscribeBtnText: {
-            fontSize: ms(13)
         },
         itemId: {
             color: theme.secondaryText,

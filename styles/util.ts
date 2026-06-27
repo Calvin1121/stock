@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ms } from "react-native-size-matters";
+import { ms, s, vs } from "react-native-size-matters";
 export const commonStyles = StyleSheet.create({
     flex0: {
         flex: 0,
@@ -111,5 +111,13 @@ export const commonStyles = StyleSheet.create({
     secondaryLayoutPadding: {
         paddingHorizontal: ms(30),
         paddingVertical: ms(15),
+    },
+    subscribeBtn: {
+        minWidth: s(60),
+        height: vs(25),
+        borderRadius: ms(25)
+    },
+    subscribeBtnText: {
+        fontSize: ms(13)
     },
 });
