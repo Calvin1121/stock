@@ -266,7 +266,20 @@ export default {
       title: '提现',
       withdrawBtn: '提现',
       incomeAmount: '到账数量',
-      selectCurrency: '选择币种',
+      availableAmount: '可用 {{anount}} {{currency}}',
+      selectCurrency: {
+        label: '选择币种'
+      },
+      withdrawAddress: {
+        label: '提币地址',
+        placeholder: '输入或长按粘贴地址'
+      },
+      quantity: {
+        all: '全部',
+        label: '数量',
+        placeholder: '最小提币数量 200'
+      },
+      tips: '最小提币数量为：100 ETH （OMNI)。\n为保障资金安全，我们会对提币进行人工审核，请耐心等待工作人员联系。\n请务必确认电脑及浏览器安全，防止信息被篡改或泄露。'
     },
     exchange: {
       title: '兑换',

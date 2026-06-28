@@ -99,7 +99,7 @@ export default function ExchangePage() {
                     </View>
                     <View style={[commonStyles.rowStart, styles.buttons]}>
                         <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} variant="outline">比特币</Button>
-                        <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} type="info" variant="outline">比特币</Button>
+                        <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} type="info" variant="outline">以太坊</Button>
                     </View>
                     <View style={[commonStyles.rowCenter]}>
                         <View style={[styles.qrcodeContent, commonStyles.rowCenter]}>

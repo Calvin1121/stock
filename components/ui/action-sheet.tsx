@@ -39,7 +39,7 @@ export interface ActionSheetProps {
   backgroundColor?: string;
   overlayColor?: string;
   dragHandler?: boolean;
-  activeItem?: ActionSheetItem
+  activeItem?: Partial<ActionSheetItem>
 }
 
 export function ActionSheet({
