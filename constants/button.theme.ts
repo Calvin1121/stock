@@ -23,22 +23,22 @@ export const dark = {
     },
     secondary: {
         solid: {
-            background: darkVar.secondary,
-            borderColor: darkVar.secondary,
-            textColor: '#fff',
-            spinnerColor: '#fff'
+            background: '#fff',
+            borderColor: '#fff',
+            textColor: darkVar.primary,
+            spinnerColor: darkVar.primary
         },
         outline: {
             background: 'transparent',
-            borderColor: darkVar.secondary,
-            textColor: darkVar.secondary,
-            spinnerColor: darkVar.secondary
+            borderColor: '#fff',
+            textColor: darkVar.primary,
+            spinnerColor: darkVar.primary
         },
         ghost: {
             background: 'transparent',
             borderColor: 'transparent',
-            textColor: darkVar.secondary,
-            spinnerColor: darkVar.secondary
+            textColor: darkVar.primary,
+            spinnerColor: darkVar.primary
         },
     },
     danger: {

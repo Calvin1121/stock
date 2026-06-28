@@ -16,7 +16,7 @@ let IconAIcon36DanxuanSinglechoiceSelected: FunctionComponent<Props> = ({ size, 
     <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
       <Path
         d="M819.2 389.688889l-341.333333 344.177778-65.422223-65.422223-142.222222-139.377777 68.266667-68.266667 139.377778 139.377778 275.911111-275.911111z"
-        fill={getIconColor(color, 0, '#FFFFFF')}
+        fill={getIconColor(color, 0, '#2c2c2c')}
       />
     </Svg>
   );

@@ -273,6 +273,21 @@ export default {
     },
     records: {
       title: '历史记录',
+      tabs: {
+        all: '全部',
+        trade: '交易',
+        recharge: '充值',
+        withdraw: '提现',
+      },
+      filters: {
+        all: '全部',
+        commissionEntrustingSales: '委托卖出佣金',
+        IPOTransactionIncome: 'IPO交易入账',
+        IPOTransactionSubscription: 'OTC交易订阅',
+        commissionSales: '委托卖出',
+        frozen: '冻结',
+        fee: '手续费'
+      }
     }
   },
   news: {
