@@ -1,25 +1,31 @@
 import IconFont from "@/components/iconfont"
 import { SafeAreaView, ScrollView, TouchableOpacity } from "@/components/ThemeWidget"
-import { ActionSheetItem, Button, Input, useActionSheet } from "@/components/ui"
+import { ActionSheetItem, Button, Input, Modal, useActionSheet, useToast } from "@/components/ui"
 import { ThemeType } from "@/constants/Colors"
 import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
+import * as FileSystem from 'expo-file-system/legacy'
+import * as MediaLibrary from 'expo-media-library/legacy'
 import { useCallback, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
-import { StyleSheet, Text, View } from "react-native"
+import { Linking, Platform, StyleSheet, Text, View } from "react-native"
 import QRCode from 'react-native-qrcode-svg'
 import { ms, s } from "react-native-size-matters"
 
 
 export default function ExchangePage() {
-    const qrCodeRef = useRef(null)
+    const qrCodeRef = useRef<any>(null)
     const { theme } = useTheme()
     const { t } = useTranslation('assets')
     const [exchangeItem, setExchangeItem] = useState<string[]>([])
     const { show } = useActionSheet()
+    const { showToast } = useToast()
     const styles = useMemo(() => createStyles(theme), [theme])
     const leftCurrency = useMemo(() => exchangeItem?.[0], [exchangeItem])
     const rightCurrency = useMemo(() => exchangeItem?.[1], [exchangeItem])
+    const [isGrantAccess, setIsGrantAccess] = useState(false)
+    const [isSaving, setIsSaving] = useState(false)
+    const [savedResult, setSaveResult] = useState<{ title: string; content: string } | undefined>(undefined)
     const onSelectCurrency = useCallback((index: number) => {
         const onSelect = (item: string) => {
             const _exchangeItem = [...exchangeItem]
@@ -33,61 +39,103 @@ export default function ExchangePage() {
             activeItem: { value: exchangeItem?.[index] } as ActionSheetItem
         })
     }, [exchangeItem])
+    const getQRBase64 = () => {
+        return new Promise<string>(resolver => qrCodeRef.current?.toDataURL((data: string) => resolver(data)))
+    }
     const handleSaveQRCode = useCallback(async () => {
-        console.log(12315)
+        try {
+            setIsSaving(true)
+            const { status } = await MediaLibrary.requestPermissionsAsync();
+            if (status !== 'granted') {
+                setIsSaving(false)
+                setIsGrantAccess(true)
+                return
+            }
+            const base64 = await getQRBase64()
+            const fileUri = FileSystem.cacheDirectory + 'qr.png'
+            await FileSystem.writeAsStringAsync(fileUri, base64, { encoding: FileSystem.EncodingType.Base64, })
+            await MediaLibrary.saveToLibraryAsync(fileUri)
+            setIsSaving(false)
+            showToast({ message: t('exchange.saveQrcodeToast.successContent'), type: 'success' })
+        } catch (error) {
+            setIsSaving(false)
+            showToast({ message: t('exchange.saveQrcodeToast.errorContent'), type: 'error' })
+        }
+    }, [t])
+    const onGrantAccess = useCallback(() => {
+        if (Platform.OS === 'ios') {
+            Linking.openURL('app-settings:');
+        } else {
+            Linking.openSettings();
+        }
     }, [])
-    return <SafeAreaView>
-        <View style={[styles.rate]}>
-            <Text style={styles.rateText}>{t('exchange.rate')}  NGN/USD：0.000694</Text>
-        </View>
-        <ScrollView style={[commonStyles.flex1]}>
-            <View style={[styles.mainContent]}>
-                <View style={[commonStyles.rowStart, styles.selectCurrency]}>
-                    <TouchableOpacity onPress={() => onSelectCurrency(0)} style={[commonStyles.flexRow, commonStyles.alignCenter]}>
-                        <Text style={[styles.selectCurrencyText, leftCurrency ? styles.selectedCurrencyText : null]}>{leftCurrency || t('exchange.selectCurrency')}</Text>
-                        <IconFont color={theme.primaryText} size={ms(12)} name="a-icon-24-Lightgraydrop-down" />
-                    </TouchableOpacity>
-                    <TouchableOpacity activeOpacity={1}>
-                        <IconFont size={ms(29)} name="exchange" />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => onSelectCurrency(1)} style={[commonStyles.flexRow, commonStyles.alignCenter]}>
-                        <Text style={[styles.selectCurrencyText, rightCurrency ? styles.selectedCurrencyText : null]}>{rightCurrency || t('exchange.selectCurrency')}</Text>
-                        <IconFont color={theme.primaryText} size={ms(12)} name="a-icon-24-Lightgraydrop-down" />
-                    </TouchableOpacity>
-                </View>
-                <View style={[commonStyles.flexColumn]}>
-                    <Text style={[styles.infoItemLabel]}>{t(`exchange.quantity`)}</Text>
-                    <Input
-                        containerStyle={styles.quantity}
-                        variant="outline"
-                        placeholder={t('exchange.quantity')} />
-                    <Text style={[styles.availableCountText]}>{t('exchange.availableCount', { count: '0.001 NGN' })}</Text>
-                </View>
-                <View style={[commonStyles.rowStart, styles.buttons]}>
-                    <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} variant="outline">比特币</Button>
-                    <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} type="info" variant="outline">比特币</Button>
-                </View>
-                <View style={[commonStyles.rowCenter]}>
-                    <View style={[styles.qrcodeContent, commonStyles.rowCenter]}>
-                        <QRCode
-                            value="https://expo.dev"
-                            size={s(190)}
-                            getRef={(ref) => (qrCodeRef.current = ref)}
-                        />
-                    </View>
-                </View>
-                <View style={[commonStyles.columnCenter]}>
-                    <Text style={styles.addressLabel}>{t('exchange.address')}</Text>
-                    <Text style={styles.addressValue}>0x716add4060bf88da35f7475683c68c4c35c6cfc6</Text>
-                </View>
-                <Text style={styles.tips}>{t('exchange.tips')}</Text>
+    return <>
+        <SafeAreaView>
+            <View style={[styles.rate]}>
+                <Text style={styles.rateText}>{t('exchange.rate')}  NGN/USD：0.000694</Text>
             </View>
-        </ScrollView>
-        <View style={[commonStyles.mainLayoutPadding, styles.buttons, commonStyles.rowCenter]}>
-            <View style={[commonStyles.flex1]}><Button onPress={handleSaveQRCode} type="secondary">{t('exchange.saveQrcode')}</Button></View>
-            <View style={[commonStyles.flex1]}><Button>{t('exchange.copytAddress')}</Button></View>
-        </View>
-    </SafeAreaView>
+            <ScrollView style={[commonStyles.flex1]}>
+                <View style={[styles.mainContent]}>
+                    <View style={[commonStyles.rowStart, styles.selectCurrency]}>
+                        <TouchableOpacity onPress={() => onSelectCurrency(0)} style={[commonStyles.flexRow, commonStyles.alignCenter]}>
+                            <Text style={[styles.selectCurrencyText, leftCurrency ? styles.selectedCurrencyText : null]}>{leftCurrency || t('exchange.selectCurrency')}</Text>
+                            <IconFont color={theme.primaryText} size={ms(12)} name="a-icon-24-Lightgraydrop-down" />
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={1}>
+                            <IconFont size={ms(29)} name="exchange" />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => onSelectCurrency(1)} style={[commonStyles.flexRow, commonStyles.alignCenter]}>
+                            <Text style={[styles.selectCurrencyText, rightCurrency ? styles.selectedCurrencyText : null]}>{rightCurrency || t('exchange.selectCurrency')}</Text>
+                            <IconFont color={theme.primaryText} size={ms(12)} name="a-icon-24-Lightgraydrop-down" />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={[commonStyles.flexColumn]}>
+                        <Text style={[styles.infoItemLabel]}>{t(`exchange.quantity`)}</Text>
+                        <Input
+                            containerStyle={styles.quantity}
+                            variant="outline"
+                            placeholder={t('exchange.quantity')} />
+                        <Text style={[styles.availableCountText]}>{t('exchange.availableCount', { count: '0.001 NGN' })}</Text>
+                    </View>
+                    <View style={[commonStyles.rowStart, styles.buttons]}>
+                        <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} variant="outline">比特币</Button>
+                        <Button textStyle={styles.currencyBtnText} containerStyle={styles.currencyBtn} type="info" variant="outline">比特币</Button>
+                    </View>
+                    <View style={[commonStyles.rowCenter]}>
+                        <View style={[styles.qrcodeContent, commonStyles.rowCenter]}>
+                            <QRCode
+                                value="https://expo.dev"
+                                size={s(190)}
+                                getRef={(ref) => (qrCodeRef.current = ref)}
+                            />
+                        </View>
+                    </View>
+                    <View style={[commonStyles.columnCenter]}>
+                        <Text style={styles.addressLabel}>{t('exchange.address')}</Text>
+                        <Text style={styles.addressValue}>0x716add4060bf88da35f7475683c68c4c35c6cfc6</Text>
+                    </View>
+                    <Text style={styles.tips}>{t('exchange.tips')}</Text>
+                </View>
+            </ScrollView>
+            <View style={[commonStyles.mainLayoutPadding, styles.buttons, commonStyles.rowCenter]}>
+                <View style={[commonStyles.flex1]}><Button loading={isSaving} onPress={handleSaveQRCode} type="secondary">{t('exchange.saveQrcode')}</Button></View>
+                <View style={[commonStyles.flex1]}><Button>{t('exchange.copytAddress')}</Button></View>
+            </View>
+        </SafeAreaView>
+        <Modal
+            title={t('exchange.grantAccess.title')}
+            children={t('exchange.grantAccess.content')}
+            visible={isGrantAccess}
+            confirmText={t('exchange.grantAccess.enable')}
+            onConfirm={onGrantAccess}
+            onClose={() => setIsGrantAccess(false)} />
+        <Modal
+            title={t(savedResult?.title || '')}
+            children={t(savedResult?.content || '')}
+            visible={!!savedResult}
+            onConfirm={() => setSaveResult(undefined)}
+            hideCancel />
+    </>
 }
 
 function createStyles(theme: ThemeType) {
