@@ -8,24 +8,27 @@ import { useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { ms } from "react-native-size-matters";
 
-export default function ExchangeRecordsPage() {
-    const { theme } = useTheme()
-    const styles = useMemo(() => createStyles(theme), [theme])
-    const statusMap = {
-        success: theme.success,
-        pending: theme.warning
-    }
+export default function WithdrawRecordsPage() {
+        const { theme } = useTheme()
+        const styles = useMemo(() => createStyles(theme), [theme])
+        const statusMap = {
+            success: theme.success,
+            confirming: theme.primary,
+            reviewing: theme.warning,
+            error: theme.error
+        }
+    
     return <SafeAreaView>
         <ScrollView>
             <View style={styles.listContent}>{new Array(5).fill(0).map((_, index) =>
                 <TouchableOpacity onPress={() => router.push({ pathname: '/(trade)/exchange-record' })} key={index}>
                     <View style={[styles.listItem]}>
                         <View style={[commonStyles.rowBetween]}>
-                            <Text style={[styles.tradeName]}>USDT 兑换 NGN</Text>
+                            <Text style={[styles.tradeName]}>提币（USDT）</Text>
                             <Text style={[styles.status, { color: get(statusMap, 'success') }]}>成功</Text>
                         </View>
                         <View style={[commonStyles.rowBetween]}>
-                            <Text style={[styles.tradeAmount]}>1USDT 兑换 440.922NGN</Text>
+                            <Text style={[styles.tradeAmount]}>100.00000000</Text>
                             <Text style={[styles.tradeDate]}>10:20 10/15</Text>
                         </View>
                     </View>
@@ -54,7 +57,7 @@ function createStyles(theme: ThemeType) {
         tradeAmount: {
             fontSize: ms(18),
             lineHeight: ms(25),
-            color: theme.secondaryText,
+            color: theme.primaryText,
             flex: 1,
             flexShrink: 1,
             paddingRight: ms(15)

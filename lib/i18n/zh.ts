@@ -279,7 +279,14 @@ export default {
         label: '数量',
         placeholder: '最小提币数量 200'
       },
-      tips: '最小提币数量为：100 ETH （OMNI)。\n为保障资金安全，我们会对提币进行人工审核，请耐心等待工作人员联系。\n请务必确认电脑及浏览器安全，防止信息被篡改或泄露。'
+      tips: '最小提币数量为：100 ETH （OMNI)。\n为保障资金安全，我们会对提币进行人工审核，请耐心等待工作人员联系。\n请务必确认电脑及浏览器安全，防止信息被篡改或泄露。',
+      records: {
+        title: '提现记录',
+        success: '成功',
+        confirming: '区块确认中',
+        reviewing: '审核中',
+        error: '失败'
+      }
     },
     exchange: {
       title: '兑换',
@@ -302,7 +309,8 @@ export default {
         errorContent: '保存失败，请稍后重试。'
       },
       records: {
-        title: '兑换记录'
+        title: '兑换记录',
+        success: '成功',
       },
       record: {
         title: '兑换详情',

@@ -5,6 +5,7 @@ import { ThemeType } from "@/constants/Colors"
 import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { router } from "expo-router"
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { Controller, useForm } from "react-hook-form"
 import { useTranslation } from "react-i18next"
@@ -177,7 +178,7 @@ function createStyles(theme: ThemeType) {
 export const WithdrawHeaderRight = () => {
     const { theme } = useTheme()
     return <View style={[commonStyles.alignEnd]}>
-        <TouchableOpacity style={{ marginRight: ms(15) }}>
+        <TouchableOpacity onPress={() => router.push('/(trade)/withdraw-records')} style={{ marginRight: ms(15) }}>
             <IconFont color={theme.primaryText} size={ms(29)} name="a-icon-48-Historicalrecords" />
         </TouchableOpacity>
     </View>
