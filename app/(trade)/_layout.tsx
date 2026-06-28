@@ -16,7 +16,7 @@ export default function TradeLayout() {
         { name: 'exchange-records', options: { title: t('exchange.records.title') } },
         { name: 'exchange-record', options: { title: t('exchange.record.title') } },
         { name: 'withdraw-records', options: { title: t('withdraw.records.title') } },
-
+        { name: 'withdraw-record', options: { title: t('withdraw.record.title') } },
     ]
     return (
         <Stack screenOptions={headerOption}>

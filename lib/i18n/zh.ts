@@ -286,6 +286,15 @@ export default {
         confirming: '区块确认中',
         reviewing: '审核中',
         error: '失败'
+      },
+      record: {
+        title: '提现记录',
+        type: '类型',
+        status: '状态',
+        withdrawAddress: '提币地址',
+        blockchainTradeId: '区块链交易ID',
+        time: '时间',
+        errorReason: '失败原因'
       }
     },
     exchange: {
@@ -343,7 +352,7 @@ export default {
       status: '状态',
       withdrawAddress: '提币地址',
       fee: '手续费',
-      blockTradeId: '区块链交易ID',
+      blockchainTradeId: '区块链交易ID',
       time: '时间',
       stockName: '股票名称',
       quantity: '数量',

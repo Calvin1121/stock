@@ -18,7 +18,7 @@ export default function RecordPage() {
         stockName: '+200.00000000 NGN',
         type: t(`records.tabs.${type}`),
         status: '已完成',
-        blockTradeId: 'oxaeyhhd388dhweAdhoxaeyhhd388dhweAdh',
+        blockchainTradeId: 'oxaeyhhd388dhweAdhoxaeyhhd388dhweAdh',
         time: '10:20:10 10/15/2020',
         quantity: '500',
         price: '200.000 NGN',
@@ -29,9 +29,9 @@ export default function RecordPage() {
         if (type === 'trade')
             return ['stockName', 'type', 'time', 'quantity', 'price']
         if (type === 'withdraw')
-            return ['type', 'status', 'withdrawAddress', 'fee', 'blockTradeId', 'time']
+            return ['type', 'status', 'withdrawAddress', 'fee', 'blockchainTradeId', 'time']
         if (type === 'recharge')
-            return ['type', 'status', 'blockTradeId', 'time']
+            return ['type', 'status', 'blockchainTradeId', 'time']
     }, [type])
     return <SafeAreaView>
         <ScrollView style={[commonStyles.mainLayoutPadding]}>

@@ -5,7 +5,7 @@ import { memo, useMemo } from 'react';
 import { ScrollView as DefaultScrollView, TouchableOpacity as DefaultTouchableOpacity, ScrollViewProps, StatusBar, StatusBarProps, StyleProp, StyleSheet, Text, TextStyle, TouchableOpacityProps, View, ViewProps } from 'react-native';
 import { ms, s } from 'react-native-size-matters';
 import IconFont from './iconfont';
-import { Button, ButtonProps } from './ui';
+import { Button, ButtonProps } from './ui/button';
 
 const mergeStyle = (base: any, style: any) => {
     const merged = { ...base };
