@@ -55,7 +55,7 @@ export function useHeaderOption(props?: NativeStackNavigationOptions): NativeSta
         ..._headerStyle,
     };
     const headerLeft = (props: NativeStackHeaderBackProps) => {
-        return <View style={{ paddingLeft: ms(20) }}>
+        return <View style={{ paddingLeft: ms(15) }}>
             <TouchableOpacity onPress={router.back} style={[commonStyles.rowStart, { height: '100%' }]}>
                 <IconFont name="a-icon-48-Arrow-rightsvg" color={theme.header.text} size={24} />
             </TouchableOpacity>

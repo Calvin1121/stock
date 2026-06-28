@@ -1,9 +1,10 @@
-import { SafeAreaView } from '@/components/ThemeWidget';
-import { ThemeType } from '@/constants/Colors';
+import { SafeAreaView, TouchableOpacity } from '@/components/ThemeWidget';
+import { THEME, ThemeType } from '@/constants/Colors';
 import i18n from '@/lib/i18n';
 import { Language, useLanguageStore } from '@/lib/languageStore';
 import { useThemeStore } from '@/lib/themeStore';
 import { useTheme } from '@/lib/useTheme';
+import { commonStyles } from '@/styles/util';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -18,7 +19,20 @@ export default function ProfileScreen() {
     i18n.changeLanguage(lang);
   }, [])
   return <SafeAreaView>
-    <View><Text style={{color: theme.primaryText}}>Test</Text></View>
+    <View style={[commonStyles.alignCenter, commonStyles.justifyCenter, commonStyles.flex1]}>
+      <TouchableOpacity onPress={() => setTheme(THEME.DARK)}>
+        <Text style={{color: theme.primary}}>Dark</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => setTheme(THEME.LIGHT)}>
+        <Text style={{color: theme.primary}}>Light</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleLanguageChange('zh')}>
+        <Text style={{color: theme.primary}}>Zh</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleLanguageChange('en')}>
+        <Text style={{color: theme.primary}}>En</Text>
+      </TouchableOpacity>
+    </View>
   </SafeAreaView>
 }
 

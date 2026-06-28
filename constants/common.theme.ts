@@ -20,7 +20,7 @@ export const dark = {
     error: '#CD5252',
     success: '#0AA88B',
     warning: '#E18721',
-    info: '#5A5B6A',
+    info: '#A5A5A5',
     helper: '#5A5B6A',
     transparent: 'transparent',
     signatureBackground: '#fff'

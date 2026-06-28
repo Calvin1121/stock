@@ -35,9 +35,9 @@ export const SafeAreaView = memo((props: ViewProps & { statusBar?: StatusBarProp
 
 export const TouchableOpacity = memo((props: TouchableOpacityProps) => {
     const { theme } = useTheme();
-    const { style: _style, ...otherProps } = props;
+    const { style: _style, activeOpacity, ...otherProps } = props;
     const style = useMemo(() => mergeStyle({}, _style), [_style]);
-    return <DefaultTouchableOpacity style={style} {...otherProps} activeOpacity={theme.touchOpacity} />;
+    return <DefaultTouchableOpacity style={style} {...otherProps} activeOpacity={activeOpacity || theme.touchOpacity} />;
 });
 
 export function VerifyCode(props: { title: string; onTap?: () => void; style?: StyleProp<TextStyle> }) {

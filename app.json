@@ -11,7 +11,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.stock",
       "infoPlist": {
-        "NSPhotoLibraryAddUsageDescription": "Save your signature to your photo library."
+        "NSPhotoLibraryUsageDescription": "Need access to save QR code",
+        "NSPhotoLibraryAddUsageDescription": "Save images to your library"
       }
     },
     "android": {

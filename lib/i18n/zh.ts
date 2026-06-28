@@ -270,6 +270,14 @@ export default {
     },
     exchange: {
       title: '兑换',
+      rate: '汇率',
+      selectCurrency: '选择币种',
+      quantity: '兑换數量',
+      availableCount: '可兑换 ≈ {{count}}',
+      address: '充币地址',
+      tips: '您充值至上述地址后，需要整个网络节点的确认，12次网确认后到帐，12次网络确认后可到账。\n最小充值金额：1 USDT, 小于最小充值额的充值将不会上帐且无法退回。\n您的充值地址不会经常改变，可以重复充值；如有更改，我们会尽量通过网站公告或邮件通知您。\n请务必确认电脑及浏览器安全，防止信息被篡改或泄露。',
+      copytAddress: '复制地址',
+      saveQrcode: '保存二维码'
     },
     records: {
       title: '历史记录',

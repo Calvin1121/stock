@@ -3,7 +3,8 @@
 
 import React, { FunctionComponent } from 'react';
 import { ViewProps } from 'react-native';
-import { GProps, SvgCss } from 'react-native-svg';
+import { GProps } from 'react-native-svg';
+import { SvgCss } from 'react-native-svg/css';
 
 interface Props extends GProps, ViewProps {
   size?: number;
