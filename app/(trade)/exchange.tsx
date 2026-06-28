@@ -25,7 +25,6 @@ export default function ExchangePage() {
     const rightCurrency = useMemo(() => exchangeItem?.[1], [exchangeItem])
     const [isGrantAccess, setIsGrantAccess] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
-    const [savedResult, setSaveResult] = useState<{ title: string; content: string } | undefined>(undefined)
     const onSelectCurrency = useCallback((index: number) => {
         const onSelect = (item: string) => {
             const _exchangeItem = [...exchangeItem]
@@ -129,12 +128,6 @@ export default function ExchangePage() {
             confirmText={t('exchange.grantAccess.enable')}
             onConfirm={onGrantAccess}
             onClose={() => setIsGrantAccess(false)} />
-        <Modal
-            title={t(savedResult?.title || '')}
-            children={t(savedResult?.content || '')}
-            visible={!!savedResult}
-            onConfirm={() => setSaveResult(undefined)}
-            hideCancel />
     </>
 }
 
