@@ -18,7 +18,7 @@ export default function ExchangeRecordsPage() {
     return <SafeAreaView>
         <ScrollView>
             <View style={styles.listContent}>{new Array(5).fill(0).map((_, index) =>
-                <TouchableOpacity onPress={() => router.push({ pathname: '/(trade)/record' })} key={index}>
+                <TouchableOpacity onPress={() => router.push({ pathname: '/(trade)/exchange-record' })} key={index}>
                     <View style={[styles.listItem]}>
                         <View style={[commonStyles.rowBetween]}>
                             <Text style={[styles.tradeName]}>USDT 兑换 NGN</Text>

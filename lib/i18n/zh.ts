@@ -290,6 +290,13 @@ export default {
       },
       records: {
         title: '兑换记录'
+      },
+      record: {
+        title: '兑换详情',
+        type: '类型',
+        currencyOrigin: '源货币',
+        topupAddress: '充值地址',
+        time: '时间'
       }
     },
     records: {
