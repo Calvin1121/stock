@@ -274,7 +274,6 @@ export default {
     records: {
       title: '历史记录',
       tabs: {
-        all: '全部',
         trade: '交易',
         recharge: '充值',
         withdraw: '提现',
@@ -288,6 +287,18 @@ export default {
         frozen: '冻结',
         fee: '手续费'
       }
+    },
+    record: {
+      title: '账单详情',
+      type: '类型',
+      status: '状态',
+      withdrawAddress: '提币地址',
+      fee: '手续费',
+      blockTradeId: '区块链交易ID',
+      time: '时间',
+      stockName: '股票名称',
+      quantity: '数量',
+      price: '价值'
     }
   },
   news: {

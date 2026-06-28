@@ -12,6 +12,7 @@ export default function TradeLayout() {
         { name: 'withdraw', options: { title: t('withdraw.title'), headerRight: WithdrawHeaderRight } },
         { name: 'exchange', options: { title: t('exchange.title'), headerRight: ExchangeHeaderRight } },
         { name: 'records', options: { title: t('records.title') } },
+        { name: 'record', options: { title: t('record.title') } },
     ]
     return (
         <Stack screenOptions={headerOption}>

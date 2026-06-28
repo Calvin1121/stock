@@ -4,8 +4,9 @@ import { ActionSheetItem, useActionSheet } from "@/components/ui"
 import { ThemeType } from "@/constants/Colors"
 import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
+import { router } from "expo-router"
 import { get } from "lodash"
-import React, { useCallback, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { StyleSheet, Text, View } from "react-native"
 import { ms, vs } from "react-native-size-matters"
@@ -84,7 +85,7 @@ export default function RecordsPage() {
         </View>
         <ScrollView style={[commonStyles.flex1]}>
             <View style={styles.listContent}>{new Array(5).fill(0).map((_, index) =>
-                <React.Fragment key={index}>{onRenderRecord(index)}</React.Fragment>
+                <TouchableOpacity onPress={() => router.push({pathname: '/(trade)/record', params: {type: tab}})} key={index}>{onRenderRecord(index)}</TouchableOpacity>
             )}</View>
         </ScrollView>
     </SafeAreaView>
