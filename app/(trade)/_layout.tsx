@@ -13,6 +13,8 @@ export default function TradeLayout() {
         { name: 'exchange', options: { title: t('exchange.title'), headerRight: ExchangeHeaderRight } },
         { name: 'records', options: { title: t('records.title') } },
         { name: 'record', options: { title: t('record.title') } },
+        { name: 'exchange-records', options: { title: t('exchange.records.title') } },
+
     ]
     return (
         <Stack screenOptions={headerOption}>

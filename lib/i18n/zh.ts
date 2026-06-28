@@ -287,6 +287,9 @@ export default {
         title: '提示',
         successContent: '保存成功，请前往相册查看。',
         errorContent: '保存失败，请稍后重试。'
+      },
+      records: {
+        title: '兑换记录'
       }
     },
     records: {

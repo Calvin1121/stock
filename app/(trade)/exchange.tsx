@@ -6,6 +6,7 @@ import { useTheme } from "@/lib/useTheme"
 import { commonStyles } from "@/styles/util"
 import * as FileSystem from 'expo-file-system/legacy'
 import * as MediaLibrary from 'expo-media-library/legacy'
+import { router } from "expo-router"
 import { useCallback, useMemo, useRef, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Linking, Platform, StyleSheet, Text, View } from "react-native"
@@ -214,7 +215,7 @@ function createStyles(theme: ThemeType) {
 export const ExchangeHeaderRight = () => {
     const { theme } = useTheme()
     return <View style={[commonStyles.alignEnd]}>
-        <TouchableOpacity style={{ marginRight: ms(15) }}>
+        <TouchableOpacity onPress={() => router.push('/exchange-records')} style={{ marginRight: ms(15) }}>
             <IconFont color={theme.primaryText} size={ms(29)} name="a-icon-48-Historicalrecords" />
         </TouchableOpacity>
     </View>
