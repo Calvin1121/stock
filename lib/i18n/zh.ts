@@ -277,7 +277,17 @@ export default {
       address: '充币地址',
       tips: '您充值至上述地址后，需要整个网络节点的确认，12次网确认后到帐，12次网络确认后可到账。\n最小充值金额：1 USDT, 小于最小充值额的充值将不会上帐且无法退回。\n您的充值地址不会经常改变，可以重复充值；如有更改，我们会尽量通过网站公告或邮件通知您。\n请务必确认电脑及浏览器安全，防止信息被篡改或泄露。',
       copytAddress: '复制地址',
-      saveQrcode: '保存二维码'
+      saveQrcode: '保存二维码',
+      grantAccess: {
+        title: '权限未开启',
+        content: '请在系统设置中允许访问您的相册，否则无法使用此功能。',
+        enable: '去开启'
+      },
+      saveQrcodeToast: {
+        title: '提示',
+        successContent: '保存成功，请前往相册查看。',
+        errorContent: '保存失败，请稍后重试。'
+      }
     },
     records: {
       title: '历史记录',
