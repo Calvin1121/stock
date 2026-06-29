@@ -1,4 +1,12 @@
 export default {
+  lang: {
+    zh: '简体中文',
+    zh_TW: '繁体中文',
+    en: 'English',
+    en_UK: '繁体中文',
+    jp: '日本語',
+    sp: 'Spanish'
+  },
   tab: {
     home: 'Home',
     ipo: 'IPO',
@@ -8,6 +16,9 @@ export default {
   },
   divider: {
     text: '没有更多'
+  },
+  empty: {
+    text: ''
   },
   modal: {
     confirmText: '',
@@ -49,6 +60,14 @@ export default {
         confirm: '',
         confirmTitle: '',
         confirmContent: ''
+      },
+      history: {
+        title: '',
+        tabs: {
+          subscribed: '',
+          inProgress: '',
+          IPOSuccessful: ''
+        }
       }
     },
     market: {
@@ -60,39 +79,306 @@ export default {
       high: '高',
       low: '低',
       vol: 'Vol',
-      TO: 'T/O'
+      TO: 'T/O',
+      orderBook: '',
+      priceVol: '',
+      orderBookKeys: {
+        buy: '',
+        sale: '',
+        buyCount: '',
+        saleCount: '',
+        unit: '',
+        price: '',
+        currency: ''
+      },
+      priceVolKeys: {
+        time: '',
+        dealPrice: '',
+        currency: '',
+        dealVol: '',
+        unit: ''
+      }
+    },
+    loan: {
+      title: '',
+      historyText: '',
+      currency: '',
+      signature: {
+        title: '',
+        cancel: '',
+        confirm: '',
+        openmore: '',
+        tnc1: '',
+        tnc2: ''
+      },
+      loanForm: {
+        loanTerm: {
+          label: '',
+          placeholder: '',
+          require: '',
+          termOption: ''
+        },
+        loanAmount: {
+          label: '',
+          placeholder: '',
+          require: ''
+        },
+        loanAmountAvailable: {
+          label: ''
+        },
+        loanRate: {
+          label: ''
+        },
+        totalLoanAmount: {
+          label: ''
+        },
+        dailyInterestRate: {
+          label: ''
+        },
+        confirm: ''
+      },
+      history: {
+        title: '',
+        tabs: {
+          reviewing: '',
+          reject: '',
+          inProgress: '',
+          expired: '',
+          repaid: ''
+        },
+        loanTerm: '',
+        createTime: '',
+        loanTime: ''
+      },
+      detail: {
+        title: '',
+        repay: '',
+        status: '',
+        loanNo: '',
+        loanAmount: '',
+        loanTerm: '',
+        loanRate: '',
+        dailyInterestRate: '',
+        loanTime: ''
+      }
+    },
+    blockTrade: {
+      title: '',
+      subscribeBtn: '',
+      tabs: {
+        subscribed: '',
+        inProgress: '',
+        IPOSuccessful: ''
+      },
+      marketPrice: '',
+      priceDiff: '',
+      publishPrice: '',
+      priceUnit: '',
+      discountRate: '',
+      buyCount: '',
+      buyTime: '',
+      subscribe: {
+        title: '',
+        submit: '',
+        openDate: '',
+        closeDate: '',
+        matchDate: '',
+        IPODate: '',
+        IPOPrice: '',
+        currency: '',
+        stockCount: '',
+        confirmPrice: ''
+      }
     }
   },
   ipo: {
     title: 'IPO',
-    upcoming: '即将上市',
-    history: '历史记录',
-    subscribe: '申购'
+    publishPrice: '',
+    currency: '',
+    deadline: '',
+    dayRest: '',
+    daysRest: '',
+    progress: '',
+    subscribeBtn: '',
+    subscribe: {
+      title: '',
+      confirm: '',
+      publishPrice: '',
+      deadline: '',
+      buyCount: '',
+      amount: '',
+      frozenAmount: ''
+    },
+    history: {
+      title: '',
+      tabs: {
+        all: '',
+        submitted: '',
+        winner: '',
+        No: '',
+        canceled: '',
+        paid: 'Paid'
+      }
+    },
+    historyDetail: {
+      title: '',
+      newStockPrice: '',
+      count: '',
+      subscribeTime: '',
+      startTime: '',
+      endTime: '',
+      IPOTime: '',
+      selectedPrice: '',
+      selectedCount: '',
+      payAmount: '',
+      paidAmount: '',
+      payingAmount: ''
+    }
   },
   assets: {
     title: '资产',
-    totalAssets: '总资产',
-    dailyReturn: '日收益',
-    holdings: '持仓'
+    expectTotalAssets: '',
+    currency: '',
+    dailyReturn: '',
+    stockTotalAssets: '',
+    enteringAssets: '',
+    historicalIncome: '',
+    cashBalance: '',
+    frozenAmount: '',
+    pendingSubscription: '',
+    tabs: {
+      recharge: '',
+      withdraw: '',
+      exchange: '',
+      records: ''
+    },
+    holdingStocks: '',
+    orders: '',
+    holdingStocksTabs: {
+      symbolAndName: '',
+      priceAndQuantity: '',
+      currentPriceAndCost: '',
+      profitAndLoss: ''
+    },
+    ordersTabs: {
+      symbolAndName: '',
+      tradeType: '',
+      priceAndQuantity: '',
+      profitAndLoss: ''
+    },
+    tradeType: {
+      buy: '',
+      sell: ''
+    },
+    withdraw: {
+      title: '',
+      withdrawBtn: '',
+      incomeAmount: '',
+      availableAmount: '',
+      selectCurrency: {
+        label: ''
+      },
+      withdrawAddress: {
+        label: '',
+        placeholder: ''
+      },
+      quantity: {
+        all: '',
+        label: '',
+        placeholder: ''
+      },
+      tips: '',
+      records: {
+        title: '',
+        success: '',
+        confirming: '',
+        reviewing: '',
+        error: ''
+      },
+      record: {
+        title: '',
+        type: '',
+        status: '',
+        withdrawAddress: '',
+        blockchainTradeId: '',
+        time: '',
+        errorReason: ''
+      }
+    },
+    exchange: {
+      title: '',
+      rate: '',
+      selectCurrency: '',
+      quantity: '',
+      availableCount: '',
+      address: '',
+      tips: '',
+      copytAddress: '',
+      saveQrcode: '',
+      grantAccess: {
+        title: '',
+        content: '',
+        enable: ''
+      },
+      saveQrcodeToast: {
+        title: '',
+        successContent: '',
+        errorContent: ''
+      },
+      records: {
+        title: '',
+        success: ''
+      },
+      record: {
+        title: '',
+        type: '',
+        currencyOrigin: '',
+        topupAddress: '',
+        time: ''
+      }
+    },
+    records: {
+      title: '',
+      tabs: {
+        trade: '',
+        recharge: '',
+        withdraw: ''
+      },
+      filters: {
+        all: '',
+        commissionEntrustingSales: '',
+        IPOTransactionIncome: '',
+        IPOTransactionSubscription: '',
+        commissionSales: '',
+        frozen: '',
+        fee: ''
+      }
+    },
+    record: {
+      title: '',
+      type: '',
+      status: '',
+      withdrawAddress: '',
+      fee: '',
+      blockchainTradeId: '',
+      time: '',
+      stockName: '',
+      quantity: '',
+      price: ''
+    }
   },
   news: {
     title: '资讯',
-    latest: '最新',
-    recommended: '推荐',
-    search: '搜索'
+    detial: {
+      title: ''
+    }
   },
   profile: {
-    title: '个人资料',
-    settings: '设置',
-    about: '关于'
+    verification: '',
+    pwd: '',
+    lang: ''
   },
   auth: {
-    lang: {
-      select: '切换语言',
-      en: 'English',
-      zh: '中文',
-      cancel: '取消'
-    },
     login: {
       username: {
         required: '账号不能为空',
@@ -164,6 +450,7 @@ export default {
       username: {
         require: '请输入手机号/邮箱/UID',
         placeholder: '请输入手机号/邮箱/UID'
+        // invalid: '请输入有效的邮箱或手机号',
       },
       verifyCode: {
         require: '请输入验证码',
@@ -186,8 +473,5 @@ export default {
         button: '返回登陆'
       }
     }
-  },
-  empty: {
-    text: ''
   }
 } as const;

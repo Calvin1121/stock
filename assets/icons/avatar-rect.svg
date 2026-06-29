@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="矩形_3385" data-name="矩形 3385" width="64" height="64" transform="translate(-64.137)" fill="#d6e1f5"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.476" x2="0.476" y2="0.819" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#4a7ace"/>
+    </linearGradient>
+  </defs>
+  <g id="icon_60_用户默认头像_方" data-name="icon/60/用户默认头像/方" transform="translate(65)">
+    <g id="用户" transform="translate(-0.401 0.401)">
+      <g id="头像">
+        <rect id="矩形_3384" data-name="矩形 3384" width="64" height="64" transform="translate(-64.599 -0.401)" fill="#d6e1f5"/>
+        <g id="蒙版组_3" data-name="蒙版组 3" transform="translate(-0.462 -0.401)" clip-path="url(#clip-path)">
+          <path id="形状结合" d="M41.972,29.5H-5.858L-1,13.077A3.207,3.207,0,0,1,1.019,10.1L15.083,4.489h.951V0H26.3V4.866l13.622,5.247A3.206,3.206,0,0,1,41.972,13.1l5.837,16.4Z" transform="translate(-52.862 42.33)" fill="#97b3e5"/>
+          <path id="形状结合-2" data-name="形状结合" d="M47.559,22.466H-5.858L-1,6.039A3.191,3.191,0,0,1,1.019,3.061L9.386-.276c2.877,2.632,7.287,4.142,12.1,4.142A18.746,18.746,0,0,0,32.844.35l7.074,2.724a3.227,3.227,0,0,1,2.054,2.992l5.587,16.4Z" transform="translate(-52.862 49.367)" fill="url(#linear-gradient)"/>
+        </g>
+      </g>
+      <circle id="椭圆形" cx="3.528" cy="3.528" r="3.528" transform="translate(-26.937 28.22)" fill="#82a3db"/>
+      <circle id="椭圆形备份" cx="3.528" cy="3.528" r="3.528" transform="translate(-44.896 28.22)" fill="#82a3db"/>
+      <path id="矩形" d="M0,0H17.958a0,0,0,0,1,0,0V17.317A8.979,8.979,0,0,1,8.979,26.3h0A8.979,8.979,0,0,1,0,17.317V0A0,0,0,0,1,0,0Z" transform="translate(-41.048 19.241)" fill="#b4cfff"/>
+      <path id="路径_13" data-name="路径 13" d="M-10.575,11.336s2,2.515,6.718,1.676c0,0,.266,3.43,1.247,3.43S.66,12.785-.183,8c0,0-1.182-3.286-2.428-3.286,0,0-2.621-4.562-6.272-4.562S-20.743-1.3-21.362,4.717c0,0-2.571.406-1.969,6.619s2.762,5.106,2.762,5.106V11.336Z" transform="translate(-20.478 13.307)" fill="#3f6fc2"/>
+    </g>
+  </g>
+</svg>

@@ -46,6 +46,7 @@ import IconAIcon36SinglechoiceDefault from './IconAIcon36SinglechoiceDefault';
 import IconAIcon24LightgraydropDown from './IconAIcon24LightgraydropDown';
 import IconIcon16Triangle from './IconIcon16Triangle';
 import IconIcon32ArrowLeft from './IconIcon32ArrowLeft';
+import IconAvatarRect from './IconAvatarRect';
 import IconAvatar from './IconAvatar';
 import IconBlockTrade from './IconBlockTrade';
 import IconCreditLoan from './IconCreditLoan';
@@ -102,6 +103,7 @@ export { default as IconAIcon36SinglechoiceDefault } from './IconAIcon36Singlech
 export { default as IconAIcon24LightgraydropDown } from './IconAIcon24LightgraydropDown';
 export { default as IconIcon16Triangle } from './IconIcon16Triangle';
 export { default as IconIcon32ArrowLeft } from './IconIcon32ArrowLeft';
+export { default as IconAvatarRect } from './IconAvatarRect';
 export { default as IconAvatar } from './IconAvatar';
 export { default as IconBlockTrade } from './IconBlockTrade';
 export { default as IconCreditLoan } from './IconCreditLoan';
@@ -117,7 +119,7 @@ export { default as IconRecordsDark } from './IconRecordsDark';
 export { default as IconVerificationDark } from './IconVerificationDark';
 export { default as IconWithdrawDark } from './IconWithdrawDark';
 
-export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'avatar' | 'blockTrade' | 'creditLoan' | 'empty-dark' | 'exchange-dark' | 'exchange' | 'lang-dark' | 'OTC' | 'preMarket' | 'pwd-dark' | 'recharge-dark' | 'records-dark' | 'verification-dark' | 'withdraw-dark';
+export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'avatar-rect' | 'avatar' | 'blockTrade' | 'creditLoan' | 'empty-dark' | 'exchange-dark' | 'exchange' | 'lang-dark' | 'OTC' | 'preMarket' | 'pwd-dark' | 'recharge-dark' | 'records-dark' | 'verification-dark' | 'withdraw-dark';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -211,34 +213,36 @@ let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
       return <IconIcon16Triangle key="41" {...rest} />;
     case 'icon-32-arrow-left':
       return <IconIcon32ArrowLeft key="42" {...rest} />;
+    case 'avatar-rect':
+      return <IconAvatarRect key="L1" {...rest} />;
     case 'avatar':
-      return <IconAvatar key="L1" {...rest} />;
+      return <IconAvatar key="L2" {...rest} />;
     case 'blockTrade':
-      return <IconBlockTrade key="L2" {...rest} />;
+      return <IconBlockTrade key="L3" {...rest} />;
     case 'creditLoan':
-      return <IconCreditLoan key="L3" {...rest} />;
+      return <IconCreditLoan key="L4" {...rest} />;
     case 'empty-dark':
-      return <IconEmptyDark key="L4" {...rest} />;
+      return <IconEmptyDark key="L5" {...rest} />;
     case 'exchange-dark':
-      return <IconExchangeDark key="L5" {...rest} />;
+      return <IconExchangeDark key="L6" {...rest} />;
     case 'exchange':
-      return <IconExchange key="L6" {...rest} />;
+      return <IconExchange key="L7" {...rest} />;
     case 'lang-dark':
-      return <IconLangDark key="L7" {...rest} />;
+      return <IconLangDark key="L8" {...rest} />;
     case 'OTC':
-      return <IconOtc key="L8" {...rest} />;
+      return <IconOtc key="L9" {...rest} />;
     case 'preMarket':
-      return <IconPreMarket key="L9" {...rest} />;
+      return <IconPreMarket key="L10" {...rest} />;
     case 'pwd-dark':
-      return <IconPwdDark key="L10" {...rest} />;
+      return <IconPwdDark key="L11" {...rest} />;
     case 'recharge-dark':
-      return <IconRechargeDark key="L11" {...rest} />;
+      return <IconRechargeDark key="L12" {...rest} />;
     case 'records-dark':
-      return <IconRecordsDark key="L12" {...rest} />;
+      return <IconRecordsDark key="L13" {...rest} />;
     case 'verification-dark':
-      return <IconVerificationDark key="L13" {...rest} />;
+      return <IconVerificationDark key="L14" {...rest} />;
     case 'withdraw-dark':
-      return <IconWithdrawDark key="L14" {...rest} />;
+      return <IconWithdrawDark key="L15" {...rest} />;
   }
 
   return null;

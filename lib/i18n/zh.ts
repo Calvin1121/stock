@@ -1,4 +1,12 @@
 export default {
+  lang: {
+      zh: '简体中文',
+      zh_TW: '繁体中文',
+      en: 'English',
+      en_UK: '繁体中文',
+      jp: '日本語',
+      sp: 'Spanish',
+  },
   tab: {
     home: '首页',
     ipo: 'IPO',
@@ -366,17 +374,33 @@ export default {
     }
   },
   profile: {
-    title: '个人资料',
-    settings: '设置',
-    about: '关于',
+    verification: '身份验证',
+    pwd: '密码',
+    lang: '语言',
+    logout: '登出',
+    links: {
+      aboutUs: '关于我们',
+      service: '服务'
+    },
+    aboutUs: {
+      links: {
+        companyInfo: '公司简介',
+        tnc: '服务条款',
+        privacy: '隐私政策',
+        security:'安全性'
+      }
+    },
+    changePWD: {
+      title: '修改登录密码'
+    },
+    verifications: {
+      title: '身份验证'
+    },
+    services: {
+      title: '在线客服'
+    }
   },
   auth: {
-    lang: {
-      select: '切换语言',
-      en: 'English',
-      zh: '中文',
-      cancel: '取消',
-    },
     login: {
       username: {
         required: '账号不能为空',
@@ -433,7 +457,6 @@ export default {
       success: {
         info: '恭喜，您已注册成功！',
         button: '返回登陆'
-
       },
       fail: {
         info: '抱歉，注册失败',

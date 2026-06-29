@@ -1,17 +1,12 @@
 import IconFont, { IconNames } from '@/components/iconfont';
 import { SafeAreaView, ScrollView, TouchableOpacity } from '@/components/ThemeWidget';
 import { Button, FormControl, Input } from '@/components/ui';
-import { useActionSheet } from '@/components/ui/action-sheet-context';
 import { ThemeType } from '@/constants/Colors';
-import i18n from '@/lib/i18n';
-import { Language, useLanguageStore } from '@/lib/languageStore';
-import { useThemeStore } from '@/lib/themeStore';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
 import { emailRegex, globalPhoneRegex } from '@/utils/regex';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
-import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text, View } from 'react-native';
@@ -123,27 +118,9 @@ function createStyles(theme: ThemeType) {
 }
 
 export const LoginHeaderRight = () => {
-  const { t } = useTranslation('auth');
-  const { theme } = useTheme();
   const router = useRouter();
-  const { show } = useActionSheet();
-  const setLanguage = useLanguageStore((s) => s.setLanguage);
-  const themeName = useThemeStore(s => s.themeName)
-  const handleLanguageChange = useCallback((lang: Language) => {
-    setLanguage(lang);
-    i18n.changeLanguage(lang);
-  }, [])
-  const onChangeLang = useCallback(() => {
-    show({
-      title: t('lang.select'),
-      items: [
-        { label: t('lang.en'), value: 'en', onPress: (item) => handleLanguageChange(item.value as Language) },
-        { label: t('lang.zh'), value: 'zh', onPress: (item) => handleLanguageChange(item.value as Language) },
-      ],
-    })
-  }, [handleLanguageChange, show, t])
   return <View style={[commonStyles.alignEnd, commonStyles.relative]}>
-    <TouchableOpacity style={{marginRight: ms(15)}} onPress={onChangeLang}>
+    <TouchableOpacity style={{ marginRight: ms(15) }} onPress={() => router.push('/(profile)/lang')}>
       {/* // TODO */}
       <IconFont name={`lang-dark` as IconNames} size={ms(29)} />
     </TouchableOpacity>
