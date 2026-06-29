@@ -20,7 +20,7 @@ function getStoredTheme(): ThemeName {
   if (stored && stored in Colors) {
     return stored
   }
-  return THEME.SYSTEM
+  return THEME.DARK
 }
 
 function resolveThemeName(theme: ThemeName, system: ResolvedTheme): ResolvedTheme {
@@ -29,7 +29,7 @@ function resolveThemeName(theme: ThemeName, system: ResolvedTheme): ResolvedThem
 }
 
 const storedTheme = getStoredTheme()
-const initialTheme: ResolvedTheme = storedTheme !== THEME.SYSTEM ? storedTheme : THEME.LIGHT
+const initialTheme: ResolvedTheme = storedTheme !== THEME.SYSTEM ? storedTheme : THEME.DARK
 
 export const useThemeStore = create<ThemeState>((set, get) => ({
   themeName: storedTheme,

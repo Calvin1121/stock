@@ -11,7 +11,7 @@ function getStoredLanguage(): string {
   if (stored === 'en' || stored === 'zh') {
     return stored;
   }
-  return 'en'; // 默认英文
+  return 'zh'; // 默认中文
 }
 
 const initialLanguage = getStoredLanguage();
