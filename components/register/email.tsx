@@ -18,13 +18,13 @@ const emialSchema = z.object({
     verifyCode: z.string().min(1, 'register.verifyCode.require').refine((value) => sixverifyCode.test(value.toString()), { message: 'register.verifyCode.invalid' }),
     invitationCode: z.string(),
     password: z.string().refine(value => pwdRegex.test(value), { message: 'register.password.invalid' }),
-    comfirmPassword: z.string().min(1, 'register.comfirmPassword.require'),
+    confirmPassword: z.string().min(1, 'register.confirmPassword.require'),
 }).superRefine((data, ctx) => {
-    if (data.password !== data.comfirmPassword) {
+    if (data.password !== data.confirmPassword) {
         ctx.addIssue({
             code: z.ZodIssueCode.custom,
-            message: 'register.comfirmPassword.invalid',
-            path: ['comfirmPassword'],
+            message: 'register.confirmPassword.invalid',
+            path: ['confirmPassword'],
         });
     }
 })

@@ -391,7 +391,22 @@ export default {
       }
     },
     changePWD: {
-      title: '修改登录密码'
+      title: '修改登录密码',
+      confirmBtn: '确认修改',
+      oldPassword: {
+        placeholder: '请输入原登录密码',
+        required: '请输入原登录密码',
+      },
+      newPassword: {
+        placeholder: '请输入新登录密码(8-20位，字母与数字组合)',
+        required: '请输入新登录密码',
+        invalid: '密码不符合要求'
+      },
+      confirmPassword: {
+        placeholder: '请再次输入新密码',
+        required: '请再次输入新密码',
+        invalid: '确认密码与登录密码不一致'
+      }
     },
     verifications: {
       title: '身份验证'
@@ -424,10 +439,10 @@ export default {
       },
       password: {
         require: '请输入登录密码',
-        placeholder: '登录密码（8-20位，包含字母与数字）',
+        placeholder: '登录密码(8-20位,包含字母与数字)',
         invalid: '密码不符合要求'
       },
-      comfirmPassword: {
+      confirmPassword: {
         require: '请输入确认登录密码',
         placeholder: '确认登录密码',
         invalid: '确认密码与登录密码不一致'
@@ -482,10 +497,10 @@ export default {
       },
       password: {
         require: '请输入登录密码',
-        placeholder: '登录密码（8-20位，包含字母与数字）',
+        placeholder: '登录密码(8-20位,包含字母与数字)',
         invalid: '密码不符合要求'
       },
-      comfirmPassword: {
+      confirmPassword: {
         require: '请输入确认登录密码',
         placeholder: '确认登录密码',
         invalid: '确认密码与登录密码不一致'

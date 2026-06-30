@@ -16,13 +16,13 @@ const forgotSchema = z.object({
   username: z.string().min(1, 'forgot.username.require'),
   verifyCode: z.string().min(1, 'forgot.verifyCode.require'),
   password: z.string().min(1, 'forgot.password.require').refine(value => pwdRegex.test(value), { message: 'forgot.password.invalid' }),
-  comfirmPassword: z.string().min(1, 'forgot.comfirmPassword.require'),
+  confirmPassword: z.string().min(1, 'forgot.confirmPassword.require'),
 }).superRefine((data, ctx) => {
-  if (data.password !== data.comfirmPassword) {
+  if (data.password !== data.confirmPassword) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
-      message: 'forgot.comfirmPassword.invalid',
-      path: ['comfirmPassword'],
+      message: 'forgot.confirmPassword.invalid',
+      path: ['confirmPassword'],
     });
   }
 })
@@ -61,7 +61,7 @@ export default function Forgot() {
               const errorMsg = errors[key]?.message ? t(errors[key].message as string) : undefined;
               return <FormControl error={errorMsg} reserveErrorSpace required>
                 <Input
-                  passwordToggle={['password', 'comfirmPassword'].includes(key)}
+                  passwordToggle={['password', 'confirmPassword'].includes(key)}
                   value={value}
                   suffix={suffix}
                   onChangeText={(text) => {

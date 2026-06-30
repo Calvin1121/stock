@@ -50,7 +50,7 @@ export default function Register() {
         </View>
         <View style={[commonStyles.rowStart, styles.tncSection]}>
           <TouchableOpacity onPress={() => setIsAgree(prev => !prev)} style={commonStyles.rowStart}>
-            <IconFont style={styles.tncAgreeIcon} color={styles.tncAgreeIcon.color} name={isAgree ? 'a-pic-36-Singlechoice-Selected' : 'a-icon-36-Singlechoice-default'} size={ms(18)} />
+            <IconFont style={styles.tncAgreeIcon} color={isAgree? theme.primary:styles.tncAgreeIcon.color} name={isAgree ? 'a-pic-36-Singlechoice-Selected' : 'a-icon-36-Singlechoice-default'} size={ms(18)} />
             <Text style={styles.tncAgreement}>{t('register.tncAgreement')}</Text>
             <TouchableOpacity>
               <Text style={styles.tnc}>{t('register.tnc')}</Text>

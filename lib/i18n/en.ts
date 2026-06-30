@@ -374,9 +374,46 @@ export default {
     }
   },
   profile: {
-    verification: '',
-    pwd: '',
-    lang: ''
+    verification: '身份验证',
+    pwd: '密码',
+    lang: '语言',
+    logout: '登出',
+    links: {
+      aboutUs: '关于我们',
+      service: '服务'
+    },
+    aboutUs: {
+      links: {
+        companyInfo: '公司简介',
+        tnc: '服务条款',
+        privacy: '隐私政策',
+        security:'安全性'
+      }
+    },
+    changePWD: {
+      title: '修改登录密码',
+      confirmBtn: '确认修改',
+      oldPassword: {
+        placeholder: '请输入原登录密码',
+        required: '请输入原登录密码',
+      },
+      newPassword: {
+        placeholder: '请输入新登录密码(8-20位，字母与数字组合)',
+        required: '请输入新登录密码',
+        invalid: '密码不符合要求'
+      },
+      confirmPassword: {
+        placeholder: '请再次输入新密码',
+        required: '请再次输入新密码',
+        invalid: '确认密码与登录密码不一致'
+      }
+    },
+    verifications: {
+      title: '身份验证'
+    },
+    services: {
+      title: '在线客服'
+    }
   },
   auth: {
     login: {
@@ -405,7 +442,7 @@ export default {
         placeholder: '登录密码（8-20位，包含字母与数字）',
         invalid: '密码不符合要求'
       },
-      comfirmPassword: {
+      confirmPassword: {
         require: '请输入确认登录密码',
         placeholder: '确认登录密码',
         invalid: '确认密码与登录密码不一致'
@@ -463,7 +500,7 @@ export default {
         placeholder: '登录密码（8-20位，包含字母与数字）',
         invalid: '密码不符合要求'
       },
-      comfirmPassword: {
+      confirmPassword: {
         require: '请输入确认登录密码',
         placeholder: '确认登录密码',
         invalid: '确认密码与登录密码不一致'

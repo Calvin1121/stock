@@ -52,7 +52,7 @@ export const RegisterFormBase: React.FC<RegisterFormBaseProps> = ({ formKeys, er
     return <>
         {formKeys.map((key) => <Controller control={control} key={key} name={key} render={({ field: { value, onChange, onBlur } }) => {
             const require = key !== 'invitationCode'
-            const passwordToggle = ['password', 'comfirmPassword'].includes(key)
+            const passwordToggle = ['password', 'confirmPassword'].includes(key)
             const placeholder = `register.${key}.placeholder`;
             const errorMsg = errors[key]?.message ? t(errors[key].message as string) : undefined;
             const suffix = onSuffixNode(key)
