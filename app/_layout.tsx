@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useColorScheme as useSystemColorScheme } from 'react-native';
 import 'react-native-reanimated';
 
-import { LoadingProvider, ToastProvider } from '@/components/ui';
+import { LoadingProvider, ModalProvider, ToastProvider } from '@/components/ui';
 import { ActionSheetProvider } from '@/components/ui/action-sheet-context';
 import { ColorsType, THEME, ThemeType } from '@/constants/Colors';
 import '@/lib/i18n';
@@ -88,11 +88,13 @@ function RootLayoutNav() {
       <ActionSheetProvider>
         <ToastProvider>
           <LoadingProvider>
-            <ThemeProvider value={resolvedThemeName === 'dark' ? DarkTheme : DefaultTheme}>
-              <Stack screenOptions={{ headerShown: false }}>
-                <Stack.Screen name="(tabs)" />
-              </Stack>
-            </ThemeProvider>
+            <ModalProvider>
+              <ThemeProvider value={resolvedThemeName === 'dark' ? DarkTheme : DefaultTheme}>
+                <Stack screenOptions={{ headerShown: false }}>
+                  <Stack.Screen name="(tabs)" />
+                </Stack>
+              </ThemeProvider>
+            </ModalProvider>
           </LoadingProvider>
         </ToastProvider>
       </ActionSheetProvider>

@@ -1,6 +1,7 @@
 import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
+import { delay } from 'lodash';
 import React, { useCallback, useMemo } from 'react';
 import {
   Dimensions,
@@ -116,21 +117,11 @@ export function ActionSheet({
   const handleItemPress = useCallback(
     (item: ActionSheetItem) => {
       if (!item.disabled) {
-        item.onPress?.(item);
-        // Animate out before closing
-        opacityAnim.value = withTiming(0, {
-          duration: 300,
-          easing: Easing.in(Easing.cubic),
-        });
-        translateY.value = withTiming(1000, {
-          duration: 300,
-          easing: Easing.in(Easing.cubic),
-        }, () => {
-          runOnJS(onClose)();
-        });
+        onClose();
+        delay(() => item.onPress?.(item), 320)
       }
     },
-    [onClose, opacityAnim, translateY]
+    [onClose]
   );
 
   // Handle show/hide animations

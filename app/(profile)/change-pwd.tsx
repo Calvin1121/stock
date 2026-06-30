@@ -14,7 +14,7 @@ import { ms } from "react-native-size-matters";
 import z from "zod";
 
 
-const changePWDSchem = z.object({
+const changePWDSchema = z.object({
     oldPassword: z.string().min(1, 'changePWD.oldPassword.required'),
     newPassword: z.string().min(1, 'changePWD.newPassword.required').refine((value) => pwdRegex.test(value), { message: 'changePWD.newPassword.invalid' }),
     confirmPassword: z.string().min(1, 'changePWD.confirmPassword.required'),
@@ -27,14 +27,14 @@ const changePWDSchem = z.object({
         });
     }
 })
-type ChangePWDFormValues = z.infer<typeof changePWDSchem>;
+type ChangePWDFormValues = z.infer<typeof changePWDSchema>;
 export default function ChangePWDPage() {
     const { t } = useTranslation('profile')
     const { theme } = useTheme()
     const styles = useMemo(() => createStyles(theme), [theme])
-    const formKeys = Object.keys(changePWDSchem.shape) as (keyof ChangePWDFormValues)[]
+    const formKeys = Object.keys(changePWDSchema.shape) as (keyof ChangePWDFormValues)[]
     const { handleSubmit, control, formState: { errors, isDirty, isValid }, } = useForm<ChangePWDFormValues>({
-        resolver: zodResolver(changePWDSchem),
+        resolver: zodResolver(changePWDSchema),
         defaultValues: formKeys.reduce((acc, key) => ({ ...acc, [key]: '' }), {}) as ChangePWDFormValues,
         mode: 'onChange'
     })

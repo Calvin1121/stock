@@ -1,11 +1,18 @@
 export default {
   lang: {
-      zh: '简体中文',
-      zh_TW: '繁体中文',
-      en: 'English',
-      en_UK: '繁体中文',
-      jp: '日本語',
-      sp: 'Spanish',
+    zh: '简体中文',
+    zh_TW: '繁体中文',
+    en: 'English',
+    en_UK: '繁体中文',
+    jp: '日本語',
+    sp: 'Spanish',
+  },
+  uploadPhoto: {
+    title: '选择方式',
+    options: {
+      gallery: '相册',
+      takePhoto: '拍照'
+    }
   },
   tab: {
     home: '首页',
@@ -387,7 +394,7 @@ export default {
         companyInfo: '公司简介',
         tnc: '服务条款',
         privacy: '隐私政策',
-        security:'安全性'
+        security: '安全性'
       }
     },
     changePWD: {
@@ -409,7 +416,31 @@ export default {
       }
     },
     verifications: {
-      title: '身份验证'
+      title: '身份验证',
+      confirmBtn: '提交',
+      baseInfo: {
+        title: '基本信息采集',
+        tips: '为了您的资金安全，需验证您的身份才可以进行其他操作；认证信息一经认证不能修改，请务必如实填写',
+        realName: {
+          placeholder: '请输入真实姓名',
+          required: '请输入真实姓名'
+        },
+        idNo: {
+          placeholder: '请输入身份证号',
+          required: '请输入身份证号',
+        }
+      },
+      identifyInfo: {
+        title: '上传您的身份证正反面照片',
+        topSide: {
+          title: '正面',
+          required: '上传您的身份证正面照片'
+        },
+        btmSide: {
+          title: '反面',
+          required: '上传您的身份证反面照片'
+        }
+      }
     },
     services: {
       title: '在线客服'

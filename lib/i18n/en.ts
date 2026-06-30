@@ -7,6 +7,13 @@ export default {
     jp: '日本語',
     sp: 'Spanish'
   },
+  uploadPhoto: {
+    title: 'Chose a method',
+    options: {
+      gallery: 'From gallery',
+      takePhoto: 'Take a phote'
+    }
+  },
   tab: {
     home: 'Home',
     ipo: 'IPO',
@@ -387,7 +394,7 @@ export default {
         companyInfo: '公司简介',
         tnc: '服务条款',
         privacy: '隐私政策',
-        security:'安全性'
+        security: '安全性'
       }
     },
     changePWD: {
@@ -409,7 +416,29 @@ export default {
       }
     },
     verifications: {
-      title: '身份验证'
+      title: '身份验证',
+      confirmBtn: '提交',
+      baseInfo: {
+        title: '基本信息采集',
+        tips: '为了您的资金安全，需验证您的身份才可以进',
+        realName: {
+          placeholder: '请输入真实姓名',
+          required: '请输入真实姓名'
+        },
+        idNo: {
+          placeholder: '请输入身份证号',
+          required: '请输入身份证号',
+        }
+      },
+      identifyInfo: {
+        title: '上传您的身份证正反面照片',
+        topSide: {
+          title: '正面'
+        },
+        btmSide: {
+          title: '反面'
+        }
+      }
     },
     services: {
       title: '在线客服'

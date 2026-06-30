@@ -11,7 +11,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.anonymous.stock",
       "infoPlist": {
-        "NSPhotoLibraryUsageDescription": "Need access to save QR code",
+        "NSPhotoLibraryUsageDescription": "Need access to save images",
         "NSPhotoLibraryAddUsageDescription": "Save images to your library"
       }
     },
@@ -41,7 +41,15 @@
         }
       ],
       "expo-localization",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Need access to upload photos",
+          "cameraPermission": "Need access to take a photo",
+          "microphonePermission": false
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

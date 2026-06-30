@@ -53,6 +53,8 @@ import IconCreditLoan from './IconCreditLoan';
 import IconEmptyDark from './IconEmptyDark';
 import IconExchangeDark from './IconExchangeDark';
 import IconExchange from './IconExchange';
+import IconIconIdFrontDark from './IconIconIdFrontDark';
+import IconIconIdReverseDark from './IconIconIdReverseDark';
 import IconLangDark from './IconLangDark';
 import IconOtc from './IconOtc';
 import IconPreMarket from './IconPreMarket';
@@ -110,6 +112,8 @@ export { default as IconCreditLoan } from './IconCreditLoan';
 export { default as IconEmptyDark } from './IconEmptyDark';
 export { default as IconExchangeDark } from './IconExchangeDark';
 export { default as IconExchange } from './IconExchange';
+export { default as IconIconIdFrontDark } from './IconIconIdFrontDark';
+export { default as IconIconIdReverseDark } from './IconIconIdReverseDark';
 export { default as IconLangDark } from './IconLangDark';
 export { default as IconOtc } from './IconOtc';
 export { default as IconPreMarket } from './IconPreMarket';
@@ -119,7 +123,7 @@ export { default as IconRecordsDark } from './IconRecordsDark';
 export { default as IconVerificationDark } from './IconVerificationDark';
 export { default as IconWithdrawDark } from './IconWithdrawDark';
 
-export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'avatar-rect' | 'avatar' | 'blockTrade' | 'creditLoan' | 'empty-dark' | 'exchange-dark' | 'exchange' | 'lang-dark' | 'OTC' | 'preMarket' | 'pwd-dark' | 'recharge-dark' | 'records-dark' | 'verification-dark' | 'withdraw-dark';
+export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'avatar-rect' | 'avatar' | 'blockTrade' | 'creditLoan' | 'empty-dark' | 'exchange-dark' | 'exchange' | 'icon-ID-front-dark' | 'icon-ID-reverse-dark' | 'lang-dark' | 'OTC' | 'preMarket' | 'pwd-dark' | 'recharge-dark' | 'records-dark' | 'verification-dark' | 'withdraw-dark';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -227,22 +231,26 @@ let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
       return <IconExchangeDark key="L6" {...rest} />;
     case 'exchange':
       return <IconExchange key="L7" {...rest} />;
+    case 'icon-ID-front-dark':
+      return <IconIconIdFrontDark key="L8" {...rest} />;
+    case 'icon-ID-reverse-dark':
+      return <IconIconIdReverseDark key="L9" {...rest} />;
     case 'lang-dark':
-      return <IconLangDark key="L8" {...rest} />;
+      return <IconLangDark key="L10" {...rest} />;
     case 'OTC':
-      return <IconOtc key="L9" {...rest} />;
+      return <IconOtc key="L11" {...rest} />;
     case 'preMarket':
-      return <IconPreMarket key="L10" {...rest} />;
+      return <IconPreMarket key="L12" {...rest} />;
     case 'pwd-dark':
-      return <IconPwdDark key="L11" {...rest} />;
+      return <IconPwdDark key="L13" {...rest} />;
     case 'recharge-dark':
-      return <IconRechargeDark key="L12" {...rest} />;
+      return <IconRechargeDark key="L14" {...rest} />;
     case 'records-dark':
-      return <IconRecordsDark key="L13" {...rest} />;
+      return <IconRecordsDark key="L15" {...rest} />;
     case 'verification-dark':
-      return <IconVerificationDark key="L14" {...rest} />;
+      return <IconVerificationDark key="L16" {...rest} />;
     case 'withdraw-dark':
-      return <IconWithdrawDark key="L15" {...rest} />;
+      return <IconWithdrawDark key="L17" {...rest} />;
   }
 
   return null;

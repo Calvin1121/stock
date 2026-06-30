@@ -12,6 +12,7 @@ export { LoadingProvider, useLoading } from './loading';
 export { MiniSparkline } from './mini-spark-line';
 export { Modal } from './modal';
 export type { ModalProps } from './modal';
+export { ModalProvider, useModal } from './modal-context';
 export { ToastProvider, useToast } from './notify';
 export { Popup } from './popup';
 export type { PopupProps } from './popup';

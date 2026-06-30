@@ -21,3 +21,8 @@ export const timeFormat = {
     zh: 'HH:mm:ss',
     en: 'HH:mm:ss'
 }
+
+export const identifyKeyboardType = {
+    ios: 'ascii-capable',
+    android: 'visible-password'
+}
