@@ -1,7 +1,6 @@
 import { ThemeType } from '@/constants/Colors';
 import { useTheme } from '@/lib/useTheme';
 import { commonStyles } from '@/styles/util';
-import { delay } from 'lodash';
 import React, { useCallback, useMemo } from 'react';
 import {
   Dimensions,
@@ -58,7 +57,9 @@ export function ActionSheet({
   const { theme } = useTheme();
   const styles = useMemo(() => createStyles(theme), [theme])
   const [isModalVisible, setIsModalVisible] = React.useState(visible);
-  const translateY = useSharedValue(visible ? 0 : 1000);
+  const pendingPressRef = React.useRef<(() => void) | null>(null);
+  const sheetHeight = Dimensions.get('window').height * 0.52;
+  const translateY = useSharedValue(visible ? 0 : sheetHeight);
   const opacityAnim = useSharedValue(visible ? 1 : 0);
 
   const panResponder = React.useRef(
@@ -117,8 +118,8 @@ export function ActionSheet({
   const handleItemPress = useCallback(
     (item: ActionSheetItem) => {
       if (!item.disabled) {
+        pendingPressRef.current = () => item.onPress?.(item);
         onClose();
-        delay(() => item.onPress?.(item), 450)
       }
     },
     [onClose]
@@ -126,34 +127,42 @@ export function ActionSheet({
 
   // Handle show/hide animations
   React.useEffect(() => {
+    let hideTimeout: NodeJS.Timeout | null = null;
+
     if (visible) {
-      // Show: become visible immediately, then animate in
       setIsModalVisible(true);
-      // Give Modal time to render, then animate
-      setTimeout(() => {
-        opacityAnim.value = withTiming(1, {
-          duration: 300,
-          easing: Easing.out(Easing.cubic),
-        });
-        translateY.value = withTiming(0, {
-          duration: 300,
-          easing: Easing.out(Easing.cubic),
-        });
-      }, 50);
+      opacityAnim.value = withTiming(1, {
+        duration: 250,
+        easing: Easing.out(Easing.cubic),
+      });
+      translateY.value = withTiming(0, {
+        duration: 250,
+        easing: Easing.out(Easing.cubic),
+      });
     } else {
-      // Hide: animate out, then close
       opacityAnim.value = withTiming(0, {
-        duration: 300,
+        duration: 220,
         easing: Easing.in(Easing.cubic),
       });
-      translateY.value = withTiming(1000, {
-        duration: 300,
+      translateY.value = withTiming(sheetHeight, {
+        duration: 220,
         easing: Easing.in(Easing.cubic),
-      }, () => {
-        runOnJS(setIsModalVisible)(false);
       });
+      hideTimeout = setTimeout(() => {
+        setIsModalVisible(false);
+        if (pendingPressRef.current) {
+          pendingPressRef.current();
+          pendingPressRef.current = null;
+        }
+      }, 300);
     }
-  }, [visible, opacityAnim, translateY]);
+
+    return () => {
+      if (hideTimeout) {
+        clearTimeout(hideTimeout);
+      }
+    };
+  }, [visible, opacityAnim, translateY, sheetHeight]);
 
   return (
     <Modal
