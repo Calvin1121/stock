@@ -11,7 +11,8 @@ export default function ProfileLayout() {
         { name: 'about-us', options: { title: t('links.aboutUs')}},
         { name: 'change-pwd', options: { title: t('changePWD.title')}},
         { name: 'verification', options: { title: t('verifications.title')}},
-        { name: 'service', options: { title: t('services.title')}}
+        { name: 'service', options: { title: t('services.title')}},
+        { name: 'verification-result', options: { title: t('verifications.title')}},
     ]
     return (
         <Stack screenOptions={headerOption}>

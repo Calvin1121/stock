@@ -1,7 +1,7 @@
 
 import { useTheme } from "@/lib/useTheme";
 import { commonStyles } from "@/styles/util";
-import { HeaderHeight } from "@/utils/consts";
+import { HeaderHeight, UploadImageResult } from "@/utils/consts";
 import * as ImagePicker from 'expo-image-picker';
 import { NativeStackHeaderBackProps, NativeStackHeaderProps, NativeStackNavigationOptions, router, useRouter } from "expo-router";
 import { get } from "lodash";
@@ -12,7 +12,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ms } from "react-native-size-matters";
 import { TouchableOpacity } from "./ThemeWidget";
 import IconFont from "./iconfont";
-import { ActionSheetItem, useActionSheet } from "./ui";
+import { useActionSheet } from "./ui";
 
 
 export type CustomHeaderProps = Partial<NativeStackHeaderProps>
@@ -99,58 +99,41 @@ export function useUploadPhoto(props?: ImagePicker.ImagePickerOptions & { isGall
     const { show } = useActionSheet()
     const { i18n } = useTranslation('uploadPhoto')
     const langMap = useMemo(() => i18n.getResourceBundle(i18n.language, 'uploadPhoto'), [i18n])
-    const onGallery = useCallback(async () => {
+    const onSelect = useCallback(async (key: string) => {
+        const isTakePhoto = key === 'takePhoto'
         try {
-            const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-            if (!granted) return;
-            const result = await ImagePicker.launchImageLibraryAsync({
+            const permissionFn = isTakePhoto ? ImagePicker.requestCameraPermissionsAsync : ImagePicker.requestMediaLibraryPermissionsAsync
+            const { granted } = await permissionFn()
+            if (!granted) throw new Error('ungranted');
+            const launchFn = isTakePhoto ? ImagePicker.launchCameraAsync : ImagePicker.launchImageLibraryAsync;
+            const result = await launchFn({
                 mediaTypes: ['images'],
                 allowsEditing: false,
                 selectionLimit: 1,
+                quality: .8,
                 ...rest,
             });
-            if (result.canceled) return;
-            console.log('gallery result', result.assets);
-        } catch (error) {
-            console.error('useUploadPhoto onGallery error', error);
+            if (result.canceled) throw new Error(UploadImageResult.Canceled)
+            if (!result.assets?.length) throw new Error(UploadImageResult.Unselected)
+            return { msg: UploadImageResult.Success, isError: false, assets: result.assets }
+        } catch (error: any) {
+            return { msg: error.message || UploadImageResult.Unknown, isError: true }
         }
-    }, [rest]);
-    const onTakePhoto = useCallback(async () => {
-        try {
-            const { granted } = await ImagePicker.requestCameraPermissionsAsync();
-            if (!granted) return;
-            const result = await ImagePicker.launchCameraAsync({
-                mediaTypes: ['images'],
-                allowsEditing: false,
-                ...rest,
-            });
-            if (result.canceled) return;
-            console.log('camera result', result.assets);
-        } catch (error) {
-            console.error('useUploadPhoto onTakePhoto error', error);
-        }
-    }, [rest]);
-    const onSelect = useCallback(async (key: string) => {
-        switch (key) {
-            case 'gallery':
-                await onGallery()
-                break;
-            case 'takePhoto':
-                await onTakePhoto()
-                break;
-        }
-    }, [onGallery, onTakePhoto])
-    const options = useMemo(() => {
+    }, [rest])
+    const onTrigger = useCallback((): Promise<{ msg: string | UploadImageResult; isError: boolean; assets?: ImagePicker.ImagePickerAsset[] }> => {
         const optionMap = langMap.options
         const keys = Object.keys(optionMap)
-        const options: ActionSheetItem[] = keys.map((key) => ({ label: get(optionMap, key), value: key, onPress: () => onSelect(key) }))
-        if (isGallery)
-            return options.filter(item => item.value === 'gallery')
-        return options
-    }, [langMap, onSelect, isGallery])
-    const onTrigger = useCallback(() => {
-        show({ items: options })
-    }, [options, show])
+        return new Promise(resolve => {
+            show({
+                items: keys.map((key) => ({
+                    label: get(optionMap, key), value: key, onPress: async () => {
+                        const result = await onSelect(key)
+                        resolve(result)
+                    }
+                }))
+            })
+        })
+    }, [show, langMap, onSelect])
     return { onTrigger }
 }
 

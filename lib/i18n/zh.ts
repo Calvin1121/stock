@@ -12,6 +12,11 @@ export default {
     options: {
       gallery: '相册',
       takePhoto: '拍照'
+    },
+    errors: {
+      canceled: '取消上传',
+      unselected: '未选择图片',
+      unknown: '未知错误'
     }
   },
   tab: {

@@ -4,6 +4,13 @@ export enum ResultEnum {
     Fail = 'fail'
 }
 
+export enum UploadImageResult {
+    Canceled = 'canceled',
+    Unselected = 'unselected',
+    Unknown = 'unknown',
+    Success = 'success',
+}
+
 export const HeaderHeight = 44;
 
 export enum StockField {

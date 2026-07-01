@@ -118,7 +118,7 @@ export function ActionSheet({
     (item: ActionSheetItem) => {
       if (!item.disabled) {
         onClose();
-        delay(() => item.onPress?.(item), 320)
+        delay(() => item.onPress?.(item), 450)
       }
     },
     [onClose]
