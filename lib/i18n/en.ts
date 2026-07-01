@@ -8,10 +8,15 @@ export default {
     sp: 'Spanish'
   },
   uploadPhoto: {
-    title: 'Chose a method',
+    title: '选择方式',
     options: {
-      gallery: 'From gallery',
-      takePhoto: 'Take a phote'
+      gallery: '相册',
+      takePhoto: '拍照'
+    },
+    errors: {
+      canceled: '取消上传',
+      unselected: '未选择图片',
+      unknown: '未知错误'
     }
   },
   tab: {
@@ -420,7 +425,7 @@ export default {
       confirmBtn: '提交',
       baseInfo: {
         title: '基本信息采集',
-        tips: '为了您的资金安全，需验证您的身份才可以进',
+        tips: '为了您的资金安全，需验证您的身份才可以进行其他操作；认证信息一经认证不能修改，请务必如实填写',
         realName: {
           placeholder: '请输入真实姓名',
           required: '请输入真实姓名'
@@ -433,10 +438,26 @@ export default {
       identifyInfo: {
         title: '上传您的身份证正反面照片',
         topSide: {
-          title: '正面'
+          title: '正面',
+          required: '上传您的身份证正面照片'
         },
         btmSide: {
-          title: '反面'
+          title: '反面',
+          required: '上传您的身份证反面照片'
+        }
+      },
+      result: {
+        title: '身份验证',
+        status: {
+          verifying: '身份验证中，请耐心等待！',
+          failed: '身份验证失败，身份证照片不符！',
+          success: '身份验证成功！'
+        },
+        identifyInfo: {
+          title: '身份信息',
+          realName: '姓名',
+          idNo: '身份证号',
+          idPic: '身份证照片'
         }
       }
     },

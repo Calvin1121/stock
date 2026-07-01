@@ -103,7 +103,7 @@ export default function VerificationPage() {
             </View>
         </ScrollView>
         <View style={[commonStyles.mainLayoutPadding]}>
-            <Button onPress={() => router.push('/(profile)/verification-result')} disabled={!isDirty || !isValid}>{t('verifications.confirmBtn')}</Button>
+            <Button onPress={() => router.push('/(profile)/verification-result')} disabled={(!isDirty || !isValid) && false}>{t('verifications.confirmBtn')}</Button>
         </View>
     </SafeAreaView>
 }

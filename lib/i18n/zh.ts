@@ -445,6 +445,20 @@ export default {
           title: '反面',
           required: '上传您的身份证反面照片'
         }
+      },
+      result: {
+        title: '身份验证',
+        status: {
+          verifying: '身份验证中，请耐心等待！',
+          failed: '身份验证失败，身份证照片不符！',
+          success: '身份验证成功！'
+        },
+        identifyInfo: {
+          title: '身份信息',
+          realName: '姓名',
+          idNo: '身份证号',
+          idPic: '身份证照片'
+        }
       }
     },
     services: {

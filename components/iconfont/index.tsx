@@ -4,6 +4,7 @@
 import React, { FunctionComponent } from 'react';
 import { ViewProps } from 'react-native';
 import { GProps } from 'react-native-svg';
+import IconPending from './IconPending';
 import IconSuccess from './IconSuccess';
 import IconFail from './IconFail';
 import IconAPic36SinglechoiceSelected from './IconAPic36SinglechoiceSelected';
@@ -63,6 +64,7 @@ import IconRechargeDark from './IconRechargeDark';
 import IconRecordsDark from './IconRecordsDark';
 import IconVerificationDark from './IconVerificationDark';
 import IconWithdrawDark from './IconWithdrawDark';
+export { default as IconPending } from './IconPending';
 export { default as IconSuccess } from './IconSuccess';
 export { default as IconFail } from './IconFail';
 export { default as IconAPic36SinglechoiceSelected } from './IconAPic36SinglechoiceSelected';
@@ -123,7 +125,7 @@ export { default as IconRecordsDark } from './IconRecordsDark';
 export { default as IconVerificationDark } from './IconVerificationDark';
 export { default as IconWithdrawDark } from './IconWithdrawDark';
 
-export type IconNames = 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'avatar-rect' | 'avatar' | 'blockTrade' | 'creditLoan' | 'empty-dark' | 'exchange-dark' | 'exchange' | 'icon-ID-front-dark' | 'icon-ID-reverse-dark' | 'lang-dark' | 'OTC' | 'preMarket' | 'pwd-dark' | 'recharge-dark' | 'records-dark' | 'verification-dark' | 'withdraw-dark';
+export type IconNames = 'pending' | 'success' | 'fail' | 'a-pic-36-Singlechoice-Selected' | 'icon-60-service' | 'icon-82-plus' | 'icon-96-play' | 'icon-58-message' | 'icon-60-About' | 'a-icon-60-Customerserviceavatar' | 'icon-56-Picture' | 'a-icon-48-CollectionSelectedsvg' | 'icon-42-Trade-hidden' | 'icon-42-Trade-display' | 'icon-42-IPO-default1' | 'a-icon-48-IDFront' | 'a-icon-48-Openeyes' | 'icon-48-Hide' | 'a-icon-48-Historicalrecords' | 'icon-42-Profile-default1' | 'icon-42-Refresh' | 'icon-42-News-default1' | 'icon-48-Close' | 'a-icon-48-Fullscreen' | 'icon-42-Information' | 'a-icon-48-Arrow-rightsvg' | 'icon-48-CollectionDefault' | 'icon-42-Home-default' | 'icon-42-Profile-default' | 'icon-42-IPO-default' | 'icon-42-News-default' | 'icon-42-Assets-default' | 'icon-32-clear' | 'icon-32-Copy' | 'icon-36-filter' | 'icon-32-reduce' | 'a-icon-36-danxuan-Singlechoice-Selected' | 'icon-32-plus' | 'icon-32-search' | 'a-icon-36-Singlechoice-default' | 'a-icon-24-Lightgraydrop-down' | 'icon-16-triangle' | 'icon-32-arrow-left' | 'avatar-rect' | 'avatar' | 'blockTrade' | 'creditLoan' | 'empty-dark' | 'exchange-dark' | 'exchange' | 'icon-ID-front-dark' | 'icon-ID-reverse-dark' | 'lang-dark' | 'OTC' | 'preMarket' | 'pwd-dark' | 'recharge-dark' | 'records-dark' | 'verification-dark' | 'withdraw-dark';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -133,90 +135,92 @@ interface Props extends GProps, ViewProps {
 
 let IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
   switch (name) {
+    case 'pending':
+      return <IconPending key="1" {...rest} />;
     case 'success':
-      return <IconSuccess key="1" {...rest} />;
+      return <IconSuccess key="2" {...rest} />;
     case 'fail':
-      return <IconFail key="2" {...rest} />;
+      return <IconFail key="3" {...rest} />;
     case 'a-pic-36-Singlechoice-Selected':
-      return <IconAPic36SinglechoiceSelected key="3" {...rest} />;
+      return <IconAPic36SinglechoiceSelected key="4" {...rest} />;
     case 'icon-60-service':
-      return <IconIcon60Service key="4" {...rest} />;
+      return <IconIcon60Service key="5" {...rest} />;
     case 'icon-82-plus':
-      return <IconIcon82Plus key="5" {...rest} />;
+      return <IconIcon82Plus key="6" {...rest} />;
     case 'icon-96-play':
-      return <IconIcon96Play key="6" {...rest} />;
+      return <IconIcon96Play key="7" {...rest} />;
     case 'icon-58-message':
-      return <IconIcon58Message key="7" {...rest} />;
+      return <IconIcon58Message key="8" {...rest} />;
     case 'icon-60-About':
-      return <IconIcon60About key="8" {...rest} />;
+      return <IconIcon60About key="9" {...rest} />;
     case 'a-icon-60-Customerserviceavatar':
-      return <IconAIcon60Customerserviceavatar key="9" {...rest} />;
+      return <IconAIcon60Customerserviceavatar key="10" {...rest} />;
     case 'icon-56-Picture':
-      return <IconIcon56Picture key="10" {...rest} />;
+      return <IconIcon56Picture key="11" {...rest} />;
     case 'a-icon-48-CollectionSelectedsvg':
-      return <IconAIcon48CollectionSelectedsvg key="11" {...rest} />;
+      return <IconAIcon48CollectionSelectedsvg key="12" {...rest} />;
     case 'icon-42-Trade-hidden':
-      return <IconIcon42TradeHidden key="12" {...rest} />;
+      return <IconIcon42TradeHidden key="13" {...rest} />;
     case 'icon-42-Trade-display':
-      return <IconIcon42TradeDisplay key="13" {...rest} />;
+      return <IconIcon42TradeDisplay key="14" {...rest} />;
     case 'icon-42-IPO-default1':
-      return <IconIcon42IpoDefault1 key="14" {...rest} />;
+      return <IconIcon42IpoDefault1 key="15" {...rest} />;
     case 'a-icon-48-IDFront':
-      return <IconAIcon48IdFront key="15" {...rest} />;
+      return <IconAIcon48IdFront key="16" {...rest} />;
     case 'a-icon-48-Openeyes':
-      return <IconAIcon48Openeyes key="16" {...rest} />;
+      return <IconAIcon48Openeyes key="17" {...rest} />;
     case 'icon-48-Hide':
-      return <IconIcon48Hide key="17" {...rest} />;
+      return <IconIcon48Hide key="18" {...rest} />;
     case 'a-icon-48-Historicalrecords':
-      return <IconAIcon48Historicalrecords key="18" {...rest} />;
+      return <IconAIcon48Historicalrecords key="19" {...rest} />;
     case 'icon-42-Profile-default1':
-      return <IconIcon42ProfileDefault1 key="19" {...rest} />;
+      return <IconIcon42ProfileDefault1 key="20" {...rest} />;
     case 'icon-42-Refresh':
-      return <IconIcon42Refresh key="20" {...rest} />;
+      return <IconIcon42Refresh key="21" {...rest} />;
     case 'icon-42-News-default1':
-      return <IconIcon42NewsDefault1 key="21" {...rest} />;
+      return <IconIcon42NewsDefault1 key="22" {...rest} />;
     case 'icon-48-Close':
-      return <IconIcon48Close key="22" {...rest} />;
+      return <IconIcon48Close key="23" {...rest} />;
     case 'a-icon-48-Fullscreen':
-      return <IconAIcon48Fullscreen key="23" {...rest} />;
+      return <IconAIcon48Fullscreen key="24" {...rest} />;
     case 'icon-42-Information':
-      return <IconIcon42Information key="24" {...rest} />;
+      return <IconIcon42Information key="25" {...rest} />;
     case 'a-icon-48-Arrow-rightsvg':
-      return <IconAIcon48ArrowRightsvg key="25" {...rest} />;
+      return <IconAIcon48ArrowRightsvg key="26" {...rest} />;
     case 'icon-48-CollectionDefault':
-      return <IconIcon48CollectionDefault key="26" {...rest} />;
+      return <IconIcon48CollectionDefault key="27" {...rest} />;
     case 'icon-42-Home-default':
-      return <IconIcon42HomeDefault key="27" {...rest} />;
+      return <IconIcon42HomeDefault key="28" {...rest} />;
     case 'icon-42-Profile-default':
-      return <IconIcon42ProfileDefault key="28" {...rest} />;
+      return <IconIcon42ProfileDefault key="29" {...rest} />;
     case 'icon-42-IPO-default':
-      return <IconIcon42IpoDefault key="29" {...rest} />;
+      return <IconIcon42IpoDefault key="30" {...rest} />;
     case 'icon-42-News-default':
-      return <IconIcon42NewsDefault key="30" {...rest} />;
+      return <IconIcon42NewsDefault key="31" {...rest} />;
     case 'icon-42-Assets-default':
-      return <IconIcon42AssetsDefault key="31" {...rest} />;
+      return <IconIcon42AssetsDefault key="32" {...rest} />;
     case 'icon-32-clear':
-      return <IconIcon32Clear key="32" {...rest} />;
+      return <IconIcon32Clear key="33" {...rest} />;
     case 'icon-32-Copy':
-      return <IconIcon32Copy key="33" {...rest} />;
+      return <IconIcon32Copy key="34" {...rest} />;
     case 'icon-36-filter':
-      return <IconIcon36Filter key="34" {...rest} />;
+      return <IconIcon36Filter key="35" {...rest} />;
     case 'icon-32-reduce':
-      return <IconIcon32Reduce key="35" {...rest} />;
+      return <IconIcon32Reduce key="36" {...rest} />;
     case 'a-icon-36-danxuan-Singlechoice-Selected':
-      return <IconAIcon36DanxuanSinglechoiceSelected key="36" {...rest} />;
+      return <IconAIcon36DanxuanSinglechoiceSelected key="37" {...rest} />;
     case 'icon-32-plus':
-      return <IconIcon32Plus key="37" {...rest} />;
+      return <IconIcon32Plus key="38" {...rest} />;
     case 'icon-32-search':
-      return <IconIcon32Search key="38" {...rest} />;
+      return <IconIcon32Search key="39" {...rest} />;
     case 'a-icon-36-Singlechoice-default':
-      return <IconAIcon36SinglechoiceDefault key="39" {...rest} />;
+      return <IconAIcon36SinglechoiceDefault key="40" {...rest} />;
     case 'a-icon-24-Lightgraydrop-down':
-      return <IconAIcon24LightgraydropDown key="40" {...rest} />;
+      return <IconAIcon24LightgraydropDown key="41" {...rest} />;
     case 'icon-16-triangle':
-      return <IconIcon16Triangle key="41" {...rest} />;
+      return <IconIcon16Triangle key="42" {...rest} />;
     case 'icon-32-arrow-left':
-      return <IconIcon32ArrowLeft key="42" {...rest} />;
+      return <IconIcon32ArrowLeft key="43" {...rest} />;
     case 'avatar-rect':
       return <IconAvatarRect key="L1" {...rest} />;
     case 'avatar':
